@@ -1,0 +1,65 @@
+# Security
+*.token
+git_token_config
+.env
+**/.env
+*.key
+*.secret
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+*.bin
+*.log
+logs/*.log
+!logs/.gitkeep
+*.tmp
+*.temp
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.exe
+cuda-sycl-converter/build/
+
+# Large files
+*.mp4
+*.zip
+*.tar.gz
+
+# Data files (if too large)
+# Uncomment if dataset is too large for git
+# kernel_dataset/cuda/
+# kernel_dataset/sycl/
