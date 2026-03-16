@@ -26,11 +26,12 @@ import argparse
 from typing import Dict, List, Tuple, Optional
 from pathlib import Path
 
-# Add harnesses to path
-sys.path.insert(0, str(Path(__file__).parent / 'harnesses'))
+# Add harnesses to path (从 src/harnesses 目录导入)
+HARNESS_PATH = Path(__file__).parent.parent / 'src' / 'harnesses'
+sys.path.insert(0, str(HARNESS_PATH))
 
 from all_harnesses import ALL_HARNESSES
-from phase5_batch4_harnesses import PHASE5_BATCH4_HARNESSES
+from batch4_harnesses import PHASE5_BATCH4_HARNESSES
 
 # Merge all harnesses
 ALL_KERNELS = {}

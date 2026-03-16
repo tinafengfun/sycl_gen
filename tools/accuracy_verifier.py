@@ -34,6 +34,26 @@ from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 
+# 添加 cuda-sycl-converter harness 路径
+import sys
+CUDA_SYCL_CONVERTER_PATH = Path(__file__).parent.parent / 'cuda-sycl-converter' / 'src'
+if str(CUDA_SYCL_CONVERTER_PATH) not in sys.path:
+    sys.path.insert(0, str(CUDA_SYCL_CONVERTER_PATH))
+
+# 尝试导入 cuda-sycl-converter 的 harnesses
+try:
+    from harnesses.all_harnesses import ALL_HARNESSES
+    from harnesses.batch4_harnesses import PHASE5_BATCH4_HARNESSES
+    CUDA_SYCL_HARNESSES_AVAILABLE = True
+    logger_import = logging.getLogger(__name__)
+    logger_import.info(f"✅ Loaded {len(ALL_HARNESSES)} kernels from cuda-sycl-converter")
+except ImportError as e:
+    CUDA_SYCL_HARNESSES_AVAILABLE = False
+    ALL_HARNESSES = {}
+    PHASE5_BATCH4_HARNESSES = {}
+    logger_import = logging.getLogger(__name__)
+    logger_import.warning(f"⚠️ Could not import cuda-sycl-converter harnesses: {e}")
+
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -786,10 +806,28 @@ int main(){
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
+        # 合并所有可用的 harnesses
+        self._all_harnesses = {}
+        self._all_harnesses.update(self.TEMPLATES)
+        
+        # 优先使用 cuda-sycl-converter 的 harnesses
+        if CUDA_SYCL_HARNESSES_AVAILABLE:
+            # ALL_HARNESSES 和 PHASE5_BATCH4_HARNESSES 格式为 {'kernel_id': {'cuda': '...', 'sycl': '...'}}
+            for kernel_id, harness_data in ALL_HARNESSES.items():
+                if isinstance(harness_data, dict) and 'cuda' in harness_data and 'sycl' in harness_data:
+                    self._all_harnesses[kernel_id] = harness_data
+                    
+            for kernel_id, harness_data in PHASE5_BATCH4_HARNESSES.items():
+                if isinstance(harness_data, dict) and 'cuda' in harness_data and 'sycl' in harness_data:
+                    self._all_harnesses[kernel_id] = harness_data
+            
+            self.logger.info(f"✅ HarnessGenerator initialized with {len(self._all_harnesses)} kernels")
+        else:
+            self.logger.warning("⚠️ Using only built-in harness templates")
     
     def generate(self, kernel_id: str, platform: str) -> Optional[str]:
         """
-        生成harness代码
+        生成harness代码 - 优先使用 cuda-sycl-converter 的 harnesses
         
         Args:
             kernel_id: 内核标识符
@@ -798,13 +836,36 @@ int main(){
         Returns:
             harness代码或None
         """
+        # 首先检查合并后的 harnesses（包含 cuda-sycl-converter 的）
+        if kernel_id in self._all_harnesses:
+            code = self._all_harnesses[kernel_id].get(platform)
+            if code:
+                # 记录使用的 harness 来源
+                if kernel_id in ALL_HARNESSES or kernel_id in PHASE5_BATCH4_HARNESSES:
+                    self.logger.debug(f"Using cuda-sycl-converter harness for {kernel_id}/{platform}")
+                return code
+        
+        # 最后回退到内置模板
         if kernel_id in self.TEMPLATES:
             code = self.TEMPLATES[kernel_id].get(platform)
             if code:
+                self.logger.debug(f"Using built-in template for {kernel_id}/{platform}")
                 return code
         
         self.logger.warning(f"No harness template for {kernel_id} on {platform}")
         return None
+    
+    def list_available_kernels(self) -> List[str]:
+        """列出所有可用的 kernel IDs"""
+        return list(self._all_harnesses.keys())
+    
+    def get_stats(self) -> Dict[str, int]:
+        """获取 harness 统计信息"""
+        return {
+            'total': len(self._all_harnesses),
+            'builtin': len(self.TEMPLATES),
+            'from_cuda_sycl_converter': len(ALL_HARNESSES) + len(PHASE5_BATCH4_HARNESSES)
+        }
     
     def register_template(self, kernel_id: str, cuda_code: str, sycl_code: str):
         """注册新的harness模板"""
