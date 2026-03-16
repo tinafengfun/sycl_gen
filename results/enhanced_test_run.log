@@ -1,0 +1,123 @@
+========================================
+🚀 启动增强版Agent v2.0
+========================================
+
+📊 模型配置:
+  • 预处理: Qwen3-Coder-30B-A3B-Instruct
+  • 转换: DeepSeek-R1-G2-static-671B
+  • 修复: DeepSeek-R1-G2-static-671B
+  • 测试生成: Qwen3-Coder-30B-A3B-Instruct
+
+✨ 新特性:
+  ✓ LLM高比重使用 (5个Stage全部使用LLM)
+  ✓ 智能预处理 (依赖分析+头文件内联)
+  ✓ 5轮渐进式修复
+  ✓ 自动转换计划生成
+
+📈 预期改进:
+  • 编译通过率: 27.6% → 80%+
+  • 自动解决头文件依赖
+  • 智能错误修复
+
+========================================
+
+🔄 开始转换...
+================================================================================
+🚀 增强版Agent批量转换
+模型: DeepSeek-R1-G2-static-671B + Qwen3-Coder-30B
+================================================================================
+
+🔄 转换内核: add_vectors
+======================================================================
+🧠 Stage 1: LLM预处理分析...
+  ✓ 复杂度评分: 3/10
+  ✓ 发现依赖: 5个头文件
+📦 Stage 2: LLM内联头文件...
+⚠️  LLM调用异常 (尝试 1): Server disconnected
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 头文件内联完成
+📋 Stage 3: LLM生成转换计划...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 策略: direct
+  ✓ 预计时间: 5min
+🔄 Stage 4: LLM执行转换...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 转换完成
+🔧 Stage 5: LLM多轮修复...
+  ✓ 编译通过 (尝试 1)
+  ✓ 已保存: kernel_dataset/sycl/add_vectors_kernel.dp.cpp
+
+🔄 转换内核: batch_norm
+======================================================================
+🧠 Stage 1: LLM预处理分析...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 复杂度评分: 5/10
+  ✓ 发现依赖: 0个头文件
+📋 Stage 3: LLM生成转换计划...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 策略: direct
+  ✓ 预计时间: 5min
+🔄 Stage 4: LLM执行转换...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 转换完成
+🔧 Stage 5: LLM多轮修复...
+  ✓ 编译通过 (尝试 1)
+  ✓ 已保存: kernel_dataset/sycl/batch_norm_kernel.dp.cpp
+
+🔄 转换内核: global_avg_pool
+======================================================================
+🧠 Stage 1: LLM预处理分析...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 复杂度评分: 5/10
+  ✓ 发现依赖: 0个头文件
+📋 Stage 3: LLM生成转换计划...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 策略: direct
+  ✓ 预计时间: 5min
+🔄 Stage 4: LLM执行转换...
+⚠️  LLM调用异常 (尝试 1): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 2): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+⚠️  LLM调用异常 (尝试 3): Cannot connect to host 10.112.110.111:80 ssl:default [Connect call failed ('10.112.110.111', 80)]
+  ✓ 转换完成
+🔧 Stage 5: LLM多轮修复...
+  ✓ 编译通过 (尝试 1)
+  ✓ 已保存: kernel_dataset/sycl/global_avg_pool_kernel.dp.cpp
+
+================================================================================
+📊 转换完成汇总
+================================================================================
+总内核数: 3
+成功: 3 (100.0%)
+失败: 0
+平均修复次数: 0.0
+================================================================================
+
+✅ 增强版Agent转换完成!
+📁 详细结果: results/enhanced_conversion_results.json
+
+========================================
+✅ 增强版Agent运行完成!
+========================================
+
+📁 结果文件:
+  • results/enhanced_conversion_results.json
+
+💡 提示:
+  查看详细结果了解转换成功率
+  失败的内核可以再次运行以尝试修复
+========================================

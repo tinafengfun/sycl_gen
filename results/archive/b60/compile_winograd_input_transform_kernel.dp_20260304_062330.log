@@ -1,0 +1,66 @@
+Exit code: 1
+=== STDOUT ===
+=== SYCL Compilation Start ===
+Timestamp: 20260304_062330
+Kernel: winograd_input_transform_kernel.dp
+Source: /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp
+Compiler: icpx
+Flags: -fsycl -O2 -std=c++17
+
+Starting compilation...
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:106:11: error: use of undeclared identifier 'threadIdx'
+  106 |   int c = threadIdx.x;
+      |           ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:107:11: error: use of undeclared identifier 'blockIdx'
+  107 |   int n = blockIdx.x;
+      |           ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:206:22: error: unknown type name 'cudaStream_t'; did you mean 'ihipStream_t'?
+  206 |                      cudaStream_t stream) {
+      |                      ^~~~~~~~~~~~
+      |                      ihipStream_t
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/backend_traits_hip.hpp:26:16: note: 'ihipStream_t' declared here
+   26 | typedef struct ihipStream_t *HIPstream;
+      |                ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:206:35: error: variable has incomplete type 'ihipStream_t'
+  206 |                      cudaStream_t stream) {
+      |                                   ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/backend_traits_hip.hpp:26:16: note: forward declaration of 'ihipStream_t'
+   26 | typedef struct ihipStream_t *HIPstream;
+      |                ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:210:9: error: expected expression
+  210 |       <<<N, C, 0, stream>>>(N, C, input, transformed_input);
+      |         ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:210:27: error: expected expression
+  210 |       <<<N, C, 0, stream>>>(N, C, input, transformed_input);
+      |                           ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:212:20: error: use of undeclared identifier 'cudaGetLastError'
+  212 |   ReportCUDAErrors(cudaGetLastError());
+      |                    ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:210:29: warning: left operand of comma operator has no effect [-Wunused-value]
+  210 |       <<<N, C, 0, stream>>>(N, C, input, transformed_input);
+      |                             ^
+1 warning and 7 errors generated.
+
+=== Compilation Exit Code: 1 ===
+Compilation failed!
+
+=== STDERR ===
++ echo '=== SYCL Compilation Start ==='
++ echo 'Timestamp: 20260304_062330'
++ echo 'Kernel: winograd_input_transform_kernel.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Flags: -fsycl -O2 -std=c++17'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp ']'
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ echo 'Starting compilation...'
++ icpx -fsycl -O2 -std=c++17 -c /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp -o /workspace/build_sycl/winograd_input_transform_kernel.dp.o
++ tee /workspace/results/b60/compile_winograd_input_transform_kernel.dp_20260304_062330.log
++ EXIT_CODE=1
++ echo ''
++ echo '=== Compilation Exit Code: 1 ==='
++ '[' 1 -eq 0 ']'
++ echo 'Compilation failed!'
++ exit 1

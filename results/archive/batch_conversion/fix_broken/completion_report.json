@@ -1,0 +1,42 @@
+{
+  "total": 4,
+  "success": 0,
+  "failed": 4,
+  "in_progress": 0,
+  "start_time": "2026-03-09T12:44:17.873477",
+  "results": [
+    {
+      "kernel_id": "layer_norm",
+      "status": "FAILED",
+      "duration": 7.816418,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "winograd_filter_transform",
+      "status": "FAILED",
+      "duration": 8.918258,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "winograd_output_se_relu_input",
+      "status": "FAILED",
+      "duration": 8.591715,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "output_input_transform_fp16_shmem",
+      "status": "FAILED",
+      "duration": 9.585722,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    }
+  ],
+  "end_time": "2026-03-09T12:44:52.879416"
+}

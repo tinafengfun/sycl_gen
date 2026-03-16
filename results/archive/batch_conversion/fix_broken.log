@@ -1,0 +1,167 @@
+========================================
+修复损坏的SYCL内核
+========================================
+开始时间: Mon Mar  9 12:44:17 PM UTC 2026
+
+修复内核:
+  - layer_norm（缺少头文件）
+  - winograd_filter_transform（编译错误）
+  - winograd_output_se_relu_input（编译错误）
+  - output_input_transform_fp16_shmem（编译错误）
+
+已备份原文件到 kernel_dataset/sycl/broken_backup/
+
+已删除损坏的文件，准备重新转换...
+
+============================================================
+🚀 Batch CUDA-to-SYCL Conversion
+============================================================
+Kernels to process: 4
+Output directory: results/batch_conversion/fix_broken
+Workers: 2
+============================================================
+[12:44:17] [INFO] Starting batch conversion of 4 kernels
+[12:44:17] [INFO] Output directory: results/batch_conversion/fix_broken
+[12:44:17] [INFO] Workers: 2
+[12:44:17] [INFO] Starting conversion: layer_norm
+🚀 [UnifiedOrchestrator] 启动统一转换: layer_norm
+   Session ID: layer_norm_20260309_124417
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 337行
+      Device函数: 5
+      Global kernels: 1
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:25] [INFO] Completed layer_norm: failed
+[12:44:25] [INFO] Starting conversion: winograd_filter_transform
+🚀 [UnifiedOrchestrator] 启动统一转换: winograd_filter_transform
+   Session ID: winograd_filter_transform_20260309_124425
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 140行
+      Device函数: 2
+      Global kernels: 1
+      复杂度: Level 3
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:34] [INFO] Completed winograd_filter_transform: failed
+[12:44:34] [INFO] Starting conversion: winograd_output_se_relu_input
+🚀 [UnifiedOrchestrator] 启动统一转换: winograd_output_se_relu_input
+   Session ID: winograd_output_se_relu_input_20260309_124434
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 401行
+      Device函数: 7
+      Global kernels: 1
+      复杂度: Level 3
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:43] [INFO] Completed winograd_output_se_relu_input: failed
+[12:44:43] [INFO] Starting conversion: output_input_transform_fp16_shmem
+🚀 [UnifiedOrchestrator] 启动统一转换: output_input_transform_fp16_shmem
+   Session ID: output_input_transform_fp16_shmem_20260309_124443
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 563行
+      Device函数: 7
+      Global kernels: 2
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:52] [INFO] Completed output_input_transform_fp16_shmem: failed
+[12:44:52] [INFO] Batch conversion completed
+[12:44:52] [INFO] Report saved to: results/batch_conversion/fix_broken/completion_report.json
+[12:44:52] [INFO] Markdown report: results/batch_conversion/fix_broken/completion_report.md
+
+============================================================
+📊 Batch Conversion Complete
+============================================================
+Success Rate: 0.0%
+Successful: 0/4
+Failed: 4/4
+Output: results/batch_conversion/fix_broken/
+============================================================
+
+========================================
+损坏内核修复完成
+结束时间: Mon Mar  9 12:44:52 PM UTC 2026
+结果: results/batch_conversion/fix_broken/
+========================================

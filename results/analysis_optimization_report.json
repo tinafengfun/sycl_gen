@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-03-10T09:46:23.731076",
+  "kernels": {
+    "add_vectors": {
+      "compiles": true,
+      "file_exists": true
+    },
+    "add_bias_batched": {
+      "compiles": false,
+      "file_exists": true
+    },
+    "layer_norm": {
+      "compiles": true,
+      "file_exists": true
+    },
+    "softmax": {
+      "compiles": true,
+      "file_exists": true
+    },
+    "global_scale": {
+      "compiles": false,
+      "file_exists": true
+    },
+    "winograd_filter_transform": {
+      "compiles": true,
+      "file_exists": true
+    },
+    "se_layer_nhwc": {
+      "compiles": true,
+      "file_exists": true
+    }
+  },
+  "statistics": {
+    "total_kernels": 7,
+    "success_attempts": 11,
+    "failure_attempts": 25,
+    "error_patterns": {
+      "item_undefined": 0,
+      "uint2_undefined": 0,
+      "uint3_undefined": 0,
+      "uint4_undefined": 0,
+      "missing_inc": 0,
+      "llm_error": 11
+    }
+  },
+  "optimization_suggestions": [
+    {
+      "priority": "P1",
+      "issue": "LLM\u8c03\u7528\u9891\u7e41\u5931\u8d25",
+      "frequency": 11,
+      "suggestion": "\u589e\u52a0\u91cd\u8bd5\u673a\u5236\u548c\u6307\u6570\u9000\u907f\u7b56\u7565",
+      "action": "\u4f18\u5316EnhancedLLMClient.call_llm\u65b9\u6cd5"
+    },
+    {
+      "priority": "P0",
+      "issue": "\u6574\u4f53\u6210\u529f\u7387\u8f83\u4f4e (30.6%)",
+      "frequency": 25,
+      "suggestion": "\u589e\u52a0\u4fee\u590d\u8f6e\u6570\u4ece5\u6b21\u52308\u6b21\uff0c\u6216\u6539\u8fdb\u4fee\u590d\u7b56\u7565",
+      "action": "\u4fee\u6539max_fix_attempts\u914d\u7f6e"
+    }
+  ],
+  "compilation_summary": {
+    "total": 7,
+    "pass": 5,
+    "fail": 2,
+    "pass_rate": 71.42857142857143
+  }
+}

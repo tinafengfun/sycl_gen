@@ -1,0 +1,232 @@
+Exit code: 1
+Compiler flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+=== STDOUT ===
+=== SYCL Compilation for Intel XPU (BMG Support) ===
+Timestamp: 20260308_083713
+Kernel: winograd_output_se_relu_input_kernel.dp
+Source: /workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp
+Compiler: icpx
+Compile Flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+
+Step 1: Compiling source to object file...
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:1:1: error: expected unqualified-id
+    1 | ```cpp
+      | ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:146:10: error: no matching function for call to 'group_ballot'
+  146 |     x += sycl::ext::oneapi::group_ballot(x, mask);
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/ext/oneapi/sub_group_mask.hpp:342:1: note: candidate template ignored: requirement 'std::is_same_v<float, sycl::ext::oneapi::sub_group> || std::is_same_v<float, sycl::sub_group>' was not satisfied [with Group = float]
+  342 | group_ballot(Group g, bool predicate) {
+      | ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:189:44: error: use of undeclared identifier 'GemmN'
+  189 |             outElTransformed[y][x] = input[TEMP_INDEX_HWNC(y, x, shln, k)];
+      |                                            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:12: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:189:44: error: use of undeclared identifier 'GemmN'
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:28: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |                            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:214:38: error: no matching constructor for initialization of 'sycl::local_accessor<float, 1>'
+  214 |       sycl::local_accessor<float, 1> shared_data(C, item.get_group());
+      |                                      ^           ~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2278:3: note: candidate inherited constructor not viable: no known conversion from 'group<1>' to 'handler &' for 2nd argument
+ 2278 |   local_accessor_base(
+      |   ^
+ 2279 |       range<Dimensions> AllocationSize, handler &,
+      |                                         ~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 1, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2245:3: note: candidate template ignored: requirement '1 == 0' was not satisfied [with Dims = 1]
+ 2245 |   local_accessor_base(handler &, const detail::code_location CodeLoc =
+      |   ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2260:9: note: candidate template ignored: requirement '1 == 0' was not satisfied [with Dims = 1]
+ 2260 |         local_accessor_base(handler &, const property_list &propList,
+      |         ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2121:28: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 2 were provided
+ 2121 | class __SYCL_SPECIAL_CLASS local_accessor_base :
+      |                            ^~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 1, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2121:28: note: candidate constructor (the implicit move constructor) not viable: requires 1 argument, but 2 were provided
+ 2121 | class __SYCL_SPECIAL_CLASS local_accessor_base :
+      |                            ^~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 1, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2499:3: note: candidate constructor template not viable: requires single argument 'other', but 2 arguments were provided
+ 2499 |   local_accessor(const local_accessor<DataT_, Dimensions> &other) {
+      |   ^              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2445:67: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 2 were provided
+ 2445 | class __SYCL_EBO __SYCL_SPECIAL_CLASS __SYCL_TYPE(local_accessor) local_accessor
+      |                                                                   ^~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2445:67: note: candidate constructor (the implicit move constructor) not viable: requires 1 argument, but 2 were provided
+ 2445 | class __SYCL_EBO __SYCL_SPECIAL_CLASS __SYCL_TYPE(local_accessor) local_accessor
+      |                                                                   ^~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2483:3: note: candidate constructor not viable: requires 0 arguments, but 2 were provided
+ 2483 |   local_accessor() {
+      |   ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2296:9: note: candidate inherited constructor not viable: requires at least 3 arguments, but 2 were provided
+ 2296 |         local_accessor_base(range<Dimensions> AllocationSize, handler &,
+      |         ^                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2297 |                             const property_list &propList,
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2298 |                             const detail::code_location CodeLoc =
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2299 |                                 detail::code_location::current())
+      |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 1, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:227:38: error: no matching constructor for initialization of 'sycl::local_accessor<float, 2>'
+  227 |       sycl::local_accessor<float, 2> shared_sums(C / 32, kMaxResBlockFusingSeK, item.get_group());
+      |                                      ^           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2278:3: note: candidate inherited constructor not viable: no known conversion from 'int' to 'range<2>' for 1st argument
+ 2278 |   local_accessor_base(
+      |   ^
+ 2279 |       range<Dimensions> AllocationSize, handler &,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 2, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2296:9: note: candidate inherited constructor not viable: no known conversion from 'int' to 'range<2>' for 1st argument
+ 2296 |         local_accessor_base(range<Dimensions> AllocationSize, handler &,
+      |         ^                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 2, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2260:9: note: candidate template ignored: requirement '2 == 0' was not satisfied [with Dims = 2]
+ 2260 |         local_accessor_base(handler &, const property_list &propList,
+      |         ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2245:3: note: candidate inherited constructor not viable: requires at most 2 arguments, but 3 were provided
+ 2245 |   local_accessor_base(handler &, const detail::code_location CodeLoc =
+      |   ^                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2246 |                                      detail::code_location::current())
+      |                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 2, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2121:28: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 3 were provided
+ 2121 | class __SYCL_SPECIAL_CLASS local_accessor_base :
+      |                            ^~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 2, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2121:28: note: candidate constructor (the implicit move constructor) not viable: requires 1 argument, but 3 were provided
+ 2121 | class __SYCL_SPECIAL_CLASS local_accessor_base :
+      |                            ^~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2461:20: note: constructor from base class 'local_accessor_base<float, 2, sycl::access::mode::read_write, sycl::access::placeholder::false_t>' inherited here
+ 2461 |   using local_acc::local_acc;
+      |                    ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2499:3: note: candidate constructor template not viable: requires single argument 'other', but 3 arguments were provided
+ 2499 |   local_accessor(const local_accessor<DataT_, Dimensions> &other) {
+      |   ^              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2445:67: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 3 were provided
+ 2445 | class __SYCL_EBO __SYCL_SPECIAL_CLASS __SYCL_TYPE(local_accessor) local_accessor
+      |                                                                   ^~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2445:67: note: candidate constructor (the implicit move constructor) not viable: requires 1 argument, but 3 were provided
+ 2445 | class __SYCL_EBO __SYCL_SPECIAL_CLASS __SYCL_TYPE(local_accessor) local_accessor
+      |                                                                   ^~~~~~~~~~~~~~
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/accessor.hpp:2483:3: note: candidate constructor not viable: requires 0 arguments, but 3 were provided
+ 2483 |   local_accessor() {
+      |   ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:268:16: error: unknown type name 'uint4'; did you mean 'uint'?
+  268 |         copyAs<uint4>(&skipInp[0], &skip[INDEX_NHCW(n, k, h, 0)]);
+      |                ^~~~~
+      |                uint
+/usr/include/x86_64-linux-gnu/sys/types.h:150:22: note: 'uint' declared here
+  150 | typedef unsigned int uint;
+      |                      ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:269:27: error: unknown type name 'uint4'; did you mean 'uint'?
+  269 |         if (!fp16) copyAs<uint4>(&skipInp[4], &skip[INDEX_NHCW(n, k, h, 4)]);
+      |                           ^~~~~
+      |                           uint
+/usr/include/x86_64-linux-gnu/sys/types.h:150:22: note: 'uint' declared here
+  150 | typedef unsigned int uint;
+      |                      ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:284:16: error: unknown type name 'uint4'; did you mean 'uint'?
+  284 |         copyAs<uint4>(&skip[INDEX_NHCW(n, k, h, 0)], &board[h][0]);
+      |                ^~~~~
+      |                uint
+/usr/include/x86_64-linux-gnu/sys/types.h:150:22: note: 'uint' declared here
+  150 | typedef unsigned int uint;
+      |                      ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:285:27: error: unknown type name 'uint4'; did you mean 'uint'?
+  285 |         if (!fp16) copyAs<uint4>(&skip[INDEX_NHCW(n, k, h, 4)], &board[h][4]);
+      |                           ^~~~~
+      |                           uint
+/usr/include/x86_64-linux-gnu/sys/types.h:150:22: note: 'uint' declared here
+  150 | typedef unsigned int uint;
+      |                      ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:308:18: error: use of undeclared identifier 'GemmN'
+  308 |           output[TEMP_INDEX_HWNC(y, x, n * 4 + 0, c)] = inEl[y][x];
+      |                  ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:12: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:308:18: error: use of undeclared identifier 'GemmN'
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:28: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |                            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:327:18: error: use of undeclared identifier 'GemmN'
+  327 |           output[TEMP_INDEX_HWNC(y, x, n * 4 + 1, c)] = inEl[y][x];
+      |                  ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:12: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:327:18: error: use of undeclared identifier 'GemmN'
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:28: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |                            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:346:18: error: use of undeclared identifier 'GemmN'
+  346 |           output[TEMP_INDEX_HWNC(y, x, n * 4 + 2, c)] = inEl[y][x];
+      |                  ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:12: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:346:18: error: use of undeclared identifier 'GemmN'
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:130:28: note: expanded from macro 'TEMP_INDEX_HWNC'
+  130 |   ((h)*6 * GemmN * C + (w)*GemmN * C + (n)*C + c)
+      |                            ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:168:2: error: unterminated conditional directive
+  168 | #ifndef SKIP_FP16_BITS
+      |  ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:362:31: error: expected ')'
+  362 |       for (int y = 0; y < 6; y
+      |                               ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:362:11: note: to match this '('
+  362 |       for (int y = 0; y < 6; y
+      |           ^
+/workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp:362:31: error: expected expression
+  362 |       for (int y = 0; y < 6; y
+      |                               ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+[ERROR] Compilation step 1 failed with exit code 1
+
+=== STDERR ===
++ echo '=== SYCL Compilation for Intel XPU (BMG Support) ==='
++ echo 'Timestamp: 20260308_083713'
++ echo 'Kernel: winograd_output_se_relu_input_kernel.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Compile Flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64'
++ echo 'Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '\''-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'\'''
++ echo 'AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp ']'
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ echo 'Step 1: Compiling source to object file...'
++ icpx -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64 -c /workspace/kernel_dataset/sycl/winograd_output_se_relu_input_kernel.dp.cpp -o /workspace/build_sycl/winograd_output_se_relu_input_kernel.dp.o
++ tee /workspace/results/b60/compile_winograd_output_se_relu_input_kernel.dp_20260308_083713.log.step1
++ STEP1_EXIT=1
++ '[' 1 -ne 0 ']'
++ echo '[ERROR] Compilation step 1 failed with exit code 1'
++ exit 1

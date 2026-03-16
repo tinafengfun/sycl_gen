@@ -1,0 +1,161 @@
+Exit code: 1
+Compiler flags: -fsycl -O2 -std=c++17 -fno-sycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+=== STDOUT ===
+=== SYCL Compilation for Intel XPU (BMG Support) ===
+Timestamp: 20260304_092634
+Kernel: winograd_input_transform_kernel.dp
+Source: /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp
+Compiler: icpx
+Compile Flags: -fsycl -O2 -std=c++17 -fno-sycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+
+Step 1: Compiling source to object file...
+In file included from /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:28:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/sycl.hpp:25:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/core.hpp:23:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:36:
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1534:59: error: unnamed type '(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)' is invalid; provide a kernel name, or use '-fsycl-unnamed-lambda' to enable unnamed kernel lambdas
+ 1534 |       h->kernel_parallel_for<TypesToForward..., Props...>(Args...);
+      |                                                           ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1620:29: note: in instantiation of function template specialization 'sycl::handler::KernelPropertiesUnpackerImpl<>::kernel_parallel_for_unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+ 1620 |           Unpacker.template kernel_parallel_for_unpack<KernelName, ElementType,
+      |                             ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1616:5: note: in instantiation of function template specialization 'sycl::handler::unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, false, (lambda at /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1619:21)>' requested here
+ 1616 |     unpack<KernelName, KernelType, PropertiesT,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1249:5: note: in instantiation of function template specialization 'sycl::handler::kernel_parallel_for_wrapper<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 1249 |     kernel_parallel_for_wrapper<NameT, TransformedArgType, KernelType,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:2371:5: note: in instantiation of function template specialization 'sycl::handler::parallel_for_impl<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 2371 |     parallel_for_impl<KernelName>(Range, Properties, std::move(KernelFunc));
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2437:24: note: in instantiation of function template specialization 'sycl::handler::parallel_for<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, 2>' requested here
+ 2437 |           CGH.template parallel_for<KernelName>(Range, Properties, Rest...);
+      |                        ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2452:12: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5) &>' requested here
+ 2452 |     return parallel_for<KernelName>(
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:110:9: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+  110 |   queue.parallel_for(sycl::nd_range<2>(sycl::range<2>(N, C), sycl::range<2>(1, C)),
+      |         ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:215:3: note: in instantiation of function template specialization 'lczero::sycldnn_backend::InputTransform_kernel<float, true>' requested here
+  215 |   InputTransform_kernel<T, nhcw>(queue, N, C, input, transformed_input);
+      |   ^
+In file included from /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:28:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/sycl.hpp:25:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/core.hpp:23:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:36:
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1534:59: error: unnamed type '(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)' is invalid; provide a kernel name, or use '-fsycl-unnamed-lambda' to enable unnamed kernel lambdas
+ 1534 |       h->kernel_parallel_for<TypesToForward..., Props...>(Args...);
+      |                                                           ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1620:29: note: in instantiation of function template specialization 'sycl::handler::KernelPropertiesUnpackerImpl<>::kernel_parallel_for_unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+ 1620 |           Unpacker.template kernel_parallel_for_unpack<KernelName, ElementType,
+      |                             ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1616:5: note: in instantiation of function template specialization 'sycl::handler::unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, false, (lambda at /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1619:21)>' requested here
+ 1616 |     unpack<KernelName, KernelType, PropertiesT,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1249:5: note: in instantiation of function template specialization 'sycl::handler::kernel_parallel_for_wrapper<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 1249 |     kernel_parallel_for_wrapper<NameT, TransformedArgType, KernelType,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:2371:5: note: in instantiation of function template specialization 'sycl::handler::parallel_for_impl<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 2371 |     parallel_for_impl<KernelName>(Range, Properties, std::move(KernelFunc));
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2437:24: note: in instantiation of function template specialization 'sycl::handler::parallel_for<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, 2>' requested here
+ 2437 |           CGH.template parallel_for<KernelName>(Range, Properties, Rest...);
+      |                        ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2452:12: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5) &>' requested here
+ 2452 |     return parallel_for<KernelName>(
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:110:9: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+  110 |   queue.parallel_for(sycl::nd_range<2>(sycl::range<2>(N, C), sycl::range<2>(1, C)),
+      |         ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:215:3: note: in instantiation of function template specialization 'lczero::sycldnn_backend::InputTransform_kernel<float, false>' requested here
+  215 |   InputTransform_kernel<T, nhcw>(queue, N, C, input, transformed_input);
+      |   ^
+In file included from /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:28:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/sycl.hpp:25:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/core.hpp:23:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:36:
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1534:59: error: unnamed type '(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)' is invalid; provide a kernel name, or use '-fsycl-unnamed-lambda' to enable unnamed kernel lambdas
+ 1534 |       h->kernel_parallel_for<TypesToForward..., Props...>(Args...);
+      |                                                           ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1620:29: note: in instantiation of function template specialization 'sycl::handler::KernelPropertiesUnpackerImpl<>::kernel_parallel_for_unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+ 1620 |           Unpacker.template kernel_parallel_for_unpack<KernelName, ElementType,
+      |                             ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1616:5: note: in instantiation of function template specialization 'sycl::handler::unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, false, (lambda at /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1619:21)>' requested here
+ 1616 |     unpack<KernelName, KernelType, PropertiesT,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1249:5: note: in instantiation of function template specialization 'sycl::handler::kernel_parallel_for_wrapper<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 1249 |     kernel_parallel_for_wrapper<NameT, TransformedArgType, KernelType,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:2371:5: note: in instantiation of function template specialization 'sycl::handler::parallel_for_impl<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 2371 |     parallel_for_impl<KernelName>(Range, Properties, std::move(KernelFunc));
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2437:24: note: in instantiation of function template specialization 'sycl::handler::parallel_for<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, 2>' requested here
+ 2437 |           CGH.template parallel_for<KernelName>(Range, Properties, Rest...);
+      |                        ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2452:12: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5) &>' requested here
+ 2452 |     return parallel_for<KernelName>(
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:110:9: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+  110 |   queue.parallel_for(sycl::nd_range<2>(sycl::range<2>(N, C), sycl::range<2>(1, C)),
+      |         ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:215:3: note: in instantiation of function template specialization 'lczero::sycldnn_backend::InputTransform_kernel<sycl::detail::half_impl::half, true>' requested here
+  215 |   InputTransform_kernel<T, nhcw>(queue, N, C, input, transformed_input);
+      |   ^
+In file included from /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:28:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/sycl.hpp:25:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/core.hpp:23:
+In file included from /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:36:
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1534:59: error: unnamed type '(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)' is invalid; provide a kernel name, or use '-fsycl-unnamed-lambda' to enable unnamed kernel lambdas
+ 1534 |       h->kernel_parallel_for<TypesToForward..., Props...>(Args...);
+      |                                                           ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1620:29: note: in instantiation of function template specialization 'sycl::handler::KernelPropertiesUnpackerImpl<>::kernel_parallel_for_unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+ 1620 |           Unpacker.template kernel_parallel_for_unpack<KernelName, ElementType,
+      |                             ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1616:5: note: in instantiation of function template specialization 'sycl::handler::unpack<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, false, (lambda at /opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1619:21)>' requested here
+ 1616 |     unpack<KernelName, KernelType, PropertiesT,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:1249:5: note: in instantiation of function template specialization 'sycl::handler::kernel_parallel_for_wrapper<(lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::nd_item<2>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 1249 |     kernel_parallel_for_wrapper<NameT, TransformedArgType, KernelType,
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/handler.hpp:2371:5: note: in instantiation of function template specialization 'sycl::handler::parallel_for_impl<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>>' requested here
+ 2371 |     parallel_for_impl<KernelName>(Range, Properties, std::move(KernelFunc));
+      |     ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2437:24: note: in instantiation of function template specialization 'sycl::handler::parallel_for<sycl::detail::auto_name, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5), sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, 2>' requested here
+ 2437 |           CGH.template parallel_for<KernelName>(Range, Properties, Rest...);
+      |                        ^
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/queue.hpp:2452:12: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, sycl::ext::oneapi::experimental::properties<detail::properties_type_list<>>, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5) &>' requested here
+ 2452 |     return parallel_for<KernelName>(
+      |            ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:110:9: note: in instantiation of function template specialization 'sycl::queue::parallel_for<sycl::detail::auto_name, 2, (lambda at /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:111:5)>' requested here
+  110 |   queue.parallel_for(sycl::nd_range<2>(sycl::range<2>(N, C), sycl::range<2>(1, C)),
+      |         ^
+/workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp:215:3: note: in instantiation of function template specialization 'lczero::sycldnn_backend::InputTransform_kernel<sycl::detail::half_impl::half, false>' requested here
+  215 |   InputTransform_kernel<T, nhcw>(queue, N, C, input, transformed_input);
+      |   ^
+4 errors generated.
+[ERROR] Compilation step 1 failed with exit code 1
+
+=== STDERR ===
++ echo '=== SYCL Compilation for Intel XPU (BMG Support) ==='
++ echo 'Timestamp: 20260304_092634'
++ echo 'Kernel: winograd_input_transform_kernel.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Compile Flags: -fsycl -O2 -std=c++17 -fno-sycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64'
++ echo 'Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '\''-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'\'''
++ echo 'AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp ']'
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ echo 'Step 1: Compiling source to object file...'
++ icpx -fsycl -O2 -std=c++17 -fno-sycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64 -c /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp -o /workspace/build_sycl/winograd_input_transform_kernel.dp.o
++ tee /workspace/results/b60/compile_winograd_input_transform_kernel.dp_20260304_092634.log.step1
++ STEP1_EXIT=1
++ '[' 1 -ne 0 ']'
++ echo '[ERROR] Compilation step 1 failed with exit code 1'
++ exit 1

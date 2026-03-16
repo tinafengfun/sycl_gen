@@ -1,0 +1,66 @@
+{
+  "session": "winograd_acc_20260304_073610",
+  "timestamp": "2026-03-04T07:36:10.963669",
+  "tests": [
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "random"
+      },
+      "status": "failed",
+      "error": "CUDA execution failed"
+    },
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "ones"
+      },
+      "status": "failed",
+      "error": "CUDA execution failed"
+    },
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "sequential"
+      },
+      "status": "failed",
+      "error": "CUDA execution failed"
+    },
+    {
+      "config": {
+        "N": 4,
+        "C": 128,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "random"
+      },
+      "status": "failed",
+      "error": "CUDA execution failed"
+    },
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nhcw",
+        "test_type": "random"
+      },
+      "status": "failed",
+      "error": "CUDA execution failed"
+    }
+  ],
+  "summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 5
+  }
+}

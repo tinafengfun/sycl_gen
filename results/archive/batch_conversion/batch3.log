@@ -1,0 +1,162 @@
+========================================
+批量转换 - 第三批（Attention和Softmax）
+========================================
+开始时间: Mon Mar  9 12:44:17 PM UTC 2026
+
+转换内核:
+  - softmax
+  - promotion_logits
+  - preprocess_attention_body
+  - gen_offset_pointers
+
+============================================================
+🚀 Batch CUDA-to-SYCL Conversion
+============================================================
+Kernels to process: 4
+Output directory: results/batch_conversion/batch3
+Workers: 2
+============================================================
+[12:44:17] [INFO] Starting batch conversion of 4 kernels
+[12:44:17] [INFO] Output directory: results/batch_conversion/batch3
+[12:44:17] [INFO] Workers: 2
+[12:44:17] [INFO] Starting conversion: softmax
+🚀 [UnifiedOrchestrator] 启动统一转换: softmax
+   Session ID: softmax_20260309_124417
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 150行
+      Device函数: 5
+      Global kernels: 1
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:26] [INFO] Completed softmax: failed
+[12:44:26] [INFO] Starting conversion: promotion_logits
+🚀 [UnifiedOrchestrator] 启动统一转换: promotion_logits
+   Session ID: promotion_logits_20260309_124426
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 129行
+      Device函数: 0
+      Global kernels: 1
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:28] [INFO] Completed promotion_logits: failed
+[12:44:28] [INFO] Starting conversion: preprocess_attention_body
+🚀 [UnifiedOrchestrator] 启动统一转换: preprocess_attention_body
+   Session ID: preprocess_attention_body_20260309_124428
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 78行
+      Device函数: 0
+      Global kernels: 1
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:30] [INFO] Completed preprocess_attention_body: failed
+[12:44:30] [INFO] Starting conversion: gen_offset_pointers
+🚀 [UnifiedOrchestrator] 启动统一转换: gen_offset_pointers
+   Session ID: gen_offset_pointers_20260309_124430
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 93行
+      Device函数: 0
+      Global kernels: 1
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:31] [INFO] Completed gen_offset_pointers: failed
+[12:44:31] [INFO] Batch conversion completed
+[12:44:31] [INFO] Report saved to: results/batch_conversion/batch3/completion_report.json
+[12:44:31] [INFO] Markdown report: results/batch_conversion/batch3/completion_report.md
+
+============================================================
+📊 Batch Conversion Complete
+============================================================
+Success Rate: 0.0%
+Successful: 0/4
+Failed: 4/4
+Output: results/batch_conversion/batch3/
+============================================================
+
+========================================
+第三批转换完成
+结束时间: Mon Mar  9 12:44:32 PM UTC 2026
+========================================

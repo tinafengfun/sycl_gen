@@ -1,0 +1,42 @@
+{
+  "total": 4,
+  "success": 0,
+  "failed": 4,
+  "in_progress": 0,
+  "start_time": "2026-03-09T12:44:17.867176",
+  "results": [
+    {
+      "kernel_id": "softmax",
+      "status": "FAILED",
+      "duration": 8.334921,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "promotion_logits",
+      "status": "FAILED",
+      "duration": 1.836749,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "preprocess_attention_body",
+      "status": "FAILED",
+      "duration": 1.888723,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "gen_offset_pointers",
+      "status": "FAILED",
+      "duration": 1.930123,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    }
+  ],
+  "end_time": "2026-03-09T12:44:31.950808"
+}

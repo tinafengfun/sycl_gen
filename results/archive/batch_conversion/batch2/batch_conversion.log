@@ -1,0 +1,16 @@
+[12:44:17] [INFO] Starting batch conversion of 5 kernels
+[12:44:17] [INFO] Output directory: results/batch_conversion/batch2
+[12:44:17] [INFO] Workers: 2
+[12:44:17] [INFO] Starting conversion: global_scale
+[12:44:20] [INFO] Completed global_scale: failed
+[12:44:20] [INFO] Starting conversion: global_scale_fp16_nhwc
+[12:44:22] [INFO] Completed global_scale_fp16_nhwc: failed
+[12:44:22] [INFO] Starting conversion: global_avg_pool_nhwc_fp16
+[12:44:31] [INFO] Completed global_avg_pool_nhwc_fp16: failed
+[12:44:31] [INFO] Starting conversion: expand_planes_nhwc
+[12:44:40] [INFO] Completed expand_planes_nhwc: failed
+[12:44:40] [INFO] Starting conversion: input_gating
+[12:44:42] [INFO] Completed input_gating: failed
+[12:44:42] [INFO] Batch conversion completed
+[12:44:42] [INFO] Report saved to: results/batch_conversion/batch2/completion_report.json
+[12:44:42] [INFO] Markdown report: results/batch_conversion/batch2/completion_report.md

@@ -1,0 +1,34 @@
+{
+  "total": 3,
+  "success": 0,
+  "failed": 3,
+  "in_progress": 0,
+  "start_time": "2026-03-09T12:44:17.865717",
+  "results": [
+    {
+      "kernel_id": "winograd_output_transform",
+      "status": "FAILED",
+      "duration": 8.32496,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "winograd_output_relu_input",
+      "status": "FAILED",
+      "duration": 8.156263,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "se_layer_nhwc",
+      "status": "FAILED",
+      "duration": 1.970623,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    }
+  ],
+  "end_time": "2026-03-09T12:44:36.412184"
+}

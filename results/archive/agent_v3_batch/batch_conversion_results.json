@@ -1,0 +1,124 @@
+{
+  "start_time": "2026-03-13T06:25:59.346888",
+  "total": 14,
+  "converted": 0,
+  "verified": 1,
+  "failed": 5,
+  "details": [
+    {
+      "kernel_id": "add_vectors_hnc_nhc",
+      "status": "failed",
+      "cuda_compiles": true,
+      "sycl_compiles": false,
+      "complexity_score": 0.0,
+      "conversion_attempts": 0,
+      "fix_attempts": 0,
+      "error_type": "unknown"
+    },
+    {
+      "kernel_id": "add_bias_nchw",
+      "status": "failed",
+      "cuda_compiles": true,
+      "sycl_compiles": false,
+      "complexity_score": 0.0,
+      "conversion_attempts": 0,
+      "fix_attempts": 0,
+      "error_type": "unknown"
+    },
+    {
+      "kernel_id": "nchw_to_nhwc",
+      "status": "failed",
+      "cuda_compiles": true,
+      "sycl_compiles": false,
+      "complexity_score": 0.0,
+      "conversion_attempts": 0,
+      "fix_attempts": 0,
+      "error_type": "unknown"
+    },
+    {
+      "kernel_id": "global_scale_fp16_nhwc",
+      "status": "failed",
+      "cuda_compiles": true,
+      "sycl_compiles": false,
+      "complexity_score": 0.0,
+      "conversion_attempts": 0,
+      "fix_attempts": 0,
+      "error_type": "unknown"
+    },
+    {
+      "kernel_id": "global_avg_pool_nhwc_fp16",
+      "status": "passed",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "complexity_score": 0.0,
+      "conversion_attempts": 0,
+      "fix_attempts": 0,
+      "error_type": ""
+    },
+    {
+      "kernel_id": "expand_planes_nhwc",
+      "status": "failed",
+      "cuda_compiles": false,
+      "sycl_compiles": false,
+      "complexity_score": 0.0,
+      "conversion_attempts": 0,
+      "fix_attempts": 0,
+      "error_type": "unknown"
+    },
+    {
+      "kernel_id": "promotion_logits",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "preprocess_attention_body",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "input_gating",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "gen_offset_pointers",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "winograd_output_transform",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "winograd_output_se_relu_input",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "winograd_output_relu_input",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    },
+    {
+      "kernel_id": "output_input_transform_fp16_shmem",
+      "status": "not_found",
+      "error": "Not in kernel index"
+    }
+  ],
+  "end_time": "2026-03-13T06:26:24.547574",
+  "llm_stats": {
+    "call_count": 0,
+    "total_tokens": 0,
+    "error_count": 0,
+    "success_rate": 0.0
+  },
+  "compilation_stats": {
+    "cuda_attempts": 6,
+    "cuda_success": 5,
+    "sycl_attempts": 6,
+    "sycl_success": 1,
+    "cuda_success_rate": 83.33333333333334,
+    "sycl_success_rate": 16.666666666666664
+  }
+}

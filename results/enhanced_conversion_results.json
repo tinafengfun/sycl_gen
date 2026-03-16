@@ -1,0 +1,123 @@
+[
+  {
+    "kernel_id": "add_vectors",
+    "success": true,
+    "stages": {
+      "analysis": {
+        "headers": [
+          "<algorithm>",
+          "<cassert>",
+          "cuda_common.h",
+          "neural/tables/activation_function.h",
+          "utils/exception.h"
+        ],
+        "macros": [],
+        "cuda_apis": [
+          "cudaStream_t",
+          "addVectors_kernel<<<>>>",
+          "threadIdx.x",
+          "blockDim.x",
+          "blockIdx.x"
+        ],
+        "templates": [
+          {
+            "name": "addVectors_kernel",
+            "parameters": [
+              "typename T"
+            ],
+            "usage": [
+              "addVectors_kernel<T>"
+            ]
+          },
+          {
+            "name": "addVectors",
+            "parameters": [
+              "typename T"
+            ],
+            "usage": [
+              "addVectors<float>",
+              "addVectors<half>"
+            ]
+          }
+        ],
+        "constants": [
+          {
+            "name": "kBlockSize",
+            "value": 256,
+            "type": "int"
+          }
+        ],
+        "complexity_score": 3,
+        "risk_factors": [
+          "\u7c7b\u578b\u8f6c\u6362\u98ce\u9669\uff1a\u4ecefloat\u5230T\u7684\u9690\u5f0f\u8f6c\u6362\u53ef\u80fd\u5bfc\u81f4\u7cbe\u5ea6\u635f\u5931",
+          "\u5185\u5b58\u8bbf\u95ee\u6a21\u5f0f\uff1a\u4f7f\u7528\u6a21\u8fd0\u7b97(i % asize)\u53ef\u80fd\u5f71\u54cd\u7f13\u5b58\u6027\u80fd",
+          "\u6a21\u677f\u5b9e\u4f8b\u5316\uff1a\u9700\u8981\u786e\u4fddhalf\u7c7b\u578b\u5728\u76ee\u6807\u5e73\u53f0\u4e0a\u6b63\u786e\u652f\u6301"
+        ]
+      },
+      "inlined": true,
+      "plan": {
+        "strategy": "direct",
+        "estimated_time": "5min",
+        "risk_level": "medium",
+        "steps": [
+          "\u76f4\u63a5\u8f6c\u6362"
+        ],
+        "special_handling": []
+      },
+      "converted": true,
+      "fix_attempts": 0
+    }
+  },
+  {
+    "kernel_id": "batch_norm",
+    "success": true,
+    "stages": {
+      "analysis": {
+        "headers": [],
+        "macros": [],
+        "cuda_apis": [],
+        "templates": [],
+        "constants": [],
+        "complexity_score": 5,
+        "risk_factors": []
+      },
+      "plan": {
+        "strategy": "direct",
+        "estimated_time": "5min",
+        "risk_level": "medium",
+        "steps": [
+          "\u76f4\u63a5\u8f6c\u6362"
+        ],
+        "special_handling": []
+      },
+      "converted": true,
+      "fix_attempts": 0
+    }
+  },
+  {
+    "kernel_id": "global_avg_pool",
+    "success": true,
+    "stages": {
+      "analysis": {
+        "headers": [],
+        "macros": [],
+        "cuda_apis": [],
+        "templates": [],
+        "constants": [],
+        "complexity_score": 5,
+        "risk_factors": []
+      },
+      "plan": {
+        "strategy": "direct",
+        "estimated_time": "5min",
+        "risk_level": "medium",
+        "steps": [
+          "\u76f4\u63a5\u8f6c\u6362"
+        ],
+        "special_handling": []
+      },
+      "converted": true,
+      "fix_attempts": 0
+    }
+  }
+]

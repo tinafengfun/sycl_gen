@@ -1,0 +1,14 @@
+[12:44:17] [INFO] Starting batch conversion of 4 kernels
+[12:44:17] [INFO] Output directory: results/batch_conversion/fix_broken
+[12:44:17] [INFO] Workers: 2
+[12:44:17] [INFO] Starting conversion: layer_norm
+[12:44:25] [INFO] Completed layer_norm: failed
+[12:44:25] [INFO] Starting conversion: winograd_filter_transform
+[12:44:34] [INFO] Completed winograd_filter_transform: failed
+[12:44:34] [INFO] Starting conversion: winograd_output_se_relu_input
+[12:44:43] [INFO] Completed winograd_output_se_relu_input: failed
+[12:44:43] [INFO] Starting conversion: output_input_transform_fp16_shmem
+[12:44:52] [INFO] Completed output_input_transform_fp16_shmem: failed
+[12:44:52] [INFO] Batch conversion completed
+[12:44:52] [INFO] Report saved to: results/batch_conversion/fix_broken/completion_report.json
+[12:44:52] [INFO] Markdown report: results/batch_conversion/fix_broken/completion_report.md

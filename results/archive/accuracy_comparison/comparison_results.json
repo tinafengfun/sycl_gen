@@ -1,0 +1,138 @@
+{
+  "test_date": "2026-03-10T05:29:34.055673",
+  "kernels": {
+    "batch_norm": {
+      "kernel_id": "batch_norm",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\ncollect2: error: ld returned 1 exit status\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    },
+    "copy_type_converted": {
+      "kernel_id": "copy_type_converted",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\ncollect2: error: ld returned 1 exit status\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    },
+    "expand_planes_nchw": {
+      "kernel_id": "expand_planes_nchw",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "test.cu(44): error: identifier \"uint64_t\" is undefined\n  __attribute__((global)) void expandPlanes_kernel_NCHW(T* output, const uint64_t* masks,\n                                                                         ^\n\ntest.cu(53): error: identifier \"uint64_t\" is undefined\n    uint64_t mask = masks[planeIndex];\n    ^\n\ntest.cu(72): error: identifier \"uint64_t\" is undefined\n  void expandPlanes_NCHW(T* output, const uint64_t* masks, const T* values,\n                                          ^\n\n3 errors detected in the compilation of \"test.cu\".\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    },
+    "global_avg_pool": {
+      "kernel_id": "global_avg_pool",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\ncollect2: error: ld returned 1 exit status\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    },
+    "policy_map": {
+      "kernel_id": "policy_map",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "test.cu(40): error: identifier \"printf\" is undefined\n      printf(\"CUDA Error: %s at %s:%d\\n\", cudaGetErrorString(status), file, line);\n      ^\n\n1 error detected in the compilation of \"test.cu\".\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    },
+    "softmax_opt_64": {
+      "kernel_id": "softmax_opt_64",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\n/usr/bin/ld: /tmp/tmpxft_00000f12_00000000-11_test.o: in function `void lczero::cudnn_backend::Softmax<float>(int, int, float*, float const*, float const*, CUstream_st*)':\ntmpxft_00000f12_00000000-6_test.cudafe1.cpp:(.text._ZN6lczero13cudnn_backend7SoftmaxIfEEviiPT_PKS2_S5_P11CUstream_st[_ZN6lczero13cudnn_backend7SoftmaxIfEEviiPT_PKS2_S5_P11CUstream_st]+0xa0): undefined reference to `lczero::cudnn_backend::CudaError(cudaError, char const*, int const&)'\n/usr/bin/ld: /tmp/tmpxft_00000f12_00000000-11_test.o: in function `void lczero::cudnn_backend::Softmax<__half>(int, int, __half*, __half const*, __half const*, CUstream_st*)':\ntmpxft_00000f12_00000000-6_test.cudafe1.cpp:(.text._ZN6lczero13cudnn_backend7SoftmaxI6__halfEEviiPT_PKS3_S6_P11CUstream_st[_ZN6lczero13cudnn_backend7SoftmaxI6__halfEEviiPT_PKS3_S6_P11CUstream_st]+0xa0): undefined reference to `lczero::cudnn_backend::CudaError(cudaError, char const*, int const&)'\ncollect2: error: ld returned 1 exit status\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    },
+    "winograd_input_transform": {
+      "kernel_id": "winograd_input_transform",
+      "compilation": {
+        "cuda": {
+          "success": false,
+          "error": "test.cu(50): warning #177-D: variable \"lczero::cudnn_backend::kNumOutputPolicy\" was declared but never referenced\n  static constexpr int kNumOutputPolicy = 1858;\n                       ^\n\nRemark: The warnings can be suppressed with \"-diag-suppress <warning-number>\"\n\ntest.cu(51): warning #177-D: variable \"lczero::cudnn_backend::kMaxResBlockFusingChannels\" was declared but never referenced\n  static constexpr int kMaxResBlockFusingChannels = 384;\n                       ^\n\ntest.cu(52): warning #177-D: variable \"lczero::cudnn_backend::kMaxResBlockFusingSeKFp16Ampere\" was declared but never referenced\n  static constexpr int kMaxResBlockFusingSeKFp16Ampere = 512;\n                       ^\n\ntest.cu(53): warning #177-D: variable \"lczero::cudnn_backend::kMaxResBlockFusingSeK\" was declared but never referenced\n  static constexpr int kMaxResBlockFusingSeK = 128;\n                       ^\n\ntest.cu(54): warning #177-D: variable \"lczero::cudnn_backend::kInputPlanes\" was declared but never referenced\n  static constexpr int kInputPlanes = 112;\n                       ^\n\n/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\ncollect2: error: ld returned 1 exit status\n"
+        },
+        "sycl": {
+          "success": false,
+          "error": null
+        }
+      },
+      "accuracy": {
+        "mae": null,
+        "max_error": null,
+        "pass": false
+      }
+    }
+  },
+  "summary": {
+    "total": 7,
+    "passed": 0,
+    "failed": 7,
+    "avg_mae": 0.0,
+    "avg_max_error": 0.0
+  }
+}

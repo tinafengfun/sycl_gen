@@ -1,0 +1,52 @@
+{
+  "provider": {
+    "gaudi_ai": {
+      "name": "Gaudi AI",
+      "npm": "@ai-sdk/openai-compatible",
+      "models": {
+        "minimax-m2.5": {
+          "name": "minimax-m2.5",
+          "default": true,
+          "description": "Minimax M2.5\u6a21\u578b\uff0c\u5f3a\u5927\u7684\u4ee3\u7801\u7406\u89e3\u548c\u751f\u6210\u80fd\u529b"
+        },
+        "DeepSeek-R1-G2-static-671B": {
+          "name": "DeepSeek-R1-G2-static-671B",
+          "description": "671B\u53c2\u6570\uff0c\u5f3a\u5927\u7684\u63a8\u7406\u80fd\u529b"
+        },
+        "Qwen3-Coder-30B-A3B-Instruct": {
+          "name": "Qwen3-Coder-30B-A3B-Instruct",
+          "description": "\u4e13\u4e3a\u4ee3\u7801\u4f18\u5316\u768430B\u6a21\u578b"
+        }
+      },
+      "options": {
+        "apiKey": "sk-43Y6B7acOvFuOPelLuLw8Q",
+        "baseURL": "http://10.112.110.111/v1",
+        "headers": {
+          "Authorization": "Bearer sk-43Y6B7acOvFuOPelLuLw8Q"
+        }
+      },
+      "settings": {
+        "temperature": 0.1,
+        "max_tokens": 8192,
+        "top_p": 0.95,
+        "retry_attempts": 5,
+        "timeout": 180
+      }
+    }
+  },
+  "conversion": {
+    "strategy": "llm_driven",
+    "preprocess": true,
+    "auto_fix": true,
+    "max_fix_attempts": 8,
+    "parallel_conversion": true,
+    "test_generation": true
+  },
+  "models": {
+    "default": "minimax-m2.5",
+    "preprocess": "minimax-m2.5",
+    "conversion": "minimax-m2.5",
+    "fix": "minimax-m2.5",
+    "test_generation": "minimax-m2.5"
+  }
+}

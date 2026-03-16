@@ -1,0 +1,100 @@
+Exit code: 1
+Compiler flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+=== STDOUT ===
+=== SYCL Compilation for Intel XPU (BMG Support) ===
+Timestamp: 20260309_124443
+Kernel: output_input_transform_fp16_shmem_kernel.dp
+Source: /workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp
+Compiler: icpx
+Compile Flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+
+Step 1: Compiling source to object file...
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:59:12: error: use of undeclared identifier '__expf'
+   59 |   auto e = __expf(el);
+      |            ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:80:14: error: use of undeclared identifier 'tanh'; did you mean 'sycl::tanh'?
+   80 |       cVal = tanh(cVal);
+      |              ^~~~
+      |              sycl::tanh
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/builtins/math_functions.inc:148:23: note: 'sycl::tanh' declared here
+  148 | BUILTIN_GENF(ONE_ARG, tanh)
+      |                       ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:83:29: error: use of undeclared identifier '__expf'
+   83 |       cVal = 1.0f / (1.0f + __expf(-cVal));
+      |                             ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:90:33: error: use of undeclared identifier '__expf'
+   90 |         cVal = scale * alpha * (__expf(cVal) - 1.0f);
+      |                                 ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:97:23: error: use of undeclared identifier '__expf'
+   97 |       cVal /= (1.0f + __expf(-cVal));
+      |                       ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:104:7: error: use of undeclared identifier '__trap'
+  104 |       __trap();
+      |       ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:174:10: error: use of undeclared identifier '__shfl_xor_sync'
+  174 |     x += __shfl_xor_sync(0xFFFFFFFF, x, mask);
+      |          ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:189:2: error: a type specifier is required for all declarations
+  189 |  __launch_bounds__(
+      |  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:191:7: error: expected ';' after top level declarator
+  191 |     1) void OutputTransform_SE_relu_InputTransform_fp16_shmem_kernel(int N, int C,
+      |       ^
+      |       ;
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:192:70: error: unknown type name 'T'
+  192 |                                                            int se_K, T* output,
+      |                                                                      ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:193:66: error: unknown type name 'T'
+  193 |                                                            const T* input,
+      |                                                                  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:194:60: error: unknown type name 'T'
+  194 |                                                            T* skip,
+      |                                                            ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:195:66: error: unknown type name 'T'
+  195 |                                                            const T* bias,
+      |                                                                  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:196:66: error: unknown type name 'T'
+  196 |                                                            const T* w1,
+      |                                                                  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:197:66: error: unknown type name 'T'
+  197 |                                                            const T* b1,
+      |                                                                  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:198:66: error: unknown type name 'T'
+  198 |                                                            const T* w2,
+      |                                                                  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:199:66: error: unknown type name 'T'
+  199 |                                                            const T* b2) {
+      |                                                                  ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:201:46: error: use of undeclared identifier 'T'
+  201 |   const bool fp16 = std::is_same<sycl::half, T>::value;
+      |                                              ^
+/workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp:203:11: error: use of undeclared identifier 'item'
+  203 |   int k = item.get_local_id(0);
+      |           ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+[ERROR] Compilation step 1 failed with exit code 1
+
+=== STDERR ===
++ echo '=== SYCL Compilation for Intel XPU (BMG Support) ==='
++ echo 'Timestamp: 20260309_124443'
++ echo 'Kernel: output_input_transform_fp16_shmem_kernel.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Compile Flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64'
++ echo 'Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '\''-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'\'''
++ echo 'AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp ']'
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ echo 'Step 1: Compiling source to object file...'
++ icpx -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64 -c /workspace/kernel_dataset/sycl/output_input_transform_fp16_shmem_kernel.dp.cpp -o /workspace/build_sycl/output_input_transform_fp16_shmem_kernel.dp.o
++ tee /workspace/results/b60/compile_output_input_transform_fp16_shmem_kernel.dp_20260309_124443.log.step1
++ STEP1_EXIT=1
++ '[' 1 -ne 0 ']'
++ echo '[ERROR] Compilation step 1 failed with exit code 1'
++ exit 1

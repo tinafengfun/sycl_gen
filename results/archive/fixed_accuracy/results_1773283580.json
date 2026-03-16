@@ -1,0 +1,85 @@
+{
+  "test_date": "2026-03-12T02:45:31.818773",
+  "kernels": {
+    "copy_type_converted": {
+      "kernel_id": "copy_type_converted",
+      "cuda": {
+        "success": true,
+        "error": null
+      },
+      "sycl": {
+        "success": true,
+        "error": null
+      },
+      "accuracy": {
+        "mae": 0.0,
+        "max_error": 0.0,
+        "passed": true
+      }
+    },
+    "global_avg_pool": {
+      "kernel_id": "global_avg_pool",
+      "cuda": {
+        "success": true,
+        "error": null
+      },
+      "sycl": {
+        "success": true,
+        "error": null
+      },
+      "accuracy": {
+        "mae": 0.0,
+        "max_error": 0.0,
+        "passed": true
+      }
+    },
+    "softmax": {
+      "kernel_id": "softmax",
+      "cuda": {
+        "success": true,
+        "error": null
+      },
+      "sycl": {
+        "success": true,
+        "error": null
+      },
+      "accuracy": {
+        "mae": 4.5338310883380473e-10,
+        "max_error": 3.725290298461914e-09,
+        "passed": true
+      }
+    },
+    "softmax_opt_64": {
+      "kernel_id": "softmax_opt_64",
+      "cuda": {
+        "success": true,
+        "error": null
+      },
+      "sycl": {
+        "success": true,
+        "error": null
+      },
+      "accuracy": {
+        "mae": 1.038642949424684e-09,
+        "max_error": 3.725290298461914e-09,
+        "passed": true
+      }
+    },
+    "winograd_input_transform": {
+      "kernel_id": "winograd_input_transform",
+      "cuda": {
+        "success": true,
+        "error": null
+      },
+      "sycl": {
+        "success": true,
+        "error": null
+      },
+      "accuracy": {
+        "mae": 0.0,
+        "max_error": 0.0,
+        "passed": true
+      }
+    }
+  }
+}

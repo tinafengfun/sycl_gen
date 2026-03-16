@@ -1,0 +1,8 @@
+[13:16:28] [INFO] Starting batch conversion of 1 kernels
+[13:16:28] [INFO] Output directory: results/reconvert
+[13:16:28] [INFO] Workers: 1
+[13:16:28] [INFO] Starting conversion: layer_norm
+[13:16:36] [INFO] Completed layer_norm: failed
+[13:16:36] [INFO] Batch conversion completed
+[13:16:36] [INFO] Report saved to: results/reconvert/completion_report.json
+[13:16:36] [INFO] Markdown report: results/reconvert/completion_report.md

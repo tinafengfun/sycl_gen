@@ -1,0 +1,130 @@
+========================================
+批量转换 - 第四批（Winograd操作）
+========================================
+开始时间: Mon Mar  9 12:44:17 PM UTC 2026
+
+转换内核:
+  - winograd_output_transform
+  - winograd_output_relu_input
+  - se_layer_nhwc
+
+============================================================
+🚀 Batch CUDA-to-SYCL Conversion
+============================================================
+Kernels to process: 3
+Output directory: results/batch_conversion/batch4
+Workers: 2
+============================================================
+[12:44:17] [INFO] Starting batch conversion of 3 kernels
+[12:44:17] [INFO] Output directory: results/batch_conversion/batch4
+[12:44:17] [INFO] Workers: 2
+[12:44:17] [INFO] Starting conversion: winograd_output_transform
+🚀 [UnifiedOrchestrator] 启动统一转换: winograd_output_transform
+   Session ID: winograd_output_transform_20260309_124417
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 294行
+      Device函数: 4
+      Global kernels: 1
+      复杂度: Level 3
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:26] [INFO] Completed winograd_output_transform: failed
+[12:44:26] [INFO] Starting conversion: winograd_output_relu_input
+🚀 [UnifiedOrchestrator] 启动统一转换: winograd_output_relu_input
+   Session ID: winograd_output_relu_input_20260309_124426
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 327行
+      Device函数: 6
+      Global kernels: 1
+      复杂度: Level 3
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:34] [INFO] Completed winograd_output_relu_input: failed
+[12:44:34] [INFO] Starting conversion: se_layer_nhwc
+🚀 [UnifiedOrchestrator] 启动统一转换: se_layer_nhwc
+   Session ID: se_layer_nhwc_20260309_124434
+
+📊 Phase 1: CUDA分析...
+   📈 分析结果: 249行
+      Device函数: 1
+      Global kernels: 1
+      复杂度: Level 2
+
+🔄 Phase 2: SYCL转换...
+   📝 Applied 17 replacement rules
+   ✅ Rule-based conversion complete
+
+🔨 Phase 3: 编译验证...
+   编译尝试 1/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 2/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 3/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 4/5...
+   🔧 检测到错误，尝试自动修复...
+   ⚠️  无法自动修复，继续下一次尝试
+   编译尝试 5/5...
+
+❌ [UnifiedOrchestrator] 转换失败: 编译失败: Max retry attempts exceeded
+[12:44:36] [INFO] Completed se_layer_nhwc: failed
+[12:44:36] [INFO] Batch conversion completed
+[12:44:36] [INFO] Report saved to: results/batch_conversion/batch4/completion_report.json
+[12:44:36] [INFO] Markdown report: results/batch_conversion/batch4/completion_report.md
+
+============================================================
+📊 Batch Conversion Complete
+============================================================
+Success Rate: 0.0%
+Successful: 0/3
+Failed: 3/3
+Output: results/batch_conversion/batch4/
+============================================================
+
+========================================
+第四批转换完成
+结束时间: Mon Mar  9 12:44:36 PM UTC 2026
+========================================

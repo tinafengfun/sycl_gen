@@ -1,0 +1,4 @@
+[10:41:34] [INFO] Starting conversion: batch_norm
+[10:41:39] [INFO] Completed batch_norm: failed
+[10:41:39] [INFO] Starting conversion: global_avg_pool
+[10:41:49] [INFO] Completed global_avg_pool: failed

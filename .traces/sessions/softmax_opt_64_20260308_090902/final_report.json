@@ -1,0 +1,96 @@
+{
+  "session_id": "softmax_opt_64_20260308_090902",
+  "kernel_id": "softmax_opt_64",
+  "timestamp": "2026-03-08T09:12:08.049851",
+  "phases_completed": [
+    "analysis",
+    "conversion",
+    "validation",
+    "accuracy"
+  ],
+  "fixes_applied": 0,
+  "compilation": {
+    "success": true,
+    "error": null,
+    "errors": []
+  },
+  "accuracy": {
+    "total_tests": 5,
+    "passed_tests": 0,
+    "pass_rate": 0.0,
+    "status": "FAIL",
+    "test_results": [
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "random",
+          "name": "small_random"
+        },
+        "status": "ERROR",
+        "error": "CUDA execution failed: nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\ncc1plus: fatal error: kernel.cu: No such file or directory\ncompilation terminated.\n"
+      },
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "ones",
+          "name": "small_ones"
+        },
+        "status": "ERROR",
+        "error": "CUDA execution failed: nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\ncc1plus: fatal error: kernel.cu: No such file or directory\ncompilation terminated.\n"
+      },
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "sequential",
+          "name": "small_sequential"
+        },
+        "status": "ERROR",
+        "error": "CUDA execution failed: nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\ncc1plus: fatal error: kernel.cu: No such file or directory\ncompilation terminated.\n"
+      },
+      {
+        "config": {
+          "N": 4,
+          "C": 128,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "random",
+          "name": "large_random"
+        },
+        "status": "ERROR",
+        "error": "CUDA execution failed: nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\ncc1plus: fatal error: kernel.cu: No such file or directory\ncompilation terminated.\n"
+      },
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nhcw",
+          "test_type": "random",
+          "name": "nhcw_layout"
+        },
+        "status": "ERROR",
+        "error": "CUDA execution failed: nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\ncc1plus: fatal error: kernel.cu: No such file or directory\ncompilation terminated.\n"
+      }
+    ],
+    "summary": {
+      "overall_max_abs_diff": 0.0,
+      "overall_max_rel_diff": 0.0,
+      "avg_mismatch_rate": NaN
+    }
+  },
+  "trace_metrics": {
+    "total_steps": 18,
+    "total_tool_calls": 0,
+    "errors": 0,
+    "fixes": 0
+  }
+}

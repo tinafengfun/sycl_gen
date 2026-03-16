@@ -1,0 +1,50 @@
+{
+  "total": 5,
+  "success": 0,
+  "failed": 5,
+  "in_progress": 0,
+  "start_time": "2026-03-09T12:44:17.865956",
+  "results": [
+    {
+      "kernel_id": "global_scale",
+      "status": "FAILED",
+      "duration": 2.30414,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "global_scale_fp16_nhwc",
+      "status": "FAILED",
+      "duration": 2.188153,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "global_avg_pool_nhwc_fp16",
+      "status": "FAILED",
+      "duration": 9.037911,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "expand_planes_nhwc",
+      "status": "FAILED",
+      "duration": 9.19264,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    },
+    {
+      "kernel_id": "input_gating",
+      "status": "FAILED",
+      "duration": 2.092994,
+      "compilation": "FAILED",
+      "accuracy": "0.0%",
+      "output_file": ""
+    }
+  ],
+  "end_time": "2026-03-09T12:44:42.777654"
+}

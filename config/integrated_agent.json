@@ -1,0 +1,51 @@
+{
+  "accuracy_verification": {
+    "enabled": true,
+    "auto_fix": true,
+    "max_attempts": 3,
+    "skip_on_failure": false,
+    "tolerance": {
+      "default": {
+        "abs_tolerance": 1e-5,
+        "rel_tolerance": 1e-4,
+        "pass_rate_threshold": 0.95
+      },
+      "kernel_specific": {
+        "fp16": {
+          "abs_tolerance": 1e-3,
+          "rel_tolerance": 1e-2
+        },
+        "softmax": {
+          "abs_tolerance": 1e-3,
+          "rel_tolerance": 5e-3
+        },
+        "winograd": {
+          "abs_tolerance": 1e-2,
+          "rel_tolerance": 1e-1
+        }
+      }
+    }
+  },
+  "pipeline": {
+    "max_concurrency": 3,
+    "hooks": [
+      "compilation_check",
+      "accuracy_verification",
+      "auto_fix"
+    ]
+  },
+  "platforms": {
+    "cuda": {
+      "host": "10.112.229.160",
+      "container": "cuda12.9-test"
+    },
+    "sycl": {
+      "container": "lsv-container"
+    }
+  },
+  "output": {
+    "directory": "results/integrated_conversion",
+    "save_reports": true,
+    "log_level": "INFO"
+  }
+}

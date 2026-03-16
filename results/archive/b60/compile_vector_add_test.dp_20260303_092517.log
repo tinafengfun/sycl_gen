@@ -1,0 +1,32 @@
+=== SYCL Compilation Start ===
+Timestamp: 20260303_092517
+Kernel: vector_add_test.dp
+Source: /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp
+Compiler: icpx
+Flags: -fsycl -O2 -std=c++17
+
+icpx: error: no such file or directory: '/workspace/kernel_dataset/sycl/vector_add_test.dp.cpp'
+icpx: error: no input files
+
+=== Compilation Exit Code: 0 ===
+Compilation successful!
+
+=== STDERR ===
++ echo '=== SYCL Compilation Start ==='
++ echo 'Timestamp: 20260303_092517'
++ echo 'Kernel: vector_add_test.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Flags: -fsycl -O2 -std=c++17'
++ echo ''
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ icpx -fsycl -O2 -std=c++17 -c /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp -o /workspace/build_sycl/vector_add_test.dp.o
++ tee /workspace/results/b60/compile_vector_add_test.dp_20260303_092517.log
++ EXIT_CODE=0
++ echo ''
++ echo '=== Compilation Exit Code: 0 ==='
++ '[' 0 -eq 0 ']'
++ echo 'Compilation successful!'
++ '[' -f /workspace/build_sycl/vector_add_test.dp.o ']'
++ exit 0

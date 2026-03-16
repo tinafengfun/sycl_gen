@@ -1,0 +1,119 @@
+Exit code: 1
+Compiler flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+=== STDOUT ===
+=== SYCL Compilation for Intel XPU (BMG Support) ===
+Timestamp: 20260309_124421
+Kernel: softmax_kernel.dp
+Source: /workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp
+Compiler: icpx
+Compile Flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64
+Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'
+AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u
+
+Step 1: Compiling source to object file...
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:41:10: error: use of undeclared identifier '__shfl_xor_sync'
+   41 |     x += __shfl_xor_sync(0xFFFFFFFF, x, mask);
+      |          ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:50:16: error: use of undeclared identifier '__shfl_xor_sync'
+   50 |     x = max(x, __shfl_xor_sync(0xFFFFFFFF, x, mask));
+      |                ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:58:10: error: use of undeclared identifier 'signbit'; did you mean 'sycl::signbit'?
+   58 |   max = !signbit(val)
+      |          ^~~~~~~
+      |          sycl::signbit
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/builtins/relational_functions.inc:127:22: note: 'sycl::signbit' declared here
+  127 | BUILTIN_REL(ONE_ARG, signbit, __spirv_SignBitSet)
+      |                      ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:59:52: error: use of undeclared identifier '__float_as_int'; did you mean '__imf_float_as_int'?
+   59 |             ? __int_as_float(atomicMax((int*)addr, __float_as_int(val)))
+      |                                                    ^~~~~~~~~~~~~~
+      |                                                    __imf_float_as_int
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/builtins.hpp:151:34: note: '__imf_float_as_int' declared here
+  151 | extern __DPCPP_SYCL_EXTERNAL int __imf_float_as_int(float x);
+      |                                  ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:59:30: error: use of undeclared identifier 'atomicMax'
+   59 |             ? __int_as_float(atomicMax((int*)addr, __float_as_int(val)))
+      |                              ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:61:50: error: use of undeclared identifier '__float_as_uint'; did you mean '__imf_float_as_uint'?
+   61 |                   atomicMin((unsigned int*)addr, __float_as_uint(val)));
+      |                                                  ^~~~~~~~~~~~~~~
+      |                                                  __imf_float_as_uint
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/builtins.hpp:152:43: note: '__imf_float_as_uint' declared here
+  152 | extern __DPCPP_SYCL_EXTERNAL unsigned int __imf_float_as_uint(float x);
+      |                                           ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:61:19: error: use of undeclared identifier 'atomicMin'
+   61 |                   atomicMin((unsigned int*)addr, __float_as_uint(val)));
+      |                   ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:73:24: error: use of undeclared identifier 'isnan'; did you mean 'sycl::isnan'?
+   73 |   if (__builtin_expect(isnan(val), 0)) return val;
+      |                        ^~~~~
+      |                        sycl::isnan
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/detail/builtins/relational_functions.inc:123:22: note: 'sycl::isnan' declared here
+  123 | BUILTIN_REL(ONE_ARG, isnan, __spirv_IsNan)
+      |                      ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:74:16: error: use of undeclared identifier 'fmaxf'
+   74 |   return fminf(fmaxf(val, low), high);
+      |                ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:88:11: error: use of undeclared identifier 'item'
+   88 |   int n = item.get_group(0);
+      |           ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:89:11: error: use of undeclared identifier 'item'
+   89 |   int c = item.get_local_id(0);
+      |           ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:90:11: error: use of undeclared identifier 'item'
+   90 |   int C = item.get_local_range(0);
+      |           ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:102:3: error: unknown type name '__shared__'
+  102 |   __shared__ float sum, maxval;
+      |   ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:105:5: error: use of undeclared identifier 'maxval'
+  105 |     maxval = x;
+      |     ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:108:3: error: use of undeclared identifier 'item'; did you mean 'sycl::item'?
+  108 |   item.barrier();
+      |   ^~~~
+      |   sycl::item
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/item.hpp:37:62: note: 'sycl::item' declared here
+   37 | template <int Dimensions = 1, bool with_offset = true> class item {
+      |                                                              ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:108:3: error: use of undeclared identifier 'item'; did you mean 'sycl::item'?
+  108 |   item.barrier();
+      |   ^~~~
+      |   sycl::item
+/opt/intel/oneapi/compiler/2025.1/bin/compiler/../../include/sycl/item.hpp:37:62: note: 'sycl::item' declared here
+   37 | template <int Dimensions = 1, bool with_offset = true> class item {
+      |                                                              ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:108:3: error: unknown type name 'item'
+  108 |   item.barrier();
+      |   ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:108:7: error: cannot use dot operator on a type
+  108 |   item.barrier();
+      |       ^
+/workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp:112:40: error: use of undeclared identifier 'maxval'
+  112 |   if ((c & 0x1F) == 0) atomicMaxFloat(&maxval, warpmax);
+      |                                        ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+[ERROR] Compilation step 1 failed with exit code 1
+
+=== STDERR ===
++ echo '=== SYCL Compilation for Intel XPU (BMG Support) ==='
++ echo 'Timestamp: 20260309_124421'
++ echo 'Kernel: softmax_kernel.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Compile Flags: -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64'
++ echo 'Device Link Flags: -fsycl-max-parallel-link-jobs=4 --offload-compress -fsycl-targets=spir64_gen,spir64 -Xs '\''-device pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u -options -cl-poison-unsupported-fp64-kernels -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required'\'''
++ echo 'AOT Targets: pvc,bmg,dg2,arl-h,mtl-h,lnl-m,ptl-h,ptl-u'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp ']'
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ echo 'Step 1: Compiling source to object file...'
++ icpx -fsycl -O2 -std=c++17 -fsycl-unnamed-lambda -sycl-std=2020 -fhonor-nans -fhonor-infinities -fno-associative-math -fno-approx-func -no-ftz -fsycl-targets=spir64_gen,spir64 -c /workspace/kernel_dataset/sycl/softmax_kernel.dp.cpp -o /workspace/build_sycl/softmax_kernel.dp.o
++ tee /workspace/results/b60/compile_softmax_kernel.dp_20260309_124421.log.step1
++ STEP1_EXIT=1
++ '[' 1 -ne 0 ']'
++ echo '[ERROR] Compilation step 1 failed with exit code 1'
++ exit 1

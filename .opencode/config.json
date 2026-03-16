@@ -1,0 +1,78 @@
+{
+  "name": "opencode",
+  "description": "OpenCode configuration for CUDA-to-SYCL kernel conversion",
+  "version": "1.0.0",
+  
+  "permissions": {
+    "allow": [
+      {
+        "tool": "skill",
+        "resources": ["*"]
+      },
+      {
+        "tool": "bash",
+        "resources": ["*"]
+      },
+      {
+        "tool": "read",
+        "resources": ["*"]
+      },
+      {
+        "tool": "write",
+        "resources": ["*"]
+      },
+      {
+        "tool": "edit",
+        "resources": ["*"]
+      }
+    ],
+    "skill": {
+      "*": "allow",
+      "b60-sycl-builder": "allow",
+      "remote-cuda-builder": "allow"
+    }
+  },
+  
+  "skills": {
+    "directories": [
+      ".opencode/skills"
+    ],
+    "auto_load": true
+  },
+  
+  "agents": {
+    "code": {
+      "name": "code",
+      "description": "Agent for code compilation and testing",
+      "tools": {
+        "skill": true,
+        "bash": true,
+        "read": true,
+        "write": true,
+        "edit": true
+      },
+      "permissions": {
+        "skill": {
+          "b60-sycl-builder": "allow",
+          "remote-cuda-builder": "allow"
+        }
+      }
+    }
+  },
+  
+  "build": {
+    "environments": {
+      "b60": {
+        "type": "sycl",
+        "container": "lsv-container",
+        "enabled": true
+      },
+      "cuda": {
+        "type": "cuda",
+        "host": "10.112.229.160",
+        "container": "cuda12.9-test",
+        "enabled": true
+      }
+    }
+  }
+}

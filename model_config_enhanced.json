@@ -1,0 +1,51 @@
+{
+  "provider": {
+    "gaudi_ai": {
+      "name": "Gaudi AI",
+      "npm": "@ai-sdk/openai-compatible",
+      "models": {
+        "DeepSeek-R1-G2-static-671B": {
+          "name": "DeepSeek-R1-G2-static-671B",
+          "default": true,
+          "description": "671B参数，强大的推理能力，适合复杂代码转换"
+        },
+        "Qwen3-Coder-30B-A3B-Instruct": {
+          "name": "Qwen3-Coder-30B-A3B-Instruct",
+          "description": "30B参数，专为代码优化，适合语法转换"
+        },
+        "glm-4.7-fp8": {
+          "name": "glm-4.7-fp8",
+          "description": "原模型，备用选项"
+        }
+      },
+      "options": {
+        "apiKey": "sk-43Y6B7acOvFuOPelLuLw8Q",
+        "baseURL": "http://10.112.110.111/v1",
+        "headers": {
+          "Authorization": "Bearer sk-43Y6B7acOvFuOPelLuLw8Q"
+        }
+      },
+      "settings": {
+        "temperature": 0.1,
+        "max_tokens": 8192,
+        "top_p": 0.95,
+        "retry_attempts": 3,
+        "timeout": 120
+      }
+    }
+  },
+  "conversion": {
+    "strategy": "llm_driven",
+    "preprocess": true,
+    "auto_fix": true,
+    "max_fix_attempts": 5,
+    "parallel_conversion": true,
+    "test_generation": true
+  },
+  "models": {
+    "preprocess": "Qwen3-Coder-30B-A3B-Instruct",
+    "conversion": "DeepSeek-R1-G2-static-671B",
+    "fix": "DeepSeek-R1-G2-static-671B",
+    "test_generation": "Qwen3-Coder-30B-A3B-Instruct"
+  }
+}

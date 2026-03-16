@@ -1,0 +1,98 @@
+{
+  "analysis_id": "winograd_analysis_001",
+  "timestamp": "2026-03-03T11:46:00Z",
+  "kernel_id": "winograd_input_transform",
+  "file": "kernel_dataset/cuda/winograd_input_transform_kernel.cu",
+  "lines": 216,
+  "complexity_level": 3,
+  
+  "components": {
+    "enums": [
+      {
+        "name": "ActivationFunction",
+        "line": 35,
+        "values": 9
+      }
+    ],
+    
+    "constants": [
+      {"name": "kNumOutputPolicy", "line": 49, "value": 1858},
+      {"name": "kMaxResBlockFusingChannels", "line": 50, "value": 384},
+      {"name": "kMaxResBlockFusingSeKFp16Ampere", "line": 51, "value": 512},
+      {"name": "kMaxResBlockFusingSeK", "line": 52, "value": 128},
+      {"name": "kInputPlanes", "line": 53, "value": 112}
+    ],
+    
+    "device_functions": [
+      {
+        "name": "matrixMul_gpu_serial",
+        "line": 58,
+        "template": "<typename T, int M, int N, int K>",
+        "attributes": ["__device__", "__forceinline__"],
+        "complexity": "medium"
+      },
+      {
+        "name": "InputTransform4x4",
+        "line": 74,
+        "template": "<typename T>",
+        "attributes": ["__device__", "__forceinline__"],
+        "complexity": "high",
+        "note": "Winograd transform matrix operations"
+      }
+    ],
+    
+    "global_kernel": [
+      {
+        "name": "InputTransform_kernel",
+        "line": 105,
+        "template": "<typename T, bool nhcw>",
+        "attributes": ["__global__"],
+        "complexity": "high",
+        "note": "Main kernel with 4 quadrant processing"
+      }
+    ],
+    
+    "macros": [
+      {"name": "INDEX_NCHW", "line": 90},
+      {"name": "INDEX_NHCW", "line": 91},
+      {"name": "TEMP_INDEX_HWNC", "line": 97}
+    ]
+  },
+  
+  "conversion_strategy": {
+    "overall": "template_based_with_manual_review",
+    "difficulty": "high",
+    "estimated_time": "20-30_minutes",
+    
+    "specific_notes": [
+      "Matrix multiplication template needs careful conversion",
+      "Winograd transform matrices (Bt, B) are constant - use constexpr",
+      "4-quadrant processing (Top-Left, Top-Right, Bottom-Left, Bottom-Right)",
+      "Memory indexing macros need to be converted to inline functions",
+      "Template specialization for float and half types"
+    ],
+    
+    "risk_areas": [
+      {
+        "component": "matrixMul_gpu_serial",
+        "risk": "medium",
+        "note": "Serial matrix multiply - straightforward conversion"
+      },
+      {
+        "component": "InputTransform4x4",
+        "risk": "high",
+        "note": "6x6 matrix transforms - ensure correct indexing"
+      },
+      {
+        "component": "InputTransform_kernel",
+        "risk": "high",
+        "note": "Complex kernel with 4 tiles and memory access patterns"
+      }
+    ]
+  },
+  
+  "tool_calls": {
+    "read_operations": 3,
+    "analysis_duration_seconds": 45
+  }
+}

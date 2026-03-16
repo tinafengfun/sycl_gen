@@ -1,0 +1,22 @@
+Exit code: 1
+=== STDOUT ===
+=== SYCL Compilation Start ===
+Timestamp: 20260304_030640
+Kernel: generated_v1.dp
+Source: /workspace/kernel_dataset/sycl/generated_v1.dp.cpp
+Compiler: icpx
+Flags: -fsycl -O2 -std=c++17
+
+[ERROR] Source file not found: /workspace/kernel_dataset/sycl/generated_v1.dp.cpp
+
+=== STDERR ===
++ echo '=== SYCL Compilation Start ==='
++ echo 'Timestamp: 20260304_030640'
++ echo 'Kernel: generated_v1.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/generated_v1.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Flags: -fsycl -O2 -std=c++17'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/generated_v1.dp.cpp ']'
++ echo '[ERROR] Source file not found: /workspace/kernel_dataset/sycl/generated_v1.dp.cpp'
++ exit 1

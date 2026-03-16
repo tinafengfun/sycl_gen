@@ -1,0 +1,71 @@
+{
+  "session": "winograd_acc_20260304_091152",
+  "timestamp": "2026-03-04T09:11:52.034369",
+  "tests": [
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "random"
+      },
+      "status": "passed",
+      "sycl_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/sycl_output_N1_C64_float_random.bin",
+      "cuda_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/cuda_output_N1_C64_float_random.bin"
+    },
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "ones"
+      },
+      "status": "passed",
+      "sycl_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/sycl_output_N1_C64_float_ones.bin",
+      "cuda_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/cuda_output_N1_C64_float_ones.bin"
+    },
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "sequential"
+      },
+      "status": "passed",
+      "sycl_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/sycl_output_N1_C64_float_sequential.bin",
+      "cuda_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/cuda_output_N1_C64_float_sequential.bin"
+    },
+    {
+      "config": {
+        "N": 4,
+        "C": 128,
+        "dtype": "float",
+        "layout": "nchw",
+        "test_type": "random"
+      },
+      "status": "passed",
+      "sycl_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/sycl_output_N4_C128_float_random.bin",
+      "cuda_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/cuda_output_N4_C128_float_random.bin"
+    },
+    {
+      "config": {
+        "N": 1,
+        "C": 64,
+        "dtype": "float",
+        "layout": "nhcw",
+        "test_type": "random"
+      },
+      "status": "passed",
+      "sycl_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/sycl_output_N1_C64_float_random.bin",
+      "cuda_output": "/home/intel/tianfeng/opencode_bench/results/accuracy/cuda_output_N1_C64_float_random.bin"
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  }
+}

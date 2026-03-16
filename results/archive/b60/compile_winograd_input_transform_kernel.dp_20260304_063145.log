@@ -1,0 +1,39 @@
+Exit code: 0
+=== STDOUT ===
+=== SYCL Compilation Start ===
+Timestamp: 20260304_063145
+Kernel: winograd_input_transform_kernel.dp
+Source: /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp
+Compiler: icpx
+Flags: -fsycl -O2 -std=c++17
+
+Starting compilation...
+
+=== Compilation Exit Code: 0 ===
+Compilation successful!
+Output file:
+-rw-r--r-- 1 root root 206K Mar  4 06:31 /workspace/build_sycl/winograd_input_transform_kernel.dp.o
+
+=== STDERR ===
++ echo '=== SYCL Compilation Start ==='
++ echo 'Timestamp: 20260304_063145'
++ echo 'Kernel: winograd_input_transform_kernel.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Flags: -fsycl -O2 -std=c++17'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp ']'
++ mkdir -p /workspace/build_sycl
++ mkdir -p /workspace/results/b60
++ echo 'Starting compilation...'
++ icpx -fsycl -O2 -std=c++17 -c /workspace/kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp -o /workspace/build_sycl/winograd_input_transform_kernel.dp.o
++ tee /workspace/results/b60/compile_winograd_input_transform_kernel.dp_20260304_063145.log
++ EXIT_CODE=0
++ echo ''
++ echo '=== Compilation Exit Code: 0 ==='
++ '[' 0 -eq 0 ']'
++ echo 'Compilation successful!'
++ '[' -f /workspace/build_sycl/winograd_input_transform_kernel.dp.o ']'
++ echo 'Output file:'
++ ls -lh /workspace/build_sycl/winograd_input_transform_kernel.dp.o
++ exit 0

@@ -1,0 +1,122 @@
+{
+  "test_date": "2026-03-12T09:47:13.137806",
+  "total_kernels": 14,
+  "tested": 14,
+  "passed": 8,
+  "failed": 0,
+  "skipped": 6,
+  "details": {
+    "add_vectors": {
+      "kernel_id": "add_vectors",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "add_bias_batched": {
+      "kernel_id": "add_bias_batched",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "batch_norm": {
+      "kernel_id": "batch_norm",
+      "cuda_compiles": false,
+      "sycl_compiles": true,
+      "cuda_error": "",
+      "sycl_error": null,
+      "can_run_accuracy": false
+    },
+    "copy_type_converted": {
+      "kernel_id": "copy_type_converted",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "expand_planes_nchw": {
+      "kernel_id": "expand_planes_nchw",
+      "cuda_compiles": false,
+      "sycl_compiles": true,
+      "cuda_error": "",
+      "sycl_error": null,
+      "can_run_accuracy": false
+    },
+    "global_avg_pool": {
+      "kernel_id": "global_avg_pool",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "global_scale": {
+      "kernel_id": "global_scale",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "layer_norm": {
+      "kernel_id": "layer_norm",
+      "cuda_compiles": false,
+      "sycl_compiles": false,
+      "cuda_error": "",
+      "sycl_error": "",
+      "can_run_accuracy": false
+    },
+    "policy_map": {
+      "kernel_id": "policy_map",
+      "cuda_compiles": false,
+      "sycl_compiles": true,
+      "cuda_error": "",
+      "sycl_error": null,
+      "can_run_accuracy": false
+    },
+    "se_layer_nhwc": {
+      "kernel_id": "se_layer_nhwc",
+      "cuda_compiles": false,
+      "sycl_compiles": false,
+      "cuda_error": "",
+      "sycl_error": "",
+      "can_run_accuracy": false
+    },
+    "softmax": {
+      "kernel_id": "softmax",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "softmax_opt_64": {
+      "kernel_id": "softmax_opt_64",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    },
+    "winograd_filter_transform": {
+      "kernel_id": "winograd_filter_transform",
+      "cuda_compiles": false,
+      "sycl_compiles": false,
+      "cuda_error": "",
+      "sycl_error": "",
+      "can_run_accuracy": false
+    },
+    "winograd_input_transform": {
+      "kernel_id": "winograd_input_transform",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "cuda_error": null,
+      "sycl_error": null,
+      "can_run_accuracy": true
+    }
+  }
+}

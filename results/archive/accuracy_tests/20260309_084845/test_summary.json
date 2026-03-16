@@ -1,0 +1,79 @@
+{
+  "test_date": "2026-03-09T08:48:45.664615",
+  "total_kernels": 28,
+  "passed": 0,
+  "failed": 0,
+  "errors": 28,
+  "kernels": [
+    {
+      "kernel_id": "copy_type_converted",
+      "name": "Copy Type Converted Kernel",
+      "success": false,
+      "duration_seconds": 423.6514456272125,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "batch_norm",
+      "name": "Batch Norm Kernel",
+      "success": false,
+      "duration_seconds": 434.0691270828247,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "layer_norm",
+      "name": "Layer Norm Kernel",
+      "success": false,
+      "duration_seconds": 415.6638777256012,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "global_avg_pool",
+      "name": "Global Avg Pool Kernel",
+      "success": false,
+      "duration_seconds": 413.8379693031311,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "policy_map",
+      "name": "Policy Map Kernel",
+      "success": false,
+      "duration_seconds": 392.50753450393677,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "softmax_opt_64",
+      "name": "Softmax Opt 64 Kernel",
+      "success": false,
+      "duration_seconds": 413.8713901042938,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "winograd_filter_transform",
+      "name": "Winograd Filter Transform Kernel",
+      "success": false,
+      "duration_seconds": 380.74745988845825,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "winograd_input_transform",
+      "name": "Winograd Input Transform Kernel",
+      "success": false,
+      "duration_seconds": 394.86974930763245,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "winograd_output_se_relu_input",
+      "name": "Winograd Output Se Relu Input Kernel",
+      "success": false,
+      "duration_seconds": 418.1967408657074,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    },
+    {
+      "kernel_id": "output_input_transform_fp16_shmem",
+      "name": "Output Input Transform Fp16 Shmem Kernel",
+      "success": false,
+      "duration_seconds": 416.63921666145325,
+      "error": "ProgressMonitor.update_phase() got an unexpected keyword argument 'error'"
+    }
+  ]
+}

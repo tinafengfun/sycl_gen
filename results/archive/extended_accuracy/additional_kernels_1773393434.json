@@ -1,0 +1,27 @@
+{
+  "kernels": [
+    {
+      "kernel_id": "add_vectors_hnc_nhc",
+      "mae": 0.0,
+      "max_error": 0.0,
+      "passed": true
+    },
+    {
+      "kernel_id": "add_bias_nchw",
+      "mae": 0.0,
+      "max_error": 0.0,
+      "passed": true
+    },
+    {
+      "kernel_id": "nchw_to_nhwc",
+      "mae": 0.0,
+      "max_error": 0.0,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "rate": 100.0
+  }
+}

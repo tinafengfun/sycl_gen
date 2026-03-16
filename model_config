@@ -1,0 +1,26 @@
+"provider": {
+  "gaudi_ai": {
+    "name": "Gaudi AI",
+   "npm": "@ai-sdk/openai-compatible",
+   "models": {
+     "DeepSeek-R1-G2-static-671B": {
+       "name": "DeepSeek-R1-G2-static-671B"
+     },
+     "Qwen3-Coder-30B-A3B-Instruct": {
+       "name": "Qwen3-Coder-30B-A3B-Instruct"
+     },
+     "glm-4.6-fp8": {
+       "name": "glm-4.6-fp8"
+     },
+     "glm-4.7-fp8": {
+       "name": "glm-4.7-fp8"
+     }
+   },
+   "options": {
+     "apiKey": "sk-43Y6B7acOvFuOPelLuLw8Q",
+     "baseURL": "http://10.112.110.111/v1",
+     "headers": {
+       "Authorization": "Bearer sk-43Y6B7acOvFuOPelLuLw8Q"
+     }
+   }
+ }

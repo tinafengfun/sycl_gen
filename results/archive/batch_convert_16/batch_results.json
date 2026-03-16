@@ -1,0 +1,47 @@
+{
+  "start_time": "2026-03-13T07:03:43.544377",
+  "total": 14,
+  "converted": 0,
+  "verified": 3,
+  "failed": 0,
+  "skipped": 0,
+  "details": [
+    {
+      "kernel_id": "add_vectors_hnc_nhc",
+      "status": "verified",
+      "cuda_ok": true,
+      "sycl_ok": true
+    },
+    {
+      "kernel_id": "add_bias_nchw",
+      "status": "verified",
+      "cuda_ok": true,
+      "sycl_ok": true
+    },
+    {
+      "kernel_id": "nchw_to_nhwc",
+      "status": "passed",
+      "cuda_compiles": true,
+      "sycl_compiles": true,
+      "complexity_score": 3.3,
+      "conversion_attempts": 1,
+      "fix_attempts": 0,
+      "error_type": ""
+    }
+  ],
+  "end_time": "2026-03-13T07:05:35.662381",
+  "llm_stats": {
+    "call_count": 2,
+    "total_tokens": 6446,
+    "error_count": 0,
+    "success_rate": 100.0
+  },
+  "compilation_stats": {
+    "cuda_attempts": 3,
+    "cuda_success": 3,
+    "sycl_attempts": 3,
+    "sycl_success": 3,
+    "cuda_success_rate": 100.0,
+    "sycl_success_rate": 100.0
+  }
+}

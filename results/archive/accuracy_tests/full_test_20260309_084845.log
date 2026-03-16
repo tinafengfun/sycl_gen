@@ -1,0 +1,828 @@
+================================================================================
+🧪 CUDA vs SYCL 准确度完整测试套件
+🧪 Full CUDA vs SYCL Accuracy Test Suite
+================================================================================
+开始时间: 2026-03-09 08:48:45
+
+📊 发现 28 个可测试内核
+📊 Found 28 testable kernels
+
+
+================================================================================
+[1/28] 测试内核: add_vectors
+[1/28] Testing kernel: add_vectors
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/add_vectors_kernel.dp.cpp
+
+================================================================================
+[2/28] 测试内核: add_vectors_hnc_nhc
+[2/28] Testing kernel: add_vectors_hnc_nhc
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/add_vectors_hnc_nhc_kernel.dp.cpp
+
+================================================================================
+[3/28] 测试内核: add_bias_batched
+[3/28] Testing kernel: add_bias_batched
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/add_bias_batched_kernel.dp.cpp
+
+================================================================================
+[4/28] 测试内核: add_bias_nchw
+[4/28] Testing kernel: add_bias_nchw
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/add_bias_nchw_kernel.dp.cpp
+
+================================================================================
+[5/28] 测试内核: nchw_to_nhwc
+[5/28] Testing kernel: nchw_to_nhwc
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/nchw_to_nhwc_kernel.dp.cpp
+
+================================================================================
+[6/28] 测试内核: copy_type_converted
+[6/28] Testing kernel: copy_type_converted
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: copy_type_converted
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 2562 characters
+   SYCL code: 2741 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 187.7s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 187.7s
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 407.6s⏳ [████████████░░░░░░░░░░░░░░░░░░] 40.0% | Test: FLOAT32 Small Random | Phase: sycl_compilation | Elapsed: 407.6s⏳ [████████████░░░░░░░░░░░░░░░░░░] 40.0% | Test: FLOAT32 Small Random | Phase: sycl_compilation | Elapsed: 411.1s⏳ [██████████████████░░░░░░░░░░░░] 60.0% | Test: FLOAT32 Small Random | Phase: cuda_execution  | Elapsed: 411.1sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 284, in execute_test
+    raise Exception("CUDA execution failed")
+Exception: CUDA execution failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+CUDA execution error: [Errno 2] No such file or directory: '/tmp/flo_small_random_cuda_output.bin'
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[7/28] 测试内核: batch_norm
+[7/28] Testing kernel: batch_norm
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: batch_norm
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 5575 characters
+   SYCL code: 5793 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 220.6s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 220.6sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[8/28] 测试内核: layer_norm
+[8/28] Testing kernel: layer_norm
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: layer_norm
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 11425 characters
+   SYCL code: 11759 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 223.6s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 223.6sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[9/28] 测试内核: global_scale
+[9/28] Testing kernel: global_scale
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/global_scale_kernel.dp.cpp
+
+================================================================================
+[10/28] 测试内核: global_scale_fp16_nhwc
+[10/28] Testing kernel: global_scale_fp16_nhwc
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/global_scale_fp16_nhwc_kernel.dp.cpp
+
+================================================================================
+[11/28] 测试内核: global_avg_pool
+[11/28] Testing kernel: global_avg_pool
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: global_avg_pool
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 4084 characters
+   SYCL code: 3993 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 220.5s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 220.5sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[12/28] 测试内核: global_avg_pool_nhwc_fp16
+[12/28] Testing kernel: global_avg_pool_nhwc_fp16
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/global_avg_pool_nhwc_fp16_kernel.dp.cpp
+
+================================================================================
+[13/28] 测试内核: expand_planes_nhwc
+[13/28] Testing kernel: expand_planes_nhwc
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/expand_planes_fp16_nhwc_kernel.dp.cpp
+
+================================================================================
+[14/28] 测试内核: expand_planes_nchw
+[14/28] Testing kernel: expand_planes_nchw
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/expand_planes_fp16_nchw_kernel.dp.cpp
+
+================================================================================
+[15/28] 测试内核: policy_map
+[15/28] Testing kernel: policy_map
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: policy_map
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 3675 characters
+   SYCL code: 3792 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 220.4s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 220.4sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[16/28] 测试内核: softmax
+[16/28] Testing kernel: softmax
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/softmax_kernel.dp.cpp
+
+================================================================================
+[17/28] 测试内核: softmax_opt_64
+[17/28] Testing kernel: softmax_opt_64
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: softmax_opt_64
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 4862 characters
+   SYCL code: 4880 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 220.5s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 220.5sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[18/28] 测试内核: promotion_logits
+[18/28] Testing kernel: promotion_logits
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/promotion_logits_kernel.dp.cpp
+
+================================================================================
+[19/28] 测试内核: preprocess_attention_body
+[19/28] Testing kernel: preprocess_attention_body
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/preprocess_attention_body_kernel.dp.cpp
+
+================================================================================
+[20/28] 测试内核: input_gating
+[20/28] Testing kernel: input_gating
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/input_gating_kernel.dp.cpp
+
+================================================================================
+[21/28] 测试内核: gen_offset_pointers
+[21/28] Testing kernel: gen_offset_pointers
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/gen_offset_pointers_kernel.dp.cpp
+
+================================================================================
+[22/28] 测试内核: winograd_filter_transform
+[22/28] Testing kernel: winograd_filter_transform
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: winograd_filter_transform
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 4638 characters
+   SYCL code: 4621 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 220.3s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 220.3sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[23/28] 测试内核: winograd_input_transform
+[23/28] Testing kernel: winograd_input_transform
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: winograd_input_transform
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 7537 characters
+   SYCL code: 8145 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 201.4s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 201.4sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[24/28] 测试内核: winograd_output_transform
+[24/28] Testing kernel: winograd_output_transform
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/winograd_output_transform_kernel.dp.cpp
+
+================================================================================
+[25/28] 测试内核: winograd_output_se_relu_input
+[25/28] Testing kernel: winograd_output_se_relu_input
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: winograd_output_se_relu_input
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 12133 characters
+   SYCL code: 8268 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 221.7s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 221.7sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+[26/28] 测试内核: winograd_output_relu_input
+[26/28] Testing kernel: winograd_output_relu_input
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/winograd_output_relu_input_kernel.dp.cpp
+
+================================================================================
+[27/28] 测试内核: se_layer_nhwc
+[27/28] Testing kernel: se_layer_nhwc
+================================================================================
+❌ SYCL文件不存在: kernel_dataset/sycl/se_layer_nhwc_kernel.dp.cpp
+
+================================================================================
+[28/28] 测试内核: output_input_transform_fp16_shmem
+[28/28] Testing kernel: output_input_transform_fp16_shmem
+================================================================================
+🚀 LLM Accuracy Test Agent initialized for: output_input_transform_fp16_shmem
+
+======================================================================
+📖 Phase 1: Loading kernel files
+======================================================================
+   CUDA code: 16989 characters
+   SYCL code: 16913 characters
+
+======================================================================
+🔍 Phase 2: Detecting platform capabilities
+======================================================================
+   SYCL: Intel(R) Graphics [0xe211]
+         FP32: True, FP16: True, BF16: False
+   CUDA: NVIDIA L20 (SM89)
+         FP32: True, FP16: True, BF16: True
+
+======================================================================
+📋 Phase 3: Generating test suite
+======================================================================
+   Generated 13 test configurations:
+   1. flo_small_random: FLOAT32 Small Random (float32)
+   2. flo_boundary: FLOAT32 Boundary Values (float32)
+   3. flo_large: FLOAT32 Large Random (float32)
+   4. flo_special: FLOAT32 Special Values (float32)
+   5. flo_small_random: FLOAT16 Small Random (float16)
+   ... and 8 more
+
+======================================================================
+🧪 Phase 4: Executing tests
+======================================================================
+
+--- Test 1/13: flo_small_random ---
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 0.0s  🔍 Analyzing kernel...
+Kernel analysis failed: Expecting value: line 1 column 1 (char 0)
+  📝 Generating CUDA harness...
+  📝 Generating SYCL harness...
+⏳ [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10.0% | Test: FLOAT32 Small Random | Phase: harness_generation | Elapsed: 222.7s⏳ [███████░░░░░░░░░░░░░░░░░░░░░░░] 25.0% | Test: FLOAT32 Small Random | Phase: cuda_compilation | Elapsed: 222.7sTraceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 258, in execute_test
+    raise Exception("CUDA compilation failed after retries")
+Exception: CUDA compilation failed after retries
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/intel/tianfeng/opencode_bench/tools/llm_accuracy_test_agent.py", line 155, in run_full_accuracy_test
+    result = await executor.execute_test(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/intel/tianfeng/opencode_bench/tools/async_test_executor.py", line 320, in execute_test
+    self.monitor.update_phase(test_id, "failed", "failed",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             error=str(e))
+                             ^^^^^^^^^^^^^
+TypeError: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+  ⚠️  CUDA compilation failed, attempt 1/3
+  🔧 Trying to fix with LLM...
+
+  ⚠️  CUDA compilation failed, attempt 2/3
+  🔧 Trying to fix with LLM...
+
+❌ Test failed with error: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+❌ 测试失败: ProgressMonitor.update_phase() got an unexpected keyword argument 'error'
+
+================================================================================
+📊 测试汇总 / Test Summary
+================================================================================
+总内核数: 28
+通过: 0 (0.0%)
+失败: 0 (0.0%)
+错误: 28 (100.0%)
+
+详细报告: results/accuracy_tests/20260309_084845/test_summary.json
+结束时间: 2026-03-09 09:57:09
+================================================================================

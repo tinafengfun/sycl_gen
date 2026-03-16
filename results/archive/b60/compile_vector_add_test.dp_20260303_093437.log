@@ -1,0 +1,22 @@
+Exit code: 1
+=== STDOUT ===
+=== SYCL Compilation Start ===
+Timestamp: 20260303_093437
+Kernel: vector_add_test.dp
+Source: /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp
+Compiler: icpx
+Flags: -fsycl -O2 -std=c++17
+
+[ERROR] Source file not found: /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp
+
+=== STDERR ===
++ echo '=== SYCL Compilation Start ==='
++ echo 'Timestamp: 20260303_093437'
++ echo 'Kernel: vector_add_test.dp'
++ echo 'Source: /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp'
++ echo 'Compiler: icpx'
++ echo 'Flags: -fsycl -O2 -std=c++17'
++ echo ''
++ '[' '!' -f /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp ']'
++ echo '[ERROR] Source file not found: /workspace/kernel_dataset/sycl/vector_add_test.dp.cpp'
++ exit 1

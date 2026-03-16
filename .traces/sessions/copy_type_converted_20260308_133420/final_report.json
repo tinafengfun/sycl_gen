@@ -1,0 +1,146 @@
+{
+  "session_id": "copy_type_converted_20260308_133420",
+  "kernel_id": "copy_type_converted",
+  "timestamp": "2026-03-08T13:35:40.113332",
+  "phases_completed": [
+    "analysis",
+    "conversion",
+    "validation",
+    "accuracy"
+  ],
+  "fixes_applied": 0,
+  "compilation": {
+    "success": true,
+    "error": null,
+    "errors": []
+  },
+  "accuracy": {
+    "total_tests": 5,
+    "passed_tests": 0,
+    "pass_rate": 0.0,
+    "status": "FAIL",
+    "test_results": [
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "random",
+          "name": "small_random"
+        },
+        "comparison": {
+          "status": "SKIPPED",
+          "note": "Placeholder test - kernel not actually invoked",
+          "total_elements": 4096,
+          "violations": 0,
+          "mismatch_rate": 0.0,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "mean_rel_diff": 0.0
+        },
+        "status": "SKIPPED"
+      },
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "ones",
+          "name": "small_ones"
+        },
+        "comparison": {
+          "status": "SKIPPED",
+          "note": "Placeholder test - kernel not actually invoked",
+          "total_elements": 4096,
+          "violations": 0,
+          "mismatch_rate": 0.0,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "mean_rel_diff": 0.0
+        },
+        "status": "SKIPPED"
+      },
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "sequential",
+          "name": "small_sequential"
+        },
+        "comparison": {
+          "status": "SKIPPED",
+          "note": "Placeholder test - kernel not actually invoked",
+          "total_elements": 4096,
+          "violations": 0,
+          "mismatch_rate": 0.0,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "mean_rel_diff": 0.0
+        },
+        "status": "SKIPPED"
+      },
+      {
+        "config": {
+          "N": 4,
+          "C": 128,
+          "dtype": "float",
+          "layout": "nchw",
+          "test_type": "random",
+          "name": "large_random"
+        },
+        "comparison": {
+          "status": "SKIPPED",
+          "note": "Placeholder test - kernel not actually invoked",
+          "total_elements": 32768,
+          "violations": 0,
+          "mismatch_rate": 0.0,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "mean_rel_diff": 0.0
+        },
+        "status": "SKIPPED"
+      },
+      {
+        "config": {
+          "N": 1,
+          "C": 64,
+          "dtype": "float",
+          "layout": "nhcw",
+          "test_type": "random",
+          "name": "nhcw_layout"
+        },
+        "comparison": {
+          "status": "SKIPPED",
+          "note": "Placeholder test - kernel not actually invoked",
+          "total_elements": 4096,
+          "violations": 0,
+          "mismatch_rate": 0.0,
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mean_abs_diff": 0.0,
+          "mean_rel_diff": 0.0
+        },
+        "status": "SKIPPED"
+      }
+    ],
+    "summary": {
+      "overall_max_abs_diff": 0.0,
+      "overall_max_rel_diff": 0.0,
+      "avg_mismatch_rate": 0.0
+    }
+  },
+  "trace_metrics": {
+    "total_steps": 33,
+    "total_tool_calls": 0,
+    "errors": 0,
+    "fixes": 0
+  }
+}
