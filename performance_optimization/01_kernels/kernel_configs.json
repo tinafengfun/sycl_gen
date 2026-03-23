@@ -1,0 +1,386 @@
+{
+  "kernels": {
+    "add_vectors": {
+      "name": "Vector Addition",
+      "description": "Element-wise vector addition with activation",
+      "type": "elementwise",
+      "data_types": ["float", "sycl::half"],
+      "test_sizes": [256, 512, 1024, 4096, 16384],
+      "flops_per_element": 1,
+      "bytes_per_element": 12,
+      "baseline_file": "kernel_dataset/sycl/add_vectors_kernel.dp.cpp",
+      "configurations": {
+        "v0_baseline": {
+          "version": "V0",
+          "name": "Baseline",
+          "description": "Original kernel from LCZero",
+          "work_group_size": 256,
+          "sub_group_size": "default",
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v1_wg512": {
+          "version": "V1",
+          "name": "Work-Group 512",
+          "description": "Increased work-group size to 512",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v2_sg16": {
+          "version": "V2",
+          "name": "Sub-Group 16",
+          "description": "Explicit sub-group size 16",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v3_vec4": {
+          "version": "V3",
+          "name": "4-Wide Vectorization",
+          "description": "4-wide vectorized memory access (native for E211)",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v4_large_grf": {
+          "version": "V4",
+          "name": "Large GRF Mode",
+          "description": "256KB GRF mode for register-heavy kernels",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": true
+        },
+        "v5_optimized": {
+          "version": "V5",
+          "name": "Fully Optimized",
+          "description": "Combined optimizations for E211",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": false
+        }
+      }
+    },
+    "batch_norm": {
+      "name": "Batch Normalization",
+      "description": "Batch normalization with activation",
+      "type": "normalization",
+      "data_types": ["float", "sycl::half"],
+      "test_sizes": [256, 512, 1024, 4096, 16384],
+      "flops_per_element": 5,
+      "bytes_per_element": 20,
+      "baseline_file": "kernel_dataset/sycl/batch_norm_kernel.dp.cpp",
+      "configurations": {
+        "v0_baseline": {
+          "version": "V0",
+          "name": "Baseline",
+          "work_group_size": 256,
+          "sub_group_size": "default",
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v1_wg512": {
+          "version": "V1",
+          "name": "Work-Group 512",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v2_sg16": {
+          "version": "V2",
+          "name": "Sub-Group 16",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v3_vec4": {
+          "version": "V3",
+          "name": "4-Wide Vectorization",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v4_slm": {
+          "version": "V4",
+          "name": "SLM Caching",
+          "description": "Cache mean/variance in SLM (≤128KB)",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": true,
+          "slm_size": 65536,
+          "large_grf": false
+        },
+        "v5_optimized": {
+          "version": "V5",
+          "name": "Fully Optimized",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": true,
+          "slm_size": 65536,
+          "large_grf": false
+        }
+      }
+    },
+    "winograd_input_transform": {
+      "name": "Winograd Input Transform",
+      "description": "4x4 Winograd convolution input transformation",
+      "type": "matrix",
+      "data_types": ["float", "sycl::half"],
+      "test_sizes": [256, 512, 1024, 4096, 16384],
+      "flops_per_element": 200,
+      "bytes_per_element": 8,
+      "baseline_file": "kernel_dataset/sycl/winograd_input_transform_kernel.dp.cpp",
+      "configurations": {
+        "v0_baseline": {
+          "version": "V0",
+          "name": "Baseline",
+          "work_group_size": 256,
+          "sub_group_size": "default",
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v1_wg512": {
+          "version": "V1",
+          "name": "Work-Group 512",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v2_sg16": {
+          "version": "V2",
+          "name": "Sub-Group 16",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v3_slm_tiling": {
+          "version": "V3",
+          "name": "SLM Tiling",
+          "description": "Tile 8x8 board data in SLM (safe 128KB)",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": true,
+          "slm_size": 8192,
+          "large_grf": false
+        },
+        "v4_large_grf": {
+          "version": "V4",
+          "name": "Large GRF",
+          "description": "256KB GRF for register-heavy matrix ops",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": true,
+          "slm_size": 8192,
+          "large_grf": true
+        },
+        "v5_xmx_dpas": {
+          "version": "V5",
+          "name": "XMX DPAS",
+          "description": "XMX matrix extensions (8x16x16)",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": true,
+          "slm_size": 8192,
+          "xmx_dpas": true,
+          "large_grf": false
+        }
+      }
+    },
+    "softmax": {
+      "name": "Softmax",
+      "description": "Softmax normalization with sub-group reduction",
+      "type": "reduction",
+      "data_types": ["float", "sycl::half"],
+      "test_sizes": [256, 512, 1024, 4096, 16384],
+      "flops_per_element": 10,
+      "bytes_per_element": 12,
+      "baseline_file": "kernel_dataset/sycl/softmax_kernel.dp.cpp",
+      "configurations": {
+        "v0_baseline": {
+          "version": "V0",
+          "name": "Baseline",
+          "work_group_size": 256,
+          "sub_group_size": "default",
+          "vectorized": false,
+          "slm_usage": true,
+          "slm_size": 8,
+          "large_grf": false
+        },
+        "v1_wg512": {
+          "version": "V1",
+          "name": "Work-Group 512",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": true,
+          "slm_size": 8,
+          "large_grf": false
+        },
+        "v2_sg16": {
+          "version": "V2",
+          "name": "Sub-Group 16",
+          "description": "Optimized sub-group reduction",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": true,
+          "slm_size": 8,
+          "large_grf": false
+        },
+        "v3_shuffle": {
+          "version": "V3",
+          "name": "Shuffle Optimization",
+          "description": "Use sub-group shuffle instead of barriers",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v4_vec4": {
+          "version": "V4",
+          "name": "4-Wide Vectorization",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v5_optimized": {
+          "version": "V5",
+          "name": "Fully Optimized",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": false
+        }
+      }
+    },
+    "global_avg_pool": {
+      "name": "Global Average Pooling",
+      "description": "Global average pooling across 8x8 spatial dimensions",
+      "type": "pooling",
+      "data_types": ["float", "sycl::half"],
+      "test_sizes": [256, 512, 1024, 4096, 16384],
+      "flops_per_element": 64,
+      "bytes_per_element": 8,
+      "baseline_file": "kernel_dataset/sycl/global_avg_pool_kernel.dp.cpp",
+      "configurations": {
+        "v0_baseline": {
+          "version": "V0",
+          "name": "Baseline",
+          "work_group_size": 256,
+          "sub_group_size": 32,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v1_wg512": {
+          "version": "V1",
+          "name": "Work-Group 512",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v2_sg16": {
+          "version": "V2",
+          "name": "Sub-Group 16",
+          "description": "Fix: Change from warp=32 to SG=16",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": false,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v3_vec4": {
+          "version": "V3",
+          "name": "4-Wide Vectorization",
+          "description": "Load 4 elements per thread",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": false,
+          "large_grf": false
+        },
+        "v4_slm": {
+          "version": "V4",
+          "name": "SLM Aggregation",
+          "description": "Cache plane data in SLM",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": true,
+          "slm_size": 4096,
+          "large_grf": false
+        },
+        "v5_optimized": {
+          "version": "V5",
+          "name": "Fully Optimized",
+          "work_group_size": 512,
+          "sub_group_size": 16,
+          "vectorized": true,
+          "vector_width": 4,
+          "slm_usage": true,
+          "slm_size": 4096,
+          "large_grf": false
+        }
+      }
+    }
+  },
+  "target_hardware": {
+    "name": "Intel Graphics [0xe211]",
+    "slm_kb": 128,
+    "max_work_group": 1024,
+    "sub_group_sizes": [16, 32],
+    "native_vector_width": 4,
+    "compute_units": 160
+  },
+  "compilation": {
+    "compiler": "icpx",
+    "standard_flags": "-fsycl -O2 -std=c++17",
+    "aot_flags": "-fsycl-targets=spir64",
+    "large_grf_flags": "-Xclang -fsycl-device-code-size=256KB",
+    "bmg_target": "-fsycl-targets=spir64_gen-unknown-unknown-sycldevice -Xs '-device bmg'"
+  }
+}
