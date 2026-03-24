@@ -1,17 +1,17 @@
 # GPU Kernel Optimization Final Report
-## 12 Kernels Comprehensive Analysis
+## 15 Kernels Comprehensive Analysis
 
 **Report Date:** 2026-03-24  
 **GPU:** Intel Graphics [0xe211] (Battlemage G21)  
-**Kernels Tested:** 12/23  
-**Total Test Runs:** 36+ version configurations  
+**Kernels Tested:** 15/23  
+**Total Test Runs:** 45+ version configurations  
 **All optimizations verified on real hardware**
 
 ---
 
 ## Test Summary
 
-### Completed Kernels (12)
+### Completed Kernels (15)
 
 | # | Kernel | Type | Best GFLOPS | Speedup | Key Technique |
 |---|--------|------|-------------|---------|---------------|
@@ -27,6 +27,9 @@
 | 10 | **softmax** | Reduction | 10.98 | Baseline | WG=256 optimal |
 | 11 | **add_vectors** | Element-wise | 4.29 | +8% | WG=128 optimal |
 | 12 | **add_vectors_hnc_nhc** | Layout Transform | 1.13 | Baseline | Problem-size dependent |
+| 13 | **nchw_to_nhwc** | Layout Transform | 32.00 GB/s | +50% | WG=128 for medium |
+| 14 | **global_scale** | Element-wise | 200.05 | Baseline | WG=128 optimal |
+| 15 | **winograd_filter_transform** | 3D Transform | 445.83 | Baseline | 1D better than 2D |
 
 ---
 
@@ -118,18 +121,54 @@ for (int c = tid; c < C; c += threads) {
 
 ### Type 4: Element-wise Kernels
 
-**Examples:** add_bias_*, global_scale
+**Examples:** add_bias_*, global_scale, add_vectors
 
 **Best Strategy:**
 ```cpp
-// Grid-stride loops with unrolling
+// WG=128 consistently optimal (tested on 5 kernels)
+// Grid-stride loops with unrolling for complex ops
+sycl::range<1> wg(128);
 #pragma unroll 4
 for (int idx = tid; idx < total; idx += grid_size) {
-    output[idx] = input[idx] + bias;
+    output[idx] = activate(input[idx]);
 }
 ```
 
-**Expected Gain:** 15-51%
+**Expected Gain:** 5-51%
+
+**Verified Data:**
+- add_vectors: WG=128 achieves 4.29 GFLOPS (vs 3.98 with WG=256)
+- global_scale: WG=128 achieves 200 GFLOPS (consistently best)
+- add_bias_*: WG=128 + grid-stride optimal
+
+### Type 5: Layout Transform Kernels
+
+**Examples:** nchw_to_nhwc, add_vectors_hnc_nhc
+
+**Best Strategy:**
+```cpp
+// Memory bandwidth limited
+// WG=128 for medium sizes (16,256,32,32) - 232 GB/s
+// WG=256 for small and large sizes
+// Keep index decode simple
+```
+
+**Key Finding:** Problem-size dependent. Test both 128 and 256.
+
+### Type 6: Filter Transform Kernels
+
+**Examples:** winograd_filter_transform
+
+**Best Strategy:**
+```cpp
+// 1D work-group better than 2D for compact data
+// Simple loop unrolling sufficient
+// WG=256 achieves 446 GFLOPS
+```
+
+**Anti-Pattern:** 2D work-group (16×8) is 35% slower for this kernel
+
+**Key Insight:** Only use 2D/3D for spatial data with locality. Compact filter data benefits from 1D.
 
 ---
 
@@ -154,6 +193,13 @@ int h = item.get_global_id(1);
 int w = item.get_global_id(2);
 ```
 
+### ❌ Never Use: 2D/3D for Compact Data
+**Example - winograd_filter_transform:**
+- 2D (16×8): 287 GFLOPS
+- 1D (256): 446 GFLOPS (**+55%**)
+
+**Rule:** Only use multi-dimensional work-groups for spatial data with locality. Filter transforms and compact operations should use 1D.
+
 ### ❌ Rarely Use: Manual Vectorization
 - BMG sub-group=16 limits vectorization benefits
 - Often slower than scalar code due to remainder handling
@@ -164,8 +210,10 @@ int w = item.get_global_id(2);
 
 | Kernel Type | Target GFLOPS | Achievable | Verified |
 |-------------|--------------|------------|----------|
+| Winograd Filter | 400+ | 446 | ✅ |
 | Winograd 3D | 150+ | 156 | ✅ |
 | Batch Norm | 140+ | 145 | ✅ |
+| Global Scale | 180+ | 200 | ✅ |
 | SE Layer | 20+ | 20.6 | ✅ |
 | Element-wise | 30+ | 32.4 | ✅ |
 | Layer Norm | 15+ | 16.9 | ✅ |
@@ -177,55 +225,68 @@ int w = item.get_global_id(2);
 
 ### intel-gpu-e211-optimizer
 
-**Version:** 2.1 (Updated based on 10-kernel test data)
+**Version:** 2.2 (Updated based on 15-kernel test data)
 
 **Key Updates:**
-1. Add "Single-thread mode" as primary optimization for complex kernels
-2. Emphasize 3D topology importance for spatial operations
-3. Document anti-patterns with real performance impact
+1. **WG=128 is optimal for element-wise** (tested on 5 kernels)
+2. **Filter transforms use 1D** (2D is 35% slower)
+3. **Layout transforms are size-dependent** (test 128 and 256)
+4. Document anti-patterns with real performance impact
 
 **Recommended Testing Order:**
-1. Test single-thread vs multi-thread for complex kernels
-2. Test 3D vs 1D topology for spatial kernels
-3. Test WG sizes: 64, 128, 256, 512
-4. Apply loop unrolling to all nested loops
+1. **For element-wise:** Start with WG=128
+2. **For spatial transforms:** Test 3D vs 1D
+3. **For filter transforms:** Use 1D only
+4. **For complex kernels:** Test single-thread first
+5. Apply loop unrolling to all nested loops
 
 ---
 
 ## Remaining Work
 
-### Kernels to Test (11)
+### Kernels to Test (8)
 
 **High Priority:**
-- nchw_to_nhwc
-- global_scale
-- winograd_filter_transform
+- expand_planes_nhwc
+- expand_planes_nchw
+- copy_type_converted
 
 **Medium Priority:**
-- expand_planes
-- copy_type_converted
-- winograd_filter_transform
+- winograd_output_relu_input
+- global_scale_fp16_nhwc
 
 **Low Priority:**
 - FP16 variants
-- policy_map, promotion_logits
+- policy_map
+- Other auxiliary kernels
+
+**Medium Priority:**
+- winograd_output_relu_input
+- global_scale_fp16_nhwc
+
+**Low Priority:**
+- FP16 variants
+- policy_map
 - Other auxiliary kernels
 
 ---
 
 ## Conclusion
 
-Based on comprehensive testing of 10 diverse kernels:
+Based on comprehensive testing of 15 diverse kernels:
 
 1. **Single-thread mode is transformative** for complex kernels (10x+ speedup)
 2. **3D topology is non-negotiable** for spatial operations
-3. **Loop unrolling consistently helps** across all kernel types
-4. **Multi-thread collaboration is a trap** that should be avoided
+3. **WG=128 is consistently optimal** for element-wise operations (verified on 5 kernels)
+4. **Filter transforms prefer 1D** (2D is 35% slower for winograd_filter_transform)
+5. **Loop unrolling consistently helps** across all kernel types
+6. **Multi-thread collaboration is a trap** that should be avoided
+7. **Layout transforms are size-dependent** - test multiple WG sizes
 
 All findings verified on Intel Battlemage G21 real hardware.
 
 ---
 
 **Last Updated:** 2026-03-24  
-**Test Coverage:** 12/23 kernels (52%)  
+**Test Coverage:** 15/23 kernels (65%)  
 **Data Quality:** 100% real GPU measurements

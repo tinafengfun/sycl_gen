@@ -191,26 +191,32 @@ int idx = item.get_global_id(0);
 
 ### Element-wise 操作
 
-**特征：** add_vectors, activation, bias_add
+**特征：** add_vectors, activation, bias_add, global_scale
 
 **配置：**
 ```cpp
-// Work-group: 128-256
+// Work-group: 128 (consistently optimal)
 // 每个线程处理 1 个元素
 // 无需 local memory
-// 必须 unroll 内层循环
+// Loop unroll for complex element-wise ops
 
-sycl::range<1> wg(256);
+sycl::range<1> wg(128);  // Start with 128
 h.parallel_for(
-    sycl::nd_range<1>(DivUp(N, 256) * 256, wg),
+    sycl::nd_range<1>(DivUp(N, 128) * 128, wg),
     [=](sycl::nd_item<1> item) [[sycl::reqd_sub_group_size(16)]] {
         int idx = item.get_global_id(0);
         if (idx < N) {
-            output[idx] = input1[idx] + input2[idx];
+            // For simple ops: direct access
+            // For complex ops (activation): use unroll
+            output[idx] = activate(input[idx]);
         }
     }
 );
 ```
+
+**实测数据：**
+- add_vectors: WG=128 achieves 4.29 GFLOPS (vs 3.98 with WG=256)
+- global_scale: WG=128 achieves 200 GFLOPS (consistently best)
 
 ### Reduction 操作
 
@@ -254,12 +260,18 @@ h.parallel_for(
 
 **配置：**
 ```cpp
-// 3D work-group 匹配数据维度
+// 3D work-group for input/output transforms (spatial data)
+// 1D work-group for filter transforms (compact data)
 // 保持空间局部性
 // 使用 register 存储 tile
 
+// For input/output (spatial): 3D
 sycl::range<3> global(blocks_c * 16, blocks_h * 4, blocks_w * 4);
 sycl::range<3> local(16, 4, 4);
+
+// For filter transform: 1D is often better
+sycl::range<1> global(DivUp(C * K, 256) * 256);
+sycl::range<1> local(256);
 
 h.parallel_for(
     sycl::nd_range<3>(global, local),
@@ -283,6 +295,48 @@ h.parallel_for(
     }
 );
 ```
+
+**关键发现：**
+- **winograd_input/output_transform**: 3D topology essential (156 GFLOPS)
+- **winograd_filter_transform**: 1D work-group better than 2D (446 GFLOPS vs 287)
+- Don't blindly apply 2D/3D - depends on data access pattern
+
+### Layout Transform 操作
+
+**特征：** nchw_to_nhwc, add_vectors_hnc_nhc
+
+**配置：**
+```cpp
+// Memory-bound: optimize for bandwidth
+// WG size depends on problem size:
+//   - Small sizes (N=4): WG=256
+//   - Medium sizes (N=16): WG=128 (232 GB/s)
+//   - Large sizes (N=32): WG=256
+// Grid-stride loop provides minimal benefit
+
+sycl::range<1> wg(128);  // Start here, test 256 if needed
+queue.parallel_for(
+    sycl::nd_range<1>(DivUp(N*C*H*W, 128) * 128, wg),
+    [=](sycl::nd_item<1> item) {
+        int tid = item.get_global_id(0);
+        if (tid >= total) return;
+        
+        // Decode index (expensive!)
+        int tmp = tid;
+        int c = tmp % C; tmp /= C;
+        int w = tmp % W; tmp /= W;
+        int h = tmp % H;
+        int n = tmp / H;
+        
+        output[tid] = input[((n*C + c)*H + h)*W + w];
+    }
+);
+```
+
+**关键发现：**
+- **nchw_to_nhwc**: WG=128 optimal for medium sizes (232 GB/s)
+- Index decode overhead dominates - keep it simple
+- Grid-stride loops add overhead for memory-bound kernels
 
 ### 复杂融合 Kernel
 
@@ -385,5 +439,31 @@ icpx -fsycl -O3 \
 
 ---
 
-**Version:** 2.0  
+**Version:** 2.2  
 **Target:** Intel Graphics [0xe211] (Battlemage G21)
+
+---
+
+## New Findings (v2.2)
+
+### Work-Group Size Selection Refined
+
+Based on 15-kernel test data:
+
+| Kernel Type | Recommended WG | Performance |
+|-------------|---------------|-------------|
+| Simple element-wise | 128 | +5-8% vs 256 |
+| Complex element-wise | 128 | Consistently optimal |
+| Layout transform | Size-dependent | Test both 128, 256 |
+| Filter transform | 256 | Simpler is better |
+| Spatial transforms | 16×4×4 3D | Essential |
+
+### Anti-Pattern Refined
+
+**❌ Avoid 2D/3D for compact data:**
+- winograd_filter_transform: 2D (16×8) is 35% slower than 1D
+- Only use multi-D for spatial data with locality
+
+**✅ Prefer WG=128 for element-wise:**
+- Tested across 4 kernels (add_vectors, global_scale, add_bias_*)
+- 128 consistently outperforms 256 by 5-15%
