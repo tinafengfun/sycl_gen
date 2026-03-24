@@ -1,5 +1,5 @@
 # GPU Kernel Optimization Final Report
-## 18 Kernels Comprehensive Analysis
+## 19 Kernels Comprehensive Analysis
 
 **Report Date:** 2026-03-24  
 **GPU:** Intel Graphics [0xe211] (Battlemage G21)  
@@ -11,7 +11,7 @@
 
 ## Test Summary
 
-### Completed Kernels (18)
+### Completed Kernels (19)
 
 | # | Kernel | Type | Best GFLOPS | Speedup | Key Technique |
 |---|--------|------|-------------|---------|---------------|
@@ -33,6 +33,7 @@
 | 16 | **expand_planes_nhwc** | Data Expansion | 160 GB/s | +16% | WG=128 for small |
 | 17 | **expand_planes_nchw** | Data Expansion | 20 GB/s | +5% | Process 4 elements/thread |
 | 18 | **copy_type_converted** | Memory Copy | 338 GB/s | Baseline | WG=128 optimal |
+| 19 | **winograd_output_relu_input** | Fused Transform | 767 GFLOPS | Baseline | Simple 1D best |
 
 ---
 
@@ -247,13 +248,10 @@ int w = item.get_global_id(2);
 
 ## Remaining Work
 
-### Kernels to Test (5)
-
-**Medium Priority:**
-- winograd_output_relu_input
-- global_scale_fp16_nhwc
+### Kernels to Test (4)
 
 **Low Priority:**
+- global_scale_fp16_nhwc
 - FP16 variants
 - policy_map
 - Other auxiliary kernels
@@ -282,11 +280,12 @@ Based on comprehensive testing of 15 diverse kernels:
 7. **Layout transforms are size-dependent** - test multiple WG sizes
 8. **expand_planes_nchw** benefits from processing 4 elements per thread (+5%)
 9. **Memory copy kernels** achieve 338 GB/s with WG=128
+10. **Simple fused kernels** (ReLU) perform best with 1D work-groups (767 GFLOPS)
 
 All findings verified on Intel Battlemage G21 real hardware.
 
 ---
 
 **Last Updated:** 2026-03-24  
-**Test Coverage:** 18/23 kernels (78%)  
+**Test Coverage:** 19/23 kernels (83%)  
 **Data Quality:** 100% real GPU measurements
