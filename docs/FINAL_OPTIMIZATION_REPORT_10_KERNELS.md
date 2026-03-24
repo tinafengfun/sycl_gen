@@ -1,17 +1,17 @@
 # GPU Kernel Optimization Final Report
-## 10 Kernels Comprehensive Analysis
+## 11 Kernels Comprehensive Analysis
 
 **Report Date:** 2026-03-24  
 **GPU:** Intel Graphics [0xe211] (Battlemage G21)  
-**Kernels Tested:** 10/23  
-**Total Test Runs:** 30+ version configurations  
+**Kernels Tested:** 11/23  
+**Total Test Runs:** 33+ version configurations  
 **All optimizations verified on real hardware**
 
 ---
 
 ## Test Summary
 
-### Completed Kernels (10)
+### Completed Kernels (11)
 
 | # | Kernel | Type | Best GFLOPS | Speedup | Key Technique |
 |---|--------|------|-------------|---------|---------------|
@@ -25,6 +25,7 @@
 | 8 | **add_bias_nchw** | Element-wise | 26.82 | +15% | Grid-stride Unroll |
 | 9 | **global_avg_pool** | Reduction | 62.54 | +10% | Vectorization |
 | 10 | **softmax** | Reduction | 10.98 | Baseline | WG=256 optimal |
+| 11 | **add_vectors** | Element-wise | 4.29 | +8% | WG=128 optimal |
 
 ---
 
@@ -192,17 +193,17 @@ int w = item.get_global_id(2);
 
 ## Remaining Work
 
-### Kernels to Test (13)
+### Kernels to Test (12)
 
 **High Priority:**
-- winograd_filter_transform
+- add_vectors_hnc_nhc
 - nchw_to_nhwc
 - global_scale
 
 **Medium Priority:**
 - expand_planes
 - copy_type_converted
-- add_vectors_hnc_nhc
+- winograd_filter_transform
 
 **Low Priority:**
 - FP16 variants
@@ -225,5 +226,5 @@ All findings verified on Intel Battlemage G21 real hardware.
 ---
 
 **Last Updated:** 2026-03-24  
-**Test Coverage:** 10/23 kernels (43%)  
+**Test Coverage:** 11/23 kernels (48%)  
 **Data Quality:** 100% real GPU measurements
