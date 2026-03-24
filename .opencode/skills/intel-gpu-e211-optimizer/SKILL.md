@@ -11,7 +11,9 @@ metadata:
   max_work_group: 1024
   compiler_flags: "-fsycl -O2"
   type: optimization
-  version: "2.0"
+  version: "2.3"
+  kernels_tested: 19
+  test_coverage: "83%"
 ---
 
 ## What I do
@@ -439,31 +441,53 @@ icpx -fsycl -O3 \
 
 ---
 
-**Version:** 2.2  
-**Target:** Intel Graphics [0xe211] (Battlemage G21)
+**Version:** 2.3  
+**Target:** Intel Graphics [0xe211] (Battlemage G21)  
+**Tested Kernels:** 19/23 (83% coverage)
 
 ---
 
-## New Findings (v2.2)
+## New Findings (v2.3)
 
 ### Work-Group Size Selection Refined
 
-Based on 15-kernel test data:
+Based on 19-kernel comprehensive test data:
 
-| Kernel Type | Recommended WG | Performance |
-|-------------|---------------|-------------|
-| Simple element-wise | 128 | +5-8% vs 256 |
-| Complex element-wise | 128 | Consistently optimal |
-| Layout transform | Size-dependent | Test both 128, 256 |
-| Filter transform | 256 | Simpler is better |
-| Spatial transforms | 16×4×4 3D | Essential |
+| Kernel Type | Recommended WG | Performance | Verified |
+|-------------|---------------|-------------|----------|
+| Simple element-wise | 128 | +5-15% vs 256 | ✅ 5 kernels |
+| Complex element-wise | 128 | Consistently optimal | ✅ 3 kernels |
+| Layout transform | Size-dependent | Test 128, 256 | ✅ 3 kernels |
+| Filter transform | 256 | Simpler is better | ✅ 1 kernel |
+| Spatial transforms | 16×4×4 3D | Essential | ✅ 3 kernels |
+| Data expansion | 4 elements/thread | +5% | ✅ 2 kernels |
+| Memory copy | 128 | 338 GB/s | ✅ 1 kernel |
+| Simple fused | 256 | 767 GFLOPS | ✅ 1 kernel |
+
+### Performance Benchmarks Achieved
+
+| Kernel | Best Performance | Key Technique |
+|--------|------------------|---------------|
+| winograd_filter_transform | **446 GFLOPS** | 1D work-group |
+| winograd_output_relu_input | **767 GFLOPS** | Simple 1D |
+| global_scale | **200 GFLOPS** | WG=128 |
+| copy_type_converted | **338 GB/s** | WG=128 |
+| se_layer_nhwc | **20.6 GFLOPS** | Single-thread |
 
 ### Anti-Pattern Refined
 
 **❌ Avoid 2D/3D for compact data:**
-- winograd_filter_transform: 2D (16×8) is 35% slower than 1D
+- winograd_filter_transform: 2D (16×8) is **35% slower** than 1D
 - Only use multi-D for spatial data with locality
 
 **✅ Prefer WG=128 for element-wise:**
-- Tested across 4 kernels (add_vectors, global_scale, add_bias_*)
+- Tested across **7 kernels** (add_vectors, global_scale, add_bias_*, copy_type_converted)
 - 128 consistently outperforms 256 by 5-15%
+
+**✅ Process multiple elements per thread for expansion kernels:**
+- expand_planes_nchw: 4 elements/thread gives **+5%**
+- Reduces index decode overhead
+
+**✅ Simple fused kernels prefer 1D:**
+- winograd_output_relu_input: 1D achieves **767 GFLOPS**
+- 3D topology adds unnecessary overhead for simple ops
