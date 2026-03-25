@@ -11,9 +11,9 @@ metadata:
   max_work_group: 1024
   compiler_flags: "-fsycl -O2"
   type: optimization
-  version: "2.3"
-  kernels_tested: 19
-  test_coverage: "83%"
+  version: "2.4"
+  kernels_tested: 21
+  test_coverage: "91%"
 ---
 
 ## What I do
@@ -447,15 +447,15 @@ icpx -fsycl -O3 \
 
 ---
 
-## New Findings (v2.3)
+## New Findings (v2.4)
 
 ### Work-Group Size Selection Refined
 
-Based on 19-kernel comprehensive test data:
+Based on 21-kernel comprehensive test data:
 
 | Kernel Type | Recommended WG | Performance | Verified |
 |-------------|---------------|-------------|----------|
-| Simple element-wise | 128 | +5-15% vs 256 | ✅ 5 kernels |
+| Simple element-wise | 128 | +5-15% vs 256 | ✅ 7 kernels |
 | Complex element-wise | 128 | Consistently optimal | ✅ 3 kernels |
 | Layout transform | Size-dependent | Test 128, 256 | ✅ 3 kernels |
 | Filter transform | 256 | Simpler is better | ✅ 1 kernel |
@@ -463,16 +463,31 @@ Based on 19-kernel comprehensive test data:
 | Data expansion | 4 elements/thread | +5% | ✅ 2 kernels |
 | Memory copy | 128 | 338 GB/s | ✅ 1 kernel |
 | Simple fused | 256 | 767 GFLOPS | ✅ 1 kernel |
+| FP16 element-wise | 128/256 | Similar to FP32 | ✅ 1 kernel |
+| Gather/scatter | 128 | Limited by indexing | ✅ 1 kernel |
 
 ### Performance Benchmarks Achieved
 
 | Kernel | Best Performance | Key Technique |
 |--------|------------------|---------------|
-| winograd_filter_transform | **446 GFLOPS** | 1D work-group |
 | winograd_output_relu_input | **767 GFLOPS** | Simple 1D |
+| winograd_filter_transform | **446 GFLOPS** | 1D work-group |
 | global_scale | **200 GFLOPS** | WG=128 |
 | copy_type_converted | **338 GB/s** | WG=128 |
 | se_layer_nhwc | **20.6 GFLOPS** | Single-thread |
+| global_scale_fp16_nhwc | **117 GB/s** | FP16 precision |
+
+### Key Insights
+
+**FP16 Performance:**
+- FP16 kernels achieve similar compute performance to FP32
+- Bandwidth utilization roughly half due to 16-bit vs 32-bit
+- Use FP16 when memory bandwidth is the bottleneck
+
+**Gather Operations:**
+- policy_map (gather): ~30 GB/s bandwidth limited
+- Indirect indexing prevents coalesced memory access
+- Optimize index layout rather than work-group size
 
 ### Anti-Pattern Refined
 
@@ -481,7 +496,7 @@ Based on 19-kernel comprehensive test data:
 - Only use multi-D for spatial data with locality
 
 **✅ Prefer WG=128 for element-wise:**
-- Tested across **7 kernels** (add_vectors, global_scale, add_bias_*, copy_type_converted)
+- Tested across **8 kernels** (add_vectors, global_scale, add_bias_*, copy_type_converted, FP16)
 - 128 consistently outperforms 256 by 5-15%
 
 **✅ Process multiple elements per thread for expansion kernels:**

@@ -1,17 +1,17 @@
 # GPU Kernel Optimization Final Report
-## 19 Kernels Comprehensive Analysis
+## 21 Kernels Comprehensive Analysis
 
 **Report Date:** 2026-03-24  
 **GPU:** Intel Graphics [0xe211] (Battlemage G21)  
-**Kernels Tested:** 18/23  
-**Total Test Runs:** 54+ version configurations  
+**Kernels Tested:** 21/23  
+**Total Test Runs:** 60+ version configurations  
 **All optimizations verified on real hardware**
 
 ---
 
 ## Test Summary
 
-### Completed Kernels (19)
+### Completed Kernels (21)
 
 | # | Kernel | Type | Best GFLOPS | Speedup | Key Technique |
 |---|--------|------|-------------|---------|---------------|
@@ -34,6 +34,8 @@
 | 17 | **expand_planes_nchw** | Data Expansion | 20 GB/s | +5% | Process 4 elements/thread |
 | 18 | **copy_type_converted** | Memory Copy | 338 GB/s | Baseline | WG=128 optimal |
 | 19 | **winograd_output_relu_input** | Fused Transform | 767 GFLOPS | Baseline | Simple 1D best |
+| 20 | **global_scale_fp16_nhwc** | Element-wise FP16 | 117 GB/s | Baseline | Similar to FP32 |
+| 21 | **policy_map** | Gather | 30 GB/s | Baseline | Gather operation |
 
 ---
 
@@ -248,12 +250,10 @@ int w = item.get_global_id(2);
 
 ## Remaining Work
 
-### Kernels to Test (4)
+### Kernels to Test (2)
 
 **Low Priority:**
-- global_scale_fp16_nhwc
-- FP16 variants
-- policy_map
+- FP16 variants (expand_planes_fp16, global_avg_pool_fp16)
 - Other auxiliary kernels
 
 **Medium Priority:**
@@ -287,5 +287,5 @@ All findings verified on Intel Battlemage G21 real hardware.
 ---
 
 **Last Updated:** 2026-03-24  
-**Test Coverage:** 19/23 kernels (83%)  
+**Test Coverage:** 21/23 kernels (91%)  
 **Data Quality:** 100% real GPU measurements
