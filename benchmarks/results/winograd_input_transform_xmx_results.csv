@@ -1,0 +1,11 @@
+Device: Intel(R) Graphics [0xe211]
+Version,N,C,H,W,Time_ms,GFLOPS,Bandwidth_GB/s
+XMX_R1,N=512,C=64,H=32,W=32,Time=0.407212 ms,GFLOPS=82.4004,Bandwidth=329.602 GB/s
+XMX_R2,N=512,C=64,H=32,W=32,Time=0.343727 ms,GFLOPS=97.6193,Bandwidth=390.477 GB/s
+XMX_R3,N=512,C=64,H=32,W=32,Time=0.983476 ms,GFLOPS=34.1182,Bandwidth=136.473 GB/s
+XMX_R1,N=1024,C=128,H=64,W=64,Time=4.48798 ms,GFLOPS=119.624,Bandwidth=478.496 GB/s
+XMX_R2,N=1024,C=128,H=64,W=64,Time=3.96471 ms,GFLOPS=135.412,Bandwidth=541.65 GB/s
+XMX_R3,N=1024,C=128,H=64,W=64,Time=14.5272 ms,GFLOPS=36.9564,Bandwidth=147.825 GB/s
+terminate called after throwing an instance of 'sycl::_V1::exception'
+  what():  Native API failed. Native API returns: 20 (UR_RESULT_ERROR_DEVICE_LOST)
+timeout: the monitored command dumped core
