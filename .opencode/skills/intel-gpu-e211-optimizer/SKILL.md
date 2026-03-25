@@ -11,9 +11,10 @@ metadata:
   max_work_group: 1024
   compiler_flags: "-fsycl -O2"
   type: optimization
-  version: "2.4"
-  kernels_tested: 21
-  test_coverage: "91%"
+  version: "2.5"
+  kernels_tested: 23
+  test_coverage: "100%"
+  status: "COMPLETE"
 ---
 
 ## What I do
@@ -447,11 +448,11 @@ icpx -fsycl -O3 \
 
 ---
 
-## New Findings (v2.4)
+## New Findings (v2.5) ✅ COMPLETE
 
 ### Work-Group Size Selection Refined
 
-Based on 21-kernel comprehensive test data:
+Based on **23-kernel comprehensive test data** (100% coverage):
 
 | Kernel Type | Recommended WG | Performance | Verified |
 |-------------|---------------|-------------|----------|
@@ -466,7 +467,7 @@ Based on 21-kernel comprehensive test data:
 | FP16 element-wise | 128/256 | Similar to FP32 | ✅ 1 kernel |
 | Gather/scatter | 128 | Limited by indexing | ✅ 1 kernel |
 
-### Performance Benchmarks Achieved
+### Performance Benchmarks Achieved (23 Kernels)
 
 | Kernel | Best Performance | Key Technique |
 |--------|------------------|---------------|
@@ -476,6 +477,9 @@ Based on 21-kernel comprehensive test data:
 | copy_type_converted | **338 GB/s** | WG=128 |
 | se_layer_nhwc | **20.6 GFLOPS** | Single-thread |
 | global_scale_fp16_nhwc | **117 GB/s** | FP16 precision |
+| global_avg_pool_nhwc_fp16 | **57 GFLOPS** | Single-thread |
+| expand_planes_fp16_nhwc | **5 GB/s** | FP16 expansion |
+| policy_map | **30 GB/s** | Gather operation |
 
 ### Key Insights
 

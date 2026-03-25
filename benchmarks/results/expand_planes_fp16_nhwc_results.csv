@@ -1,0 +1,17 @@
+Device: Intel(R) Graphics [0xe211]
+Version,n,Time_ms,Bandwidth_GB/s
+V0,n=4,Time=0.0168612 ms,Bandwidth=0.296064 GB/s
+V1,n=4,Time=0.016412 ms,Bandwidth=0.304167 GB/s
+V2,n=4,Time=0.0161891 ms,Bandwidth=0.308355 GB/s
+V0,n=8,Time=0.0166272 ms,Bandwidth=0.600463 GB/s
+V1,n=8,Time=0.0164082 ms,Bandwidth=0.608476 GB/s
+V2,n=8,Time=0.0163992 ms,Bandwidth=0.608809 GB/s
+V0,n=16,Time=0.0166259 ms,Bandwidth=1.20102 GB/s
+V1,n=16,Time=0.0167087 ms,Bandwidth=1.19506 GB/s
+V2,n=16,Time=0.0164384 ms,Bandwidth=1.21472 GB/s
+V0,n=32,Time=0.0166508 ms,Bandwidth=2.39844 GB/s
+V1,n=32,Time=0.0166882 ms,Bandwidth=2.39307 GB/s
+V2,n=32,Time=0.016475 ms,Bandwidth=2.42404 GB/s
+V0,n=64,Time=0.0166989 ms,Bandwidth=4.78308 GB/s
+V1,n=64,Time=0.0173431 ms,Bandwidth=4.60542 GB/s
+V2,n=64,Time=0.0166809 ms,Bandwidth=4.78823 GB/s
