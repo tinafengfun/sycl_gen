@@ -140,6 +140,48 @@ void softmax(T* output, const T* input, int N, int C, sycl::queue &queue) {
 }
 }
 
+// V3: Single-thread-per-output (Type C optimal pattern)
+namespace v3 {
+inline int DivUp(int a, int b) { return (a + b - 1) / b; }
+template <typename T>
+void softmax_kernel(T* output, const T* input, int N, int C, sycl::item<1> item) {
+    int n = item.get_id(0);
+    if (n >= N) return;
+    
+    // Step 1: Find max (for numerical stability)
+    float max_val = -1e20f;
+    #pragma unroll 8
+    for (int c = 0; c < C; c++) {
+        max_val = sycl::max(max_val, (float)input[n * C + c]);
+    }
+    
+    // Step 2: Compute exp and sum
+    float sum = 0.0f;
+    #pragma unroll 8
+    for (int c = 0; c < C; c++) {
+        float val = sycl::exp((float)input[n * C + c] - max_val);
+        output[n * C + c] = (T)val;
+        sum += val;
+    }
+    
+    // Step 3: Normalize
+    float inv_sum = 1.0f / sum;
+    #pragma unroll 8
+    for (int c = 0; c < C; c++) {
+        output[n * C + c] = (T)((float)output[n * C + c] * inv_sum);
+    }
+}
+template <typename T>
+void softmax(T* output, const T* input, int N, int C, sycl::queue &queue) {
+    queue.parallel_for(
+        sycl::range<1>(N),
+        [=](sycl::item<1> item) {
+            softmax_kernel(output, input, N, C, item);
+        }
+    );
+}
+}
+
 struct TestConfig {
     int N, C;
     int total() const { return N * C; }
@@ -201,7 +243,7 @@ int main() {
         sycl::queue q(sycl::gpu_selector_v);
         
         std::cout << "========================================" << std::endl;
-        std::cout << "Softmax REAL Benchmark (V0, V1, V2)" << std::endl;
+        std::cout << "Softmax REAL Benchmark (V0, V1, V2, V3)" << std::endl;
         std::cout << "========================================" << std::endl;
         std::cout << "GPU: " << q.get_device().get_info<sycl::info::device::name>() << std::endl;
         std::cout << "Iterations: 100 per test" << std::endl;
@@ -231,6 +273,11 @@ int main() {
         std::cout << "\n=== V2: Optimized ===" << std::endl;
         for (const auto& cfg : configs) {
             test_version(q, "V2", v2::softmax<float>, cfg, csv);
+        }
+        
+        std::cout << "\n=== V3: Single-thread-per-output ===" << std::endl;
+        for (const auto& cfg : configs) {
+            test_version(q, "V3", v3::softmax<float>, cfg, csv);
         }
         
         csv.close();

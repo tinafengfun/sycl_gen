@@ -61,5 +61,6 @@ cuda-sycl-converter/build/
 
 # Data files (if too large)
 # Uncomment if dataset is too large for git
-# kernel_dataset/cuda/
-# kernel_dataset/sycl/
+kernel_dataset
+kernel_dataset
+TurboDiffusion

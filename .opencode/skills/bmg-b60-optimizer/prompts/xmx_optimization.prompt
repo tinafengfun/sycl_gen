@@ -1,0 +1,196 @@
+# XMX Matrix Optimization Prompt for BMG B60
+# Target: Intel BMG B60 GPU (Xe2 Architecture, Device 0xe211)
+# Goal: Achieve 100+ TFLOPS using XMX (Xe Matrix Extensions)
+
+## Context
+
+You are optimizing a SYCL kernel for Intel BMG B60 GPU using XMX hardware acceleration.
+
+**Hardware Specs:**
+- Architecture: Xe2 (Battlemage)
+- Compute Units: 160 EUs
+- XMX Peak: 320 TFLOPS (FP16)
+- Tile Size: 8×16×16 (M×N×K)
+- Required Subgroup: 16 lanes
+- SLM: 256 KB per work-group
+
+## Optimization Checklist
+
+### Phase 1: Compilation Setup
+- [ ] Use AOT compilation for BMG: `-fsycl-targets=spir64_gen -Xsycl-target-backend "-device bmg"`
+- [ ] Enable large GRF mode: `-options -ze-opt-large-register-file`
+- [ ] Include XMX header: `#include <sycl/ext/oneapi/matrix/matrix.hpp>`
+- [ ] Use namespace: `using namespace sycl::ext::oneapi::experimental::matrix;`
+
+### Phase 2: Kernel Configuration
+- [ ] Set tile constants: `constexpr int TM=8, TN=16, TK=16;`
+- [ ] Add subgroup attribute: `[[sycl::reqd_sub_group_size(16)]]`
+- [ ] Configure work-group: `sycl::range<2> local(8, 16);`
+- [ ] Cast pointers to multi_ptr using `address_space_cast`
+
+### Phase 3: XMX Implementation
+- [ ] Declare joint_matrix tiles: `sub_a` (use::a), `sub_b` (use::b), `sub_c` (use::accumulator)
+- [ ] Initialize with `joint_matrix_fill(sg, sub_c, 0.0f)`
+- [ ] Loop over K with `#pragma unroll 4`
+- [ ] Load tiles with `joint_matrix_load`
+- [ ] Compute with `joint_matrix_mad` (DPAS instruction)
+- [ ] Store with `joint_matrix_store`
+
+### Phase 4: Testing & Validation
+- [ ] Test sizes: 2048, 4096, 8192, 16384
+- [ ] Verify compilation: No errors, AOT for BMG
+- [ ] Check performance: Target >100 TFLOPS at 4096×4096
+- [ ] Calculate utilization: (TFLOPS / 320) × 100%
+
+## Standard XMX Template
+
+```cpp
+#include <sycl/sycl.hpp>
+#include <sycl/ext/oneapi/matrix/matrix.hpp>
+
+using namespace sycl::ext::oneapi::experimental::matrix;
+
+constexpr int TM = 8, TN = 16, TK = 16;
+
+void kernel_xmx(sycl::half* C, const sycl::half* A, const sycl::half* B,
+                int M, int N, int K, sycl::queue& q) {
+    sycl::range<2> global((M + TM - 1) / TM, (N + TN - 1) / TN);
+    sycl::range<2> local(8, 16);
+    
+    q.parallel_for(sycl::nd_range<2>(global, local),
+        [=](sycl::nd_item<2> item) [[sycl::reqd_sub_group_size(16)]] {
+        
+        sycl::sub_group sg = item.get_sub_group();
+        
+        // Cast pointers
+        auto pA = sycl::address_space_cast<
+            sycl::access::address_space::global_space,
+            sycl::access::decorated::no>(const_cast<sycl::half*>(A));
+        auto pB = sycl::address_space_cast<
+            sycl::access::address_space::global_space,
+            sycl::access::decorated::no>(const_cast<sycl::half*>(B));
+        auto pC = sycl::address_space_cast<
+            sycl::access::address_space::global_space,
+            sycl::access::decorated::no>(C);
+        
+        // Declare tiles
+        joint_matrix<sycl::sub_group, sycl::half, use::a, TM, TK, layout::row_major> sub_a;
+        joint_matrix<sycl::sub_group, sycl::half, use::b, TK, TN, layout::row_major> sub_b;
+        joint_matrix<sycl::sub_group, sycl::half, use::accumulator, TM, TN> sub_c;
+        
+        // Initialize
+        joint_matrix_fill(sg, sub_c, sycl::half(0.0f));
+        
+        // Compute
+        #pragma unroll 4
+        for (int k = 0; k < K / TK; k++) {
+            joint_matrix_load(sg, sub_a, 
+                pA + (item.get_global_id(0) * TM) * K + k * TK, K);
+            joint_matrix_load(sg, sub_b, 
+                pB + (k * TK) * N + item.get_global_id(1) * TN, N);
+            joint_matrix_mad(sg, sub_c, sub_a, sub_b, sub_c);
+        }
+        
+        // Store
+        joint_matrix_store(sg, sub_c, 
+            pC + (item.get_global_id(0) * TM) * N + item.get_global_id(1) * TN, 
+            N, layout::row_major);
+    });
+    q.wait();
+}
+```
+
+## Compilation Command
+
+```bash
+icpx -fsycl -O3 -std=c++17 \
+  -fsycl-targets=spir64_gen \
+  -Xsycl-target-backend "-device bmg -options -ze-opt-large-register-file" \
+  -o kernel kernel.cpp
+```
+
+## Performance Harness
+
+```cpp
+void benchmark(int M, int N, int K, sycl::queue& q) {
+    // Allocate
+    sycl::half* d_A = sycl::malloc_device<sycl::half>(M * K, q);
+    sycl::half* d_B = sycl::malloc_device<sycl::half>(K * N, q);
+    sycl::half* d_C = sycl::malloc_device<sycl::half>(M * N, q);
+    
+    // Init
+    std::vector<sycl::half> h_A(M * K, sycl::half(0.01f));
+    std::vector<sycl::half> h_B(K * N, sycl::half(0.01f));
+    q.memcpy(d_A, h_A.data(), M * K * sizeof(sycl::half)).wait();
+    q.memcpy(d_B, h_B.data(), K * N * sizeof(sycl::half)).wait();
+    
+    // Warmup
+    for (int i = 0; i < 10; i++) kernel_xmx(d_C, d_A, d_B, M, N, K, q);
+    q.wait();
+    
+    // Benchmark
+    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < 50; i++) kernel_xmx(d_C, d_A, d_B, M, N, K, q);
+    q.wait();
+    auto end = std::chrono::high_resolution_clock::now();
+    
+    // Report
+    double ms = std::chrono::duration<double, std::milli>(end - start).count() / 50;
+    double tflops = (2.0 * M * N * K) / (ms * 1e-3) / 1e12;
+    std::cout << M << "x" << N << "x" << K << ": " << tflops << " TFLOPS (" 
+              << (tflops / 320.0 * 100.0) << "% utilization)" << std::endl;
+    
+    sycl::free(d_A, q); sycl::free(d_B, q); sycl::free(d_C, q);
+}
+```
+
+## Success Criteria
+
+- [ ] Compiles with zero errors using AOT BMG flags
+- [ ] Runs on GPU (verify with `sycl::gpu_selector_v`)
+- [ ] Achieves >100 TFLOPS at 4096×4096 matrix size
+- [ ] Utilization >30% of 320 TFLOPS theoretical peak
+- [ ] Uses XMX instructions (verify with profiling)
+
+## Common Errors & Solutions
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `no member named 'joint_matrix'` | Missing header | Add `#include <sycl/ext/oneapi/matrix/matrix.hpp>` |
+| `Unsupported JointMatrix operation` | Wrong device/JIT | Use AOT compilation with `-device bmg` |
+| Low performance (<50 TFLOPS) | Missing large GRF | Add `-options -ze-opt-large-register-file` |
+| `no matching function` for load/store | Wrong pointer type | Cast to `multi_ptr` with `address_space_cast` |
+| Poor occupancy | Wrong work-group size | Use 8×16 (128 threads) |
+
+## Decision Tree
+
+```
+Need matrix multiplication?
+├── Yes → Use XMX with joint_matrix
+│   ├── Data type: FP16 (sycl::half)
+│   ├── Tile: 8×16×16
+│   ├── Subgroup: 16 (required)
+│   └── Work-group: 8×16 tiles
+└── No → Check other optimization guides
+
+Performance < 100 TFLOPS?
+├── Yes → Check compilation flags
+│   ├── AOT for BMG? → Must use `-device bmg`
+│   ├── Large GRF? → Must use `-ze-opt-large-register-file`
+│   └── Matrix size? → Try 4096×4096
+└── No → Optimization successful!
+```
+
+## References
+
+- Intel oneAPI GPU Optimization Guide 2024.2
+- BMG_B60_SPE.md specifications
+- XMX.md tile configuration
+- joint_matrix API reference
+
+## Version Info
+
+- Prompt Version: 1.0
+- Target Device: Intel BMG B60 (0xe211)
+- XMX Tile: 8×16×16 (FP16)
+- Theoretical Peak: 320 TFLOPS
