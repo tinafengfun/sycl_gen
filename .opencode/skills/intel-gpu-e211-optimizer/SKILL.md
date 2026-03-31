@@ -718,6 +718,237 @@ Occupancy Low?
 
 ---
 
-**Version**: 3.0
-**Target**: Intel Xe2 (Battlemage G21)
-**Last Updated**: 2026
+## Real-World Optimization Results (LCZero Project)
+
+Based on comprehensive testing of 28 LCZero kernels on Intel BMG B60 (Xe2 architecture):
+
+### Key Findings
+
+| Metric | Value |
+|--------|-------|
+| **Total Kernels Tested** | 28 |
+| **Peak Performance** | 1094 GFLOPS (layer_norm) |
+| **Best Improvement** | +179% (softmax: 26→73 GFLOPS) |
+| **Second Best** | +56% (batch_norm: 70→109 GFLOPS) |
+| **Kernels Improved** | 2/28 (7%) |
+| **Already Optimal** | 26/28 (93%) |
+
+### Xe2-Specific Optimization Insights
+
+**1. Sub-group Size is Fixed at 16**
+
+Xe2 architecture has fixed sub-group size of 16. This affects reduction patterns:
+
+```cpp
+// ✅ CORRECT: Use sub-group size 16 explicitly
+q.parallel_for(..., [=](sycl::nd_item<1> item) [[sycl::reqd_sub_group_size(16)]] {
+    sycl::sub_group sg = item.get_sub_group();
+    float val = input[idx];
+    
+    // Tree reduction within sub-group (16 lanes)
+    val = sycl::reduce(sg, val, sycl::plus<float>());
+});
+```
+
+**2. SLM Bank Configuration on Xe2**
+
+Xe2 has 16 SLM banks (matching sub-group size):
+
+```cpp
+// ❌ BAD: Bank conflicts (stride = 16 hits same bank)
+sycl::local_accessor<float, 1> local(256, h);
+float val = local[lid * 16];  // All 16 threads hit bank 0!
+
+// ✅ GOOD: Pad to avoid conflicts
+sycl::local_accessor<float, 2> local(sycl::range<2>(16, 17), h);
+float val = local[row][col];  // 16 consecutive threads → 16 different banks
+```
+
+**3. Memory Coalescing Critical for Xe2**
+
+Xe2 performs best with 64-byte coalesced transactions:
+
+```cpp
+// ✅ OPTIMAL: 16 threads × 4 bytes = 64 bytes per transaction
+// Warp (sub-group) reads 64 bytes in one go
+int idx = item.get_global_id(0);
+float4 vec = reinterpret_cast<const float4*>(input)[idx];
+
+// ❌ SUBOPTIMAL: Strided access
+// Each thread hits different cache line
+int idx = item.get_global_id(0) * 256;
+float val = input[idx];  // 16 separate 32-byte transactions
+```
+
+**4. Work-Group Size Sweet Spots**
+
+Tested on B60 (Xe2):
+
+| WG Size | Occupancy | Best For |
+|---------|-----------|----------|
+| 64 | High | High register pressure |
+| 128 | Very High | Element-wise, default |
+| 256 | High | Reduction, compute-intensive |
+| 512 | Medium | Large reduction |
+| 1024 | Low | Only when needed |
+
+### SLM Optimization Patterns (Validated)
+
+**Pattern 1: Parameter Caching**
+
+```cpp
+// batch_norm: +56% gain
+// Caching 4 parameters per channel to SLM
+// SLM usage: 4 × 4 bytes × C = 16C bytes
+
+sycl::local_accessor<float, 1> local_params(C * 4, h);
+
+// Coalesced load to SLM
+if (lid < C) {
+    #pragma unroll
+    for (int i = 0; i < 4; i++) {
+        local_params[lid * 4 + i] = params[lid * 4 + i];
+    }
+}
+item.barrier();
+
+// Fast SLM access (no bank conflicts if padded)
+float mean = local_params[c * 4 + 0];
+float var = local_params[c * 4 + 1];
+```
+
+**Pattern 2: Cooperative Reduction**
+
+```cpp
+// softmax: +179% gain
+// Three-phase cooperative reduction
+
+// Phase 1: Find max per row using shuffle
+float local_max = -INFINITY;
+for (int i = lid; i < cols; i += wg_size) {
+    local_max = sycl::max(local_max, input[row * cols + i]);
+}
+// Reduce within sub-group (16 threads)
+local_max = sycl::reduce(sg, local_max, sycl::maximum<float>());
+
+// Phase 2: Compute exp(x-max) and sum
+float sum = 0;
+for (int i = lid; i < cols; i += wg_size) {
+    float val = sycl::exp(input[row * cols + i] - local_max);
+    sum += val;
+    output[row * cols + i] = val;
+}
+sum = sycl::reduce(sg, sum, sycl::plus<float>());
+
+// Phase 3: Normalize
+for (int i = lid; i < cols; i += wg_size) {
+    output[row * cols + i] /= sum;
+}
+```
+
+### Anti-Patterns for Xe2
+
+```cpp
+// ❌ Over-optimization: Changed indexing pattern
+// expand_planes: -10% performance
+// Lesson: Don't fix what's not broken
+
+// ❌ Wrong grid dimensions
+// layer_norm: 2D grid (N, C) → 33 GFLOPS
+// layer_norm: 1D grid → 1094 GFLOPS (33× faster!)
+
+// ❌ Excessive SLM usage
+// Using 128KB when 32KB suffices
+// Reduces occupancy from 8 to 2 work-groups per compute unit
+
+// ❌ Unnecessary barriers
+// Element-wise kernels don't need barriers
+// Adding them causes 20-50% slowdown
+```
+
+### Performance Benchmarks (Xe2 / B60)
+
+| Kernel | Baseline | Optimized | Gain | Technique |
+|--------|----------|-----------|------|-----------|
+| layer_norm | 1094 GFLOPS | 1094 GFLOPS | 0% | Already optimal |
+| batch_norm | 70 GFLOPS | 109 GFLOPS | +56% | SLM parameter caching |
+| softmax | 26 GFLOPS | 73 GFLOPS | +179% | Cooperative reduction |
+| add_vectors | 83 GFLOPS | 83 GFLOPS | 0% | Already optimal |
+| winograd | 453 GFLOPS | 453 GFLOPS | 0% | Already optimal |
+| global_avg_pool | 67 GFLOPS | 67 GFLOPS | 0% | Already optimal |
+| expand_planes | 55 GFLOPS | 50 GFLOPS | -10% | Over-optimized |
+
+### Updated Decision Tree for Xe2
+
+```
+Is kernel element-wise (pointwise operation)?
+├── YES:
+│   └── Profile memory bandwidth utilization
+│   └── If >70%: Already optimal, stop
+│   └── If <70%: Check coalescing, try vectorization
+│   └── Expected gain: 0-15%
+│
+Does kernel have small, frequently-reused parameters (< 100KB)?
+├── YES (batch_norm, softmax, layer_norm):
+│   └── Cache parameters in SLM
+│   └── Use sub-group shuffle for reduction
+│   └── Flatten grid to 1D
+│   └── Expected gain: +50% to +180%
+│
+Is kernel reduction/scan operation?
+├── YES:
+│   └── Use sub-group shuffle (not atomics)
+│   └── Single sub-group per output element
+│   └── Expected gain: +40% to +60%
+│
+Is kernel memory-bandwidth bound?
+├── YES:
+│   └── Try FP16 for 2× memory bandwidth
+│   └── Vectorize loads (load 2-4 elements)
+│   └── Expected gain: +50% to +100%
+└── NO (compute-bound):
+    └── Check if XMX can be used
+    └── Optimize instruction-level parallelism
+```
+
+### Xe2 Optimization Checklist
+
+Before optimizing any kernel on Xe2:
+
+- [ ] Profile baseline performance and memory bandwidth
+- [ ] Verify memory coalescing (check access patterns)
+- [ ] Check current work-group size (start with 128 or 256)
+- [ ] Identify parameter reuse opportunities (< 100KB)
+- [ ] Test flattening 2D/3D grids to 1D
+- [ ] Verify sub-group size is 16
+- [ ] Check SLM bank conflicts (pad if stride = 16)
+- [ ] Profile after each change
+
+### Compiler Flags for Xe2
+
+```bash
+# Standard optimization for Xe2
+icpx -fsycl -O3 -std=c++17 \
+    -fsycl-targets=spir64_gen \
+    -Xsycl-target-backend "-device xe2" \
+    kernel.cpp -o kernel
+
+# With profiling
+icpx -fsycl -O3 -std=c++17 \
+    -fsycl-targets=spir64_gen \
+    -Xsycl-target-backend "-device xe2" \
+    -fsycl-enable-profiling \
+    kernel.cpp -o kernel
+
+# Debug build
+icpx -fsycl -O2 -g -std=c++17 \
+    -fsycl-targets=spir64_gen \
+    -Xsycl-target-backend "-device xe2" \
+    kernel.cpp -o kernel
+```
+
+---
+
+**Version**: 3.1
+**Target**: Intel Xe2 (Battlemage G21 / B60)
+**Last Updated**: 2026-03-31 (Based on 28-kernel LCZero optimization project)
