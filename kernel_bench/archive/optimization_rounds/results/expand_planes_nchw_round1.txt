@@ -1,0 +1,9 @@
+Kernel: expand_planes_nchw
+Round: 1
+Timestamp: 2026-03-27T11:18:57.145578
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_expand_planes_nchw_r1.cpp:12:10: fatal error: '../round1_base/expand_planes_nchw_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/expand_planes_nchw_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

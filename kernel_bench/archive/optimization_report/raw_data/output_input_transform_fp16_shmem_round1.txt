@@ -1,0 +1,21 @@
+Kernel: output_input_transform_fp16_shmem
+Round: 1
+Timestamp: 2026-03-27T09:06:05.906259
+============================================================
+=== output_input_transform_fp16_shmem - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.018           0.01              0.01
+       512          0.017           0.06              0.12
+      1024          0.016           0.13              0.25
+      4096          0.016           0.53              1.05
+     16384          0.013           2.57              5.13
+     65536          0.016           8.09             16.18
+
+=== Summary ===
+Average GFLOPS: 1.90
+Average GB/s: 3.79

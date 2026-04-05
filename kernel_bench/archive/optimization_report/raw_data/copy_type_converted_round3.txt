@@ -1,0 +1,21 @@
+Kernel: copy_type_converted
+Round: 3
+Timestamp: 2026-03-27T09:01:51.396380
+============================================================
+=== copy_type_converted - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.012           0.18              0.36
+      4096          0.011           0.72              1.44
+     16384          0.012           2.83              5.65
+     65536          0.012          10.66             21.32
+
+=== Summary ===
+Average GFLOPS: 2.41
+Average GB/s: 4.83

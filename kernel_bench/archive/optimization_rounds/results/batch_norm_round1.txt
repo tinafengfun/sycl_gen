@@ -1,0 +1,9 @@
+Kernel: batch_norm
+Round: 1
+Timestamp: 2026-03-27T11:18:42.679905
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_batch_norm_r1.cpp:12:10: fatal error: '../round1_base/batch_norm_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/batch_norm_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

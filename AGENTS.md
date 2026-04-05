@@ -8,6 +8,8 @@ This is a **dataset repository** containing extracted CUDA and SYCL kernel imple
 - **Source**: https://github.com/LeelaChessZero/lc0
 - **License**: GNU GPL v3 (with NVIDIA CUDA library exception)
 
+The kernel dataset is located at `kernel_bench/kernel_dataset/`.
+
 ## Build/Test Commands
 
 This is a **data repository** - no build system or tests. Files are:
@@ -107,7 +109,7 @@ Each kernel file must include:
 
 ## Directory Structure
 ```
-kernel_dataset/
+kernel_bench/kernel_dataset/
 ├── cuda/              # CUDA kernel files (.cu)
 ├── sycl/              # SYCL kernel files (.dp.cpp)
 ├── templates/         # Reserved for templates

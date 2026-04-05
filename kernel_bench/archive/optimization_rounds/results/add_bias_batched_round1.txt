@@ -1,0 +1,9 @@
+Kernel: add_bias_batched
+Round: 1
+Timestamp: 2026-03-27T11:18:34.447162
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_add_bias_batched_r1.cpp:12:10: fatal error: '../round1_base/add_bias_batched_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/add_bias_batched_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

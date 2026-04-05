@@ -1,0 +1,21 @@
+Kernel: nchw_to_nhwc
+Round: 4
+Timestamp: 2026-03-27T09:01:33.858926
+============================================================
+=== nchw_to_nhwc - Round 4 ===
+Strategy: Mixed precision
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.011           0.09              0.18
+      1024          0.012           0.18              0.35
+      4096          0.012           0.71              1.42
+     16384          0.012           2.84              5.69
+     65536          0.013          10.38             20.75
+
+=== Summary ===
+Average GFLOPS: 2.37
+Average GB/s: 4.73

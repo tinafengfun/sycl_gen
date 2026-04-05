@@ -1,0 +1,9 @@
+Kernel: winograd_output_se_relu_input
+Round: 1
+Timestamp: 2026-03-27T11:19:21.881547
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_winograd_output_se_relu_input_r1.cpp:12:10: fatal error: '../round1_base/winograd_output_se_relu_input_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/winograd_output_se_relu_input_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

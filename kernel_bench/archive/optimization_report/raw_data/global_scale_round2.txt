@@ -1,0 +1,21 @@
+Kernel: global_scale
+Round: 2
+Timestamp: 2026-03-27T09:02:52.835603
+============================================================
+=== global_scale - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.013           0.08              0.16
+      1024          0.012           0.17              0.35
+      4096          0.012           0.69              1.39
+     16384          0.012           2.78              5.56
+     65536          0.013          10.14             20.27
+
+=== Summary ===
+Average GFLOPS: 2.31
+Average GB/s: 4.62

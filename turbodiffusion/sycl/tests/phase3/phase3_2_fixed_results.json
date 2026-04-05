@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-04-02T01:46:07.798173",
+  "phase": "3.2-fixed",
+  "device": "xpu",
+  "sycl_device": "Intel(R) Graphics [0xe211]",
+  "success": true,
+  "max_error": 0.0,
+  "mean_error": 0.0,
+  "cosine_similarity": 1.0,
+  "epsilon": 1e-06
+}

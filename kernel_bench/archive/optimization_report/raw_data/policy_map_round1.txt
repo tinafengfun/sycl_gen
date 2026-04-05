@@ -1,0 +1,21 @@
+Kernel: policy_map
+Round: 1
+Timestamp: 2026-03-27T09:09:23.483247
+============================================================
+=== policy_map - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.013           0.01              0.02
+       512          0.011           0.10              0.19
+      1024          0.011           0.20              0.39
+      4096          0.010           0.78              1.56
+     16384          0.011           3.10              6.20
+     65536          0.011          11.58             23.16
+
+=== Summary ===
+Average GFLOPS: 2.63
+Average GB/s: 5.25

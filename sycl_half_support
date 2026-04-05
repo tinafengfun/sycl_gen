@@ -1,3 +1,0 @@
-how to support bf16 or float16 in sycl 
-https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/supported/sycl_ext_oneapi_bfloat16.asciidoc
-https://community.intel.com/t5/Intel-oneAPI-DPC-C-Compiler/Using-float16-and-bfloat16/m-p/1737835

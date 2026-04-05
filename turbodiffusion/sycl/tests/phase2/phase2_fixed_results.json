@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-04-01T08:28:55.033593",
+  "phase": "2_fixed",
+  "device": "xpu",
+  "sycl_device": "Intel(R) Graphics [0xe211]",
+  "tests": [
+    {
+      "test": "head.norm",
+      "passed": true,
+      "max_error": 7.152557373046875e-07,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "test": "blocks[0].norm2",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "test": "blocks[15].norm2",
+      "passed": true,
+      "max_error": 9.5367431640625e-07,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "test": "blocks[0-9].norm2",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0
+    },
+    {
+      "test": "blocks[0].norm1",
+      "passed": true,
+      "max_error": 7.152557373046875e-07,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "test": "blocks[29].norm1",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "test": "all_blocks.norm1",
+      "passed": true,
+      "max_error": 9.5367431640625e-07,
+      "cosine_similarity": 1.0
+    },
+    {
+      "test": "norm_q",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 0.9999999403953552
+    },
+    {
+      "test": "norm_k",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0
+    },
+    {
+      "test": "combined_QK",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0
+    }
+  ],
+  "summary": {
+    "total_tests": 10,
+    "passed_tests": 10,
+    "overall_passed": true,
+    "max_error": 9.5367431640625e-07,
+    "mean_error": 6.198883056640625e-07,
+    "min_error": 4.76837158203125e-07
+  }
+}

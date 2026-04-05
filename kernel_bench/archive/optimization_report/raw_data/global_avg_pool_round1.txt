@@ -1,0 +1,21 @@
+Kernel: global_avg_pool
+Round: 1
+Timestamp: 2026-03-27T09:03:32.213021
+============================================================
+=== global_avg_pool - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.012           0.18              0.35
+      4096          0.011           0.73              1.47
+     16384          0.012           2.78              5.55
+     65536          0.012          10.79             21.59
+
+=== Summary ===
+Average GFLOPS: 2.43
+Average GB/s: 4.86

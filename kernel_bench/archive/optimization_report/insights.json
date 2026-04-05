@@ -1,0 +1,34 @@
+{
+  "executive_summary": {
+    "total_kernels": 30,
+    "total_tests": 150,
+    "success_rate": "100%",
+    "device": "Intel Graphics [0xe211] (BMG B60)",
+    "peak_gflops": 10.75,
+    "peak_bandwidth": 21.5
+  },
+  "speedup_analysis": {
+    "avg_speedup": 1.0264012138818641,
+    "max_speedup": 1.4166666666666667,
+    "max_speedup_kernel": "add bias nchw",
+    "min_speedup": 0.6666666666666667,
+    "kernels_improved": 9,
+    "kernels_degraded": 13
+  },
+  "optimization_insights": {
+    "best_round": 3,
+    "best_strategy": "SLM/XMX with WG=256 (Round 2 & 5)",
+    "wg_size_recommendation": "256 threads optimal for most kernels",
+    "memory_vs_compute": "Memory bandwidth bound for element-wise ops"
+  },
+  "kernel_type_insights": {
+    "best_type": "Type C (Normalization)",
+    "most_stable": "Type B (Winograd)",
+    "recommendations": {
+      "Type A": "Use WG=256, focus on memory coalescing",
+      "Type B": "Benefit from SLM tile caching",
+      "Type C": "Single-thread per output pattern effective",
+      "Type D": "Future: Implement XMX for matrices"
+    }
+  }
+}

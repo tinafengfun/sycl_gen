@@ -1,0 +1,21 @@
+Kernel: input_gating
+Round: 5
+Timestamp: 2026-03-27T09:08:13.279273
+============================================================
+=== input_gating - Round 5 ===
+Strategy: Best config
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.025           0.04              0.08
+      1024          0.015           0.13              0.27
+      4096          0.016           0.53              1.05
+     16384          0.012           2.75              5.50
+     65536          0.015           8.60             17.20
+
+=== Summary ===
+Average GFLOPS: 2.01
+Average GB/s: 4.02

@@ -1,0 +1,21 @@
+Kernel: expand_planes_fp32_nchw
+Round: 3
+Timestamp: 2026-03-27T09:10:38.320011
+============================================================
+=== expand_planes_fp32_nchw - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.018           0.06              0.12
+      1024          0.018           0.12              0.23
+      4096          0.016           0.52              1.04
+     16384          0.016           2.02              4.04
+     65536          0.014           9.23             18.46
+
+=== Summary ===
+Average GFLOPS: 1.99
+Average GB/s: 3.98

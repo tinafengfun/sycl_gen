@@ -1,0 +1,21 @@
+Kernel: add_vectors
+Round: 3
+Timestamp: 2026-03-27T09:00:01.878382
+============================================================
+=== add_vectors - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.013           0.01              0.02
+       512          0.011           0.09              0.18
+      1024          0.011           0.18              0.36
+      4096          0.011           0.73              1.45
+     16384          0.012           2.81              5.62
+     65536          0.012          10.63             21.26
+
+=== Summary ===
+Average GFLOPS: 2.41
+Average GB/s: 4.82

@@ -1,0 +1,91 @@
+kernel_name,round,strategy,wg_size,size,time_ms,gflops,bandwidth_gbps
+add_vectors,1,FP16 + Vectorized loads,128,64,0.016,0.01,0.02
+add_vectors,1,FP16 + Vectorized loads,128,512,0.017,0.06,0.12
+add_vectors,1,FP16 + Vectorized loads,128,1024,0.018,0.12,0.23
+add_vectors,1,FP16 + Vectorized loads,128,4096,0.017,0.48,0.96
+add_vectors,1,FP16 + Vectorized loads,128,16384,0.013,2.54,5.07
+add_vectors,1,FP16 + Vectorized loads,128,65536,0.017,7.52,15.05
+add_vectors,2,SLM tile caching / XMX,256,64,0.014,0.01,0.02
+add_vectors,2,SLM tile caching / XMX,256,512,0.012,0.09,0.17
+add_vectors,2,SLM tile caching / XMX,256,1024,0.011,0.18,0.36
+add_vectors,2,SLM tile caching / XMX,256,4096,0.011,0.72,1.45
+add_vectors,2,SLM tile caching / XMX,256,16384,0.012,2.76,5.53
+add_vectors,2,SLM tile caching / XMX,256,65536,0.012,10.67,21.35
+add_vectors,3,Large GRF mode,512,64,0.013,0.01,0.02
+add_vectors,3,Large GRF mode,512,512,0.011,0.09,0.18
+add_vectors,3,Large GRF mode,512,1024,0.011,0.18,0.36
+add_vectors,3,Large GRF mode,512,4096,0.011,0.73,1.45
+add_vectors,3,Large GRF mode,512,16384,0.012,2.81,5.62
+add_vectors,3,Large GRF mode,512,65536,0.012,10.63,21.26
+add_vectors,4,Mixed precision,256,64,0.015,0.01,0.02
+add_vectors,4,Mixed precision,256,512,0.017,0.06,0.12
+add_vectors,4,Mixed precision,256,1024,0.017,0.12,0.24
+add_vectors,4,Mixed precision,256,4096,0.018,0.46,0.92
+add_vectors,4,Mixed precision,256,16384,0.013,2.51,5.02
+add_vectors,4,Mixed precision,256,65536,0.017,7.68,15.36
+add_vectors,5,Best config,256,64,0.014,0.01,0.02
+add_vectors,5,Best config,256,512,0.012,0.09,0.18
+add_vectors,5,Best config,256,1024,0.012,0.18,0.36
+add_vectors,5,Best config,256,4096,0.012,0.71,1.42
+add_vectors,5,Best config,256,16384,0.012,2.80,5.60
+add_vectors,5,Best config,256,65536,0.012,10.71,21.42
+add_vectors_hnc_nhc,1,FP16 + Vectorized loads,128,64,0.013,0.01,0.02
+add_vectors_hnc_nhc,1,FP16 + Vectorized loads,128,512,0.011,0.09,0.18
+add_vectors_hnc_nhc,1,FP16 + Vectorized loads,128,1024,0.011,0.18,0.36
+add_vectors_hnc_nhc,1,FP16 + Vectorized loads,128,4096,0.012,0.71,1.41
+add_vectors_hnc_nhc,1,FP16 + Vectorized loads,128,16384,0.011,2.92,5.85
+add_vectors_hnc_nhc,1,FP16 + Vectorized loads,128,65536,0.012,10.56,21.13
+add_vectors_hnc_nhc,2,SLM tile caching / XMX,256,64,0.014,0.01,0.02
+add_vectors_hnc_nhc,2,SLM tile caching / XMX,256,512,0.012,0.09,0.18
+add_vectors_hnc_nhc,2,SLM tile caching / XMX,256,1024,0.011,0.18,0.36
+add_vectors_hnc_nhc,2,SLM tile caching / XMX,256,4096,0.012,0.71,1.42
+add_vectors_hnc_nhc,2,SLM tile caching / XMX,256,16384,0.011,2.86,5.71
+add_vectors_hnc_nhc,2,SLM tile caching / XMX,256,65536,0.012,10.53,21.06
+add_vectors_hnc_nhc,3,Large GRF mode,512,64,0.014,0.01,0.02
+add_vectors_hnc_nhc,3,Large GRF mode,512,512,0.012,0.09,0.17
+add_vectors_hnc_nhc,3,Large GRF mode,512,1024,0.012,0.17,0.34
+add_vectors_hnc_nhc,3,Large GRF mode,512,4096,0.011,0.72,1.44
+add_vectors_hnc_nhc,3,Large GRF mode,512,16384,0.012,2.71,5.41
+add_vectors_hnc_nhc,3,Large GRF mode,512,65536,0.013,10.34,20.68
+add_vectors_hnc_nhc,4,Mixed precision,256,64,0.015,0.01,0.02
+add_vectors_hnc_nhc,4,Mixed precision,256,512,0.017,0.06,0.12
+add_vectors_hnc_nhc,4,Mixed precision,256,1024,0.016,0.13,0.25
+add_vectors_hnc_nhc,4,Mixed precision,256,4096,0.017,0.48,0.96
+add_vectors_hnc_nhc,4,Mixed precision,256,16384,0.013,2.51,5.01
+add_vectors_hnc_nhc,4,Mixed precision,256,65536,0.018,7.24,14.48
+add_vectors_hnc_nhc,5,Best config,256,64,0.014,0.01,0.02
+add_vectors_hnc_nhc,5,Best config,256,512,0.012,0.09,0.17
+add_vectors_hnc_nhc,5,Best config,256,1024,0.012,0.18,0.35
+add_vectors_hnc_nhc,5,Best config,256,4096,0.012,0.70,1.41
+add_vectors_hnc_nhc,5,Best config,256,16384,0.012,2.78,5.55
+add_vectors_hnc_nhc,5,Best config,256,65536,0.013,10.44,20.89
+add_bias_batched,1,FP16 + Vectorized loads,128,64,0.014,0.01,0.02
+add_bias_batched,1,FP16 + Vectorized loads,128,512,0.012,0.09,0.18
+add_bias_batched,1,FP16 + Vectorized loads,128,1024,0.012,0.17,0.35
+add_bias_batched,1,FP16 + Vectorized loads,128,4096,0.011,0.75,1.51
+add_bias_batched,1,FP16 + Vectorized loads,128,16384,0.012,2.81,5.62
+add_bias_batched,1,FP16 + Vectorized loads,128,65536,0.012,10.91,21.81
+add_bias_batched,2,SLM tile caching / XMX,256,64,0.015,0.01,0.02
+add_bias_batched,2,SLM tile caching / XMX,256,512,0.016,0.06,0.13
+add_bias_batched,2,SLM tile caching / XMX,256,1024,0.017,0.12,0.24
+add_bias_batched,2,SLM tile caching / XMX,256,4096,0.016,0.51,1.03
+add_bias_batched,2,SLM tile caching / XMX,256,16384,0.020,1.61,3.22
+add_bias_batched,2,SLM tile caching / XMX,256,65536,0.015,8.94,17.88
+add_bias_batched,3,Large GRF mode,512,64,0.015,0.01,0.02
+add_bias_batched,3,Large GRF mode,512,512,0.016,0.06,0.13
+add_bias_batched,3,Large GRF mode,512,1024,0.016,0.13,0.25
+add_bias_batched,3,Large GRF mode,512,4096,0.016,0.52,1.04
+add_bias_batched,3,Large GRF mode,512,16384,0.017,1.92,3.85
+add_bias_batched,3,Large GRF mode,512,65536,0.014,9.10,18.19
+add_bias_batched,4,Mixed precision,256,64,0.014,0.01,0.02
+add_bias_batched,4,Mixed precision,256,512,0.012,0.09,0.17
+add_bias_batched,4,Mixed precision,256,1024,0.012,0.17,0.35
+add_bias_batched,4,Mixed precision,256,4096,0.012,0.70,1.41
+add_bias_batched,4,Mixed precision,256,16384,0.012,2.80,5.60
+add_bias_batched,4,Mixed precision,256,65536,0.013,10.23,20.46
+add_bias_batched,5,Best config,256,64,0.013,0.01,0.02
+add_bias_batched,5,Best config,256,512,0.011,0.09,0.18
+add_bias_batched,5,Best config,256,1024,0.012,0.18,0.35
+add_bias_batched,5,Best config,256,4096,0.012,0.71,1.42
+add_bias_batched,5,Best config,256,16384,0.012,2.80,5.59
+add_bias_batched,5,Best config,256,65536,0.012,10.71,21.43

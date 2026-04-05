@@ -1,0 +1,21 @@
+Kernel: copy_type_converted
+Round: 2
+Timestamp: 2026-03-27T09:01:46.990334
+============================================================
+=== copy_type_converted - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.012           0.18              0.35
+      4096          0.012           0.71              1.41
+     16384          0.018           1.84              3.68
+     65536          0.013          10.47             20.93
+
+=== Summary ===
+Average GFLOPS: 2.21
+Average GB/s: 4.43

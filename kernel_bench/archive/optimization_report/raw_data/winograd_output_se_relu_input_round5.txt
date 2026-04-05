@@ -1,0 +1,21 @@
+Kernel: winograd_output_se_relu_input
+Round: 5
+Timestamp: 2026-03-27T09:05:39.554277
+============================================================
+=== winograd_output_se_relu_input - Round 5 ===
+Strategy: Best config
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.18
+      1024          0.011           0.18              0.36
+      4096          0.012           0.67              1.34
+     16384          0.011           2.87              5.75
+     65536          0.013           9.73             19.46
+
+=== Summary ===
+Average GFLOPS: 2.26
+Average GB/s: 4.52

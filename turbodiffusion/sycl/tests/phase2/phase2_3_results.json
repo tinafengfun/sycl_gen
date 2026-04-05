@@ -1,0 +1,104 @@
+{
+  "timestamp": "2026-04-01T07:17:21.520267",
+  "phase": "2.3",
+  "test": "blocks[*].norm1 replacement (Self-Attention)",
+  "device": "Intel(R) Graphics [0xe211]",
+  "tests": [
+    {
+      "block_idx": 0,
+      "passed": true,
+      "max_error": 0.0,
+      "attn_error": 0.0,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "block_idx": 15,
+      "passed": true,
+      "max_error": 0.0,
+      "attn_error": 0.0,
+      "cosine_similarity": 0.9999999403953552
+    },
+    {
+      "block_idx": 29,
+      "passed": true,
+      "max_error": 0.0,
+      "attn_error": 0.0,
+      "cosine_similarity": 0.9999999403953552
+    },
+    {
+      "test": "attention_quality",
+      "passed": true,
+      "cuda_mean": 0.0011550900526344776,
+      "cuda_std": 0.07636898756027222,
+      "sycl_mean": 0.0011550900526344776,
+      "sycl_std": 0.07636898756027222,
+      "mean_diff": 0.0,
+      "std_ratio": 1.0
+    },
+    {
+      "blocks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "passed": true,
+      "max_error": 0.0,
+      "cosine_similarity": 1.0
+    },
+    {
+      "blocks": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "passed": true,
+      "max_error": 0.0,
+      "cosine_similarity": 0.9999999403953552
+    },
+    {
+      "blocks": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "passed": true,
+      "max_error": 0.0,
+      "cosine_similarity": 1.0
+    },
+    {
+      "all_blocks": true,
+      "num_blocks": 30,
+      "passed": true,
+      "max_error": 0.0,
+      "cosine_similarity": 0.9999999403953552
+    }
+  ],
+  "summary": {
+    "total_tests": 8,
+    "passed_tests": 8,
+    "overall_passed": true,
+    "max_error_overall": 0.0,
+    "mean_error_overall": 0.0
+  }
+}

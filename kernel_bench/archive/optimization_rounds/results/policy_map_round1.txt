@@ -1,0 +1,9 @@
+Kernel: policy_map
+Round: 1
+Timestamp: 2026-03-27T11:18:59.211387
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_policy_map_r1.cpp:12:10: fatal error: '../round1_base/policy_map_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/policy_map_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

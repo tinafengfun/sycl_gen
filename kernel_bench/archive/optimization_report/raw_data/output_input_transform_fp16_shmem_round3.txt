@@ -1,0 +1,21 @@
+Kernel: output_input_transform_fp16_shmem
+Round: 3
+Timestamp: 2026-03-27T09:06:14.730169
+============================================================
+=== output_input_transform_fp16_shmem - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.011           0.18              0.36
+      4096          0.012           0.70              1.39
+     16384          0.012           2.78              5.56
+     65536          0.013          10.43             20.87
+
+=== Summary ===
+Average GFLOPS: 2.36
+Average GB/s: 4.73

@@ -1,0 +1,7 @@
+M: 32
+N: 2048
+EPS: 1e-06
+DataType: FP32
+Grid: 32
+Block: 256
+GPU: L20

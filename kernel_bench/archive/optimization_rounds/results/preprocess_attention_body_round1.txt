@@ -1,0 +1,9 @@
+Kernel: preprocess_attention_body
+Round: 1
+Timestamp: 2026-03-27T11:19:07.451093
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_preprocess_attention_body_r1.cpp:12:10: fatal error: '../round1_base/preprocess_attention_body_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/preprocess_attention_body_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

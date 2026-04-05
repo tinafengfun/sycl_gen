@@ -1,0 +1,21 @@
+Kernel: winograd_input_transform
+Round: 2
+Timestamp: 2026-03-27T09:04:42.630766
+============================================================
+=== winograd_input_transform - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.016           0.06              0.12
+      1024          0.016           0.13              0.25
+      4096          0.016           0.50              0.99
+     16384          0.016           2.02              4.03
+     65536          0.016           8.12             16.25
+
+=== Summary ===
+Average GFLOPS: 1.81
+Average GB/s: 3.61

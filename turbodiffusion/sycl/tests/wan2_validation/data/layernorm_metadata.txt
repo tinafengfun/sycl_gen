@@ -1,0 +1,4 @@
+M: 32
+N: 2048
+EPS: 1e-06
+DataType: FP32

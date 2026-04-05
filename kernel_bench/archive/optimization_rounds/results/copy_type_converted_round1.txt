@@ -1,0 +1,9 @@
+Kernel: copy_type_converted
+Round: 1
+Timestamp: 2026-03-27T11:18:40.608955
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_copy_type_converted_r1.cpp:12:10: fatal error: '../round1_base/copy_type_converted_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/copy_type_converted_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

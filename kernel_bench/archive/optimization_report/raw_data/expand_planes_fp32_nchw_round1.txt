@@ -1,0 +1,21 @@
+Kernel: expand_planes_fp32_nchw
+Round: 1
+Timestamp: 2026-03-27T09:10:29.527771
+============================================================
+=== expand_planes_fp32_nchw - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.011           0.09              0.18
+      1024          0.011           0.18              0.36
+      4096          0.011           0.73              1.46
+     16384          0.012           2.84              5.68
+     65536          0.012          10.88             21.75
+
+=== Summary ===
+Average GFLOPS: 2.45
+Average GB/s: 4.91

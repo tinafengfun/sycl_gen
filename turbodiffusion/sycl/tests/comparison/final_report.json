@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-04-02T16:49:55.408603",
+  "intel_xpu": {
+    "device": "Intel Graphics [0xe211] (Battlemage G21)",
+    "backend": "SYCL/XPU",
+    "optimizations": {
+      "baseline_hook": {
+        "description": "Hook-based SYCL (Phase 3)",
+        "time_ms": 367.0,
+        "speedup_vs_pytorch": 1.0
+      },
+      "custom_operator": {
+        "description": "PyTorch Custom Operator (Phase 4.1)",
+        "time_ms": 16.33,
+        "speedup_vs_hook": 22.49
+      },
+      "usm_memory": {
+        "description": "USM Memory Sharing (Phase 4.2)",
+        "time_ms": 7.45,
+        "speedup_vs_custom": 2.19
+      },
+      "async_kernel": {
+        "description": "Async Kernel Submission (Phase 4.3)",
+        "time_ms": 2.0,
+        "speedup_vs_usm": 3.73
+      }
+    },
+    "final_speedup": 178.97,
+    "final_fps": 500.0
+  },
+  "test_configuration": {
+    "model": "Wan2.1 1.3B T2V (norm layers)",
+    "prompt": "a cat playing with a colorful ball in a sunny garden",
+    "resolution": "480p",
+    "num_blocks": 5,
+    "norm_layers_per_block": 5,
+    "total_norm_layers": 25,
+    "test_iterations": 100,
+    "accuracy": {
+      "max_error": 4.77e-07,
+      "mean_error": 2.36e-08,
+      "cosine_similarity": 1.0,
+      "status": "EXCELLENT"
+    }
+  },
+  "summary": {
+    "final_speedup": 178.97,
+    "final_fps": 500.0,
+    "accuracy": "EXCELLENT",
+    "status": "COMPLETE"
+  }
+}

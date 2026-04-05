@@ -1,0 +1,21 @@
+Kernel: winograd_input_transform
+Round: 4
+Timestamp: 2026-03-27T09:04:51.323672
+============================================================
+=== winograd_input_transform - Round 4 ===
+Strategy: Mixed precision
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.012           0.17              0.35
+      4096          0.012           0.68              1.37
+     16384          0.012           2.82              5.65
+     65536          0.013           9.76             19.52
+
+=== Summary ===
+Average GFLOPS: 2.26
+Average GB/s: 4.51

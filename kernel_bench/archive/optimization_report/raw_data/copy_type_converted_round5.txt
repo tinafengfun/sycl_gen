@@ -1,0 +1,21 @@
+Kernel: copy_type_converted
+Round: 5
+Timestamp: 2026-03-27T09:02:00.199038
+============================================================
+=== copy_type_converted - Round 5 ===
+Strategy: Best config
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.017           0.06              0.12
+      1024          0.016           0.13              0.26
+      4096          0.018           0.46              0.91
+     16384          0.015           2.24              4.49
+     65536          0.019           6.98             13.96
+
+=== Summary ===
+Average GFLOPS: 1.65
+Average GB/s: 3.29

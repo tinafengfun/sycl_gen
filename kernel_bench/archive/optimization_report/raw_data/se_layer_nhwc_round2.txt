@@ -1,0 +1,21 @@
+Kernel: se_layer_nhwc
+Round: 2
+Timestamp: 2026-03-27T09:08:43.985541
+============================================================
+=== se_layer_nhwc - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.012           0.17              0.33
+      4096          0.011           0.72              1.45
+     16384          0.012           2.82              5.65
+     65536          0.012          10.52             21.03
+
+=== Summary ===
+Average GFLOPS: 2.39
+Average GB/s: 4.78

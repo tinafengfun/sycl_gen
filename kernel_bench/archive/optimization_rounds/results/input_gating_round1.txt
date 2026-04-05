@@ -1,0 +1,9 @@
+Kernel: input_gating
+Round: 1
+Timestamp: 2026-03-27T11:19:09.534422
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_input_gating_r1.cpp:12:10: fatal error: '../round1_base/input_gating_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/input_gating_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

@@ -1,0 +1,21 @@
+Kernel: winograd_output_transform
+Round: 5
+Timestamp: 2026-03-27T09:05:17.690041
+============================================================
+=== winograd_output_transform - Round 5 ===
+Strategy: Best config
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.016           0.06              0.13
+      1024          0.018           0.11              0.23
+      4096          0.018           0.46              0.92
+     16384          0.016           2.01              4.02
+     65536          0.014           9.17             18.34
+
+=== Summary ===
+Average GFLOPS: 1.97
+Average GB/s: 3.94

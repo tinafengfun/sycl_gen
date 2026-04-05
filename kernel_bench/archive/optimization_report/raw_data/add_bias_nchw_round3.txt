@@ -1,0 +1,21 @@
+Kernel: add_bias_nchw
+Round: 3
+Timestamp: 2026-03-27T09:01:07.518752
+============================================================
+=== add_bias_nchw - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.019           0.01              0.01
+       512          0.012           0.09              0.17
+      1024          0.012           0.18              0.35
+      4096          0.011           0.71              1.43
+     16384          0.012           2.80              5.60
+     65536          0.012          10.61             21.23
+
+=== Summary ===
+Average GFLOPS: 2.40
+Average GB/s: 4.80

@@ -1,0 +1,21 @@
+Kernel: winograd_output_relu_input
+Round: 2
+Timestamp: 2026-03-27T09:05:48.340018
+============================================================
+=== winograd_output_relu_input - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.18
+      1024          0.012           0.18              0.36
+      4096          0.012           0.69              1.38
+     16384          0.012           2.78              5.57
+     65536          0.014           9.48             18.97
+
+=== Summary ===
+Average GFLOPS: 2.21
+Average GB/s: 4.41

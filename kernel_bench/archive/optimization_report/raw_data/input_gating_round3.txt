@@ -1,0 +1,21 @@
+Kernel: input_gating
+Round: 3
+Timestamp: 2026-03-27T09:08:04.326650
+============================================================
+=== input_gating - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.011           0.18              0.36
+      4096          0.011           0.73              1.46
+     16384          0.012           2.78              5.56
+     65536          0.012          10.75             21.51
+
+=== Summary ===
+Average GFLOPS: 2.42
+Average GB/s: 4.85

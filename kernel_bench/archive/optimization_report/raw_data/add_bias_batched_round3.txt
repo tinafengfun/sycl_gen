@@ -1,0 +1,21 @@
+Kernel: add_bias_batched
+Round: 3
+Timestamp: 2026-03-27T09:00:45.664735
+============================================================
+=== add_bias_batched - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.016           0.06              0.13
+      1024          0.016           0.13              0.25
+      4096          0.016           0.52              1.04
+     16384          0.017           1.92              3.85
+     65536          0.014           9.10             18.19
+
+=== Summary ===
+Average GFLOPS: 1.96
+Average GB/s: 3.91

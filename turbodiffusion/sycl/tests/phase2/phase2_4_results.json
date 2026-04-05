@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-04-01T07:32:35.804620",
+  "phase": "2.4",
+  "test": "RMSNorm replacement (Attention Q/K normalization)",
+  "device": "Intel(R) Graphics [0xe211]",
+  "tests": [
+    {
+      "test": "rmsnorm_standalone",
+      "passed": true,
+      "max_error": 7.152557373046875e-07,
+      "cosine_similarity": 1.0
+    },
+    {
+      "test": "norm_q_replacement",
+      "passed": true,
+      "max_error": 0.0,
+      "cosine_similarity": 1.0
+    },
+    {
+      "test": "norm_k_replacement",
+      "passed": true,
+      "max_error": 0.0,
+      "cosine_similarity": 1.0000001192092896
+    },
+    {
+      "test": "combined_qk_normalization",
+      "passed": true,
+      "max_error": 0.0,
+      "max_error_q": 0.0,
+      "max_error_k": 0.0,
+      "cosine_similarity": 0.9999999403953552
+    },
+    {
+      "test": "attention_pattern_quality",
+      "passed": true,
+      "max_error": 0.0,
+      "cuda_sum": 1.0,
+      "sycl_sum": 1.0,
+      "cuda_entropy": 3.6874409141673077,
+      "sycl_entropy": 3.6874409141673077,
+      "entropy_diff": 0.0
+    }
+  ],
+  "summary": {
+    "total_tests": 5,
+    "passed_tests": 5,
+    "overall_passed": true,
+    "max_error_overall": 7.152557373046875e-07,
+    "mean_error_overall": 1.430511474609375e-07
+  }
+}

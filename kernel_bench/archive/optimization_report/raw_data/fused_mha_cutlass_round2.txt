@@ -1,0 +1,21 @@
+Kernel: fused_mha_cutlass
+Round: 2
+Timestamp: 2026-03-27T09:09:05.813575
+============================================================
+=== fused_mha_cutlass - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.016           0.01              0.02
+       512          0.016           0.06              0.13
+      1024          0.017           0.12              0.24
+      4096          0.016           0.51              1.02
+     16384          0.017           1.98              3.96
+     65536          0.014           9.24             18.49
+
+=== Summary ===
+Average GFLOPS: 1.99
+Average GB/s: 3.98

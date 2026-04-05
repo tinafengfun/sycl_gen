@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-04-02T09:17:31.312943",
+  "phase": "3.6",
+  "test_prompt": "a cat playing with a colorful ball in a sunny garden",
+  "device": "xpu",
+  "metrics": {
+    "max_error": 0.03125,
+    "mean_error": 0.0002361991791985929,
+    "cosine_similarity": 0.9999994039535522,
+    "ssim": 0.9999992251396179,
+    "psnr": 57.205433364437525,
+    "perceptual_similarity": 0.999999463558197,
+    "quality_score": 0.9999993642171224,
+    "quality_grade": "EXCELLENT"
+  },
+  "statistics": {
+    "pytorch_mean": -0.0026602093130350113,
+    "pytorch_std": 1.2936819791793823,
+    "sycl_mean": -0.0026629751082509756,
+    "sycl_std": 1.293686032295227
+  },
+  "performance": {
+    "pytorch_time_ms": 405.2467346191406,
+    "sycl_time_ms": 89.12396430969238,
+    "speedup": 4.5470007731138296
+  },
+  "output_files": {
+    "pytorch_features": "/workspace/turbodiffusion-sycl/tests/phase3/videos/pytorch_features.pt",
+    "sycl_features": "/workspace/turbodiffusion-sycl/tests/phase3/videos/sycl_features.pt"
+  }
+}

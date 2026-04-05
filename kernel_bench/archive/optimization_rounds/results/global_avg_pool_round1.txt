@@ -1,0 +1,9 @@
+Kernel: global_avg_pool
+Round: 1
+Timestamp: 2026-03-27T11:18:50.954028
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_global_avg_pool_r1.cpp:12:10: fatal error: '../round1_base/global_avg_pool_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/global_avg_pool_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

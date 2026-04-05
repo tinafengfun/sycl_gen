@@ -1,0 +1,21 @@
+Kernel: fused_mha_cutlass
+Round: 1
+Timestamp: 2026-03-27T09:09:01.460841
+============================================================
+=== fused_mha_cutlass - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.017           0.06              0.12
+      1024          0.012           0.18              0.36
+      4096          0.011           0.72              1.43
+     16384          0.012           2.79              5.58
+     65536          0.013          10.21             20.43
+
+=== Summary ===
+Average GFLOPS: 2.33
+Average GB/s: 4.66

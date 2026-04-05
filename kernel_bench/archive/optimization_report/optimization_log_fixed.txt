@@ -1,0 +1,2173 @@
+======================================================================
+SYCL Kernel 5-Round Optimization Pipeline - FIXED VERSION
+======================================================================
+Total kernels: 30
+Rounds per kernel: 5
+Test sizes: [64, 512, 1024, 4096, 16384, 65536]
+Iterations per test: 10
+======================================================================
+
+[1/30] Processing add_vectors...
+  Round 1/5 (Test 1/150)
+    === add_vectors - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.016           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.018           0.12              0.23
+          4096          0.017           0.48              0.96
+         16384          0.013           2.54              5.07
+         65536          0.017           7.52             15.05
+    === Summary ===
+  Round 2/5 (Test 2/150)
+    === add_vectors - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.45
+         16384          0.012           2.76              5.53
+         65536          0.012          10.67             21.35
+    === Summary ===
+  Round 3/5 (Test 3/150)
+    === add_vectors - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.73              1.45
+         16384          0.012           2.81              5.62
+         65536          0.012          10.63             21.26
+    === Summary ===
+  Round 4/5 (Test 4/150)
+    === add_vectors - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.018           0.46              0.92
+         16384          0.013           2.51              5.02
+         65536          0.017           7.68             15.36
+    === Summary ===
+  Round 5/5 (Test 5/150)
+    === add_vectors - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.012           2.80              5.60
+         65536          0.012          10.71             21.42
+    === Summary ===
+
+[2/30] Processing add_vectors_hnc_nhc...
+  Round 1/5 (Test 6/150)
+    === add_vectors_hnc_nhc - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.41
+         16384          0.011           2.92              5.85
+         65536          0.012          10.56             21.13
+    === Summary ===
+  Round 2/5 (Test 7/150)
+    === add_vectors_hnc_nhc - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.011           2.86              5.71
+         65536          0.012          10.53             21.06
+    === Summary ===
+  Round 3/5 (Test 8/150)
+    === add_vectors_hnc_nhc - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.34
+          4096          0.011           0.72              1.44
+         16384          0.012           2.71              5.41
+         65536          0.013          10.34             20.68
+    === Summary ===
+  Round 4/5 (Test 9/150)
+    === add_vectors_hnc_nhc - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.25
+          4096          0.017           0.48              0.96
+         16384          0.013           2.51              5.01
+         65536          0.018           7.24             14.48
+    === Summary ===
+  Round 5/5 (Test 10/150)
+    === add_vectors_hnc_nhc - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.70              1.41
+         16384          0.012           2.78              5.55
+         65536          0.013          10.44             20.89
+    === Summary ===
+
+[3/30] Processing add_bias_batched...
+  Round 1/5 (Test 11/150)
+    === add_bias_batched - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.17              0.35
+          4096          0.011           0.75              1.51
+         16384          0.012           2.81              5.62
+         65536          0.012          10.91             21.81
+    === Summary ===
+  Round 2/5 (Test 12/150)
+    === add_bias_batched - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.24
+          4096          0.016           0.51              1.03
+         16384          0.020           1.61              3.22
+         65536          0.015           8.94             17.88
+    === Summary ===
+  Round 3/5 (Test 13/150)
+    === add_bias_batched - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.25
+          4096          0.016           0.52              1.04
+         16384          0.017           1.92              3.85
+         65536          0.014           9.10             18.19
+    === Summary ===
+  Round 4/5 (Test 14/150)
+    === add_bias_batched - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.35
+          4096          0.012           0.70              1.41
+         16384          0.012           2.80              5.60
+         65536          0.013          10.23             20.46
+    === Summary ===
+  Round 5/5 (Test 15/150)
+    === add_bias_batched - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.80              5.59
+         65536          0.012          10.71             21.43
+    === Summary ===
+
+[4/30] Processing add_bias_nchw...
+  Round 1/5 (Test 16/150)
+    === add_bias_nchw - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.24
+          4096          0.016           0.51              1.01
+         16384          0.013           2.55              5.10
+         65536          0.017           7.51             15.01
+    === Summary ===
+  Round 2/5 (Test 17/150)
+    === add_bias_nchw - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.018           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.018           0.46              0.92
+         16384          0.017           1.90              3.80
+         65536          0.015           8.71             17.41
+    === Summary ===
+  Round 3/5 (Test 18/150)
+    === add_bias_nchw - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.019           0.01              0.01
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.011           0.71              1.43
+         16384          0.012           2.80              5.60
+         65536          0.012          10.61             21.23
+    === Summary ===
+  Round 4/5 (Test 19/150)
+    === add_bias_nchw - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.012           2.77              5.54
+         65536          0.012          10.86             21.72
+    === Summary ===
+  Round 5/5 (Test 20/150)
+    === add_bias_nchw - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.012           2.85              5.69
+         65536          0.012          10.63             21.25
+    === Summary ===
+
+[5/30] Processing nchw_to_nhwc...
+  Round 1/5 (Test 21/150)
+    === nchw_to_nhwc - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.015           0.14              0.27
+          4096          0.016           0.50              1.00
+         16384          0.015           2.13              4.26
+         65536          0.014           9.37             18.74
+    === Summary ===
+  Round 2/5 (Test 22/150)
+    === nchw_to_nhwc - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.016           0.50              1.01
+         16384          0.013           2.48              4.95
+         65536          0.017           7.50             15.00
+    === Summary ===
+  Round 3/5 (Test 23/150)
+    === nchw_to_nhwc - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.014           0.15              0.30
+          4096          0.012           0.71              1.42
+         16384          0.012           2.84              5.68
+         65536          0.013          10.46             20.92
+    === Summary ===
+  Round 4/5 (Test 24/150)
+    === nchw_to_nhwc - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.84              5.69
+         65536          0.013          10.38             20.75
+    === Summary ===
+  Round 5/5 (Test 25/150)
+    === nchw_to_nhwc - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.015           0.13              0.27
+          4096          0.016           0.52              1.03
+         16384          0.017           1.94              3.87
+         65536          0.014           9.24             18.47
+    === Summary ===
+
+[6/30] Processing copy_type_converted...
+  Round 1/5 (Test 26/150)
+    === copy_type_converted - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.016           0.52              1.04
+         16384          0.013           2.53              5.05
+         65536          0.018           7.22             14.44
+    === Summary ===
+  Round 2/5 (Test 27/150)
+    === copy_type_converted - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.41
+         16384          0.018           1.84              3.68
+         65536          0.013          10.47             20.93
+    === Summary ===
+  Round 3/5 (Test 28/150)
+    === copy_type_converted - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.012           2.83              5.65
+         65536          0.012          10.66             21.32
+    === Summary ===
+  Round 4/5 (Test 29/150)
+    === copy_type_converted - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.25
+          4096          0.016           0.50              1.01
+         16384          0.013           2.54              5.07
+         65536          0.018           7.43             14.86
+    === Summary ===
+  Round 5/5 (Test 30/150)
+    === copy_type_converted - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.018           0.46              0.91
+         16384          0.015           2.24              4.49
+         65536          0.019           6.98             13.96
+    === Summary ===
+
+[7/30] Processing batch_norm...
+  Round 1/5 (Test 31/150)
+    === batch_norm - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.69              1.37
+         16384          0.012           2.81              5.61
+         65536          0.012          10.57             21.15
+    === Summary ===
+  Round 2/5 (Test 32/150)
+    === batch_norm - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.71              1.43
+         16384          0.012           2.81              5.62
+         65536          0.012          10.80             21.60
+    === Summary ===
+  Round 3/5 (Test 33/150)
+    === batch_norm - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.35
+          4096          0.012           0.70              1.41
+         16384          0.012           2.78              5.56
+         65536          0.013          10.09             20.18
+    === Summary ===
+  Round 4/5 (Test 34/150)
+    === batch_norm - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.25
+          4096          0.017           0.47              0.94
+         16384          0.013           2.52              5.04
+         65536          0.017           7.80             15.60
+    === Summary ===
+  Round 5/5 (Test 35/150)
+    === batch_norm - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.011           0.72              1.45
+         16384          0.012           2.71              5.42
+         65536          0.013          10.45             20.90
+    === Summary ===
+
+[8/30] Processing layer_norm...
+  Round 1/5 (Test 36/150)
+    === layer_norm - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.17              0.35
+          4096          0.011           0.72              1.44
+         16384          0.012           2.71              5.42
+         65536          0.012          10.63             21.27
+    === Summary ===
+  Round 2/5 (Test 37/150)
+    === layer_norm - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.015           0.07              0.13
+          1024          0.017           0.12              0.24
+          4096          0.017           0.49              0.99
+         16384          0.013           2.56              5.11
+         65536          0.017           7.74             15.47
+    === Summary ===
+  Round 3/5 (Test 38/150)
+    === layer_norm - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.018           0.46              0.93
+         16384          0.013           2.51              5.02
+         65536          0.019           6.92             13.84
+    === Summary ===
+  Round 4/5 (Test 39/150)
+    === layer_norm - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.71              1.43
+         16384          0.012           2.70              5.40
+         65536          0.012          10.57             21.15
+    === Summary ===
+  Round 5/5 (Test 40/150)
+    === layer_norm - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.79              5.59
+         65536          0.012          10.62             21.24
+    === Summary ===
+
+[9/30] Processing global_scale...
+  Round 1/5 (Test 41/150)
+    === global_scale - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.015           0.07              0.13
+          1024          0.016           0.13              0.26
+          4096          0.016           0.52              1.04
+         16384          0.017           1.92              3.85
+         65536          0.014           9.18             18.36
+    === Summary ===
+  Round 2/5 (Test 42/150)
+    === global_scale - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.013           0.08              0.16
+          1024          0.012           0.17              0.35
+          4096          0.012           0.69              1.39
+         16384          0.012           2.78              5.56
+         65536          0.013          10.14             20.27
+    === Summary ===
+  Round 3/5 (Test 43/150)
+    === global_scale - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.012           2.81              5.62
+         65536          0.012          10.69             21.37
+    === Summary ===
+  Round 4/5 (Test 44/150)
+    === global_scale - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.41
+         16384          0.011           2.88              5.76
+         65536          0.012          10.51             21.02
+    === Summary ===
+  Round 5/5 (Test 45/150)
+    === global_scale - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.41
+         16384          0.012           2.81              5.61
+         65536          0.012          10.55             21.09
+    === Summary ===
+
+[10/30] Processing global_scale_fp16_nhwc...
+  Round 1/5 (Test 46/150)
+    === global_scale_fp16_nhwc - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.015           0.14              0.28
+          4096          0.017           0.47              0.95
+         16384          0.016           2.07              4.14
+         65536          0.014           9.40             18.80
+    === Summary ===
+  Round 2/5 (Test 47/150)
+    === global_scale_fp16_nhwc - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.68              1.37
+         16384          0.011           2.89              5.79
+         65536          0.012          10.65             21.30
+    === Summary ===
+  Round 3/5 (Test 48/150)
+    === global_scale_fp16_nhwc - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.08              0.17
+          1024          0.012           0.17              0.35
+          4096          0.011           0.72              1.44
+         16384          0.012           2.75              5.49
+         65536          0.013          10.06             20.13
+    === Summary ===
+  Round 4/5 (Test 49/150)
+    === global_scale_fp16_nhwc - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.018           0.46              0.93
+         16384          0.013           2.59              5.17
+         65536          0.019           7.00             13.99
+    === Summary ===
+  Round 5/5 (Test 50/150)
+    === global_scale_fp16_nhwc - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.24
+          4096          0.017           0.50              0.99
+         16384          0.013           2.55              5.11
+         65536          0.018           7.38             14.77
+    === Summary ===
+
+[11/30] Processing global_avg_pool...
+  Round 1/5 (Test 51/150)
+    === global_avg_pool - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.011           0.73              1.47
+         16384          0.012           2.78              5.55
+         65536          0.012          10.79             21.59
+    === Summary ===
+  Round 2/5 (Test 52/150)
+    === global_avg_pool - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.012           2.75              5.51
+         65536          0.012          10.85             21.70
+    === Summary ===
+  Round 3/5 (Test 53/150)
+    === global_avg_pool - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.016           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.018           0.12              0.23
+          4096          0.016           0.52              1.04
+         16384          0.016           2.08              4.15
+         65536          0.014           9.26             18.52
+    === Summary ===
+  Round 4/5 (Test 54/150)
+    === global_avg_pool - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.011           2.90              5.79
+         65536          0.013          10.40             20.81
+    === Summary ===
+  Round 5/5 (Test 55/150)
+    === global_avg_pool - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.70              1.41
+         16384          0.012           2.76              5.53
+         65536          0.012          10.63             21.26
+    === Summary ===
+
+[12/30] Processing global_avg_pool_nhwc_fp16...
+  Round 1/5 (Test 56/150)
+    === global_avg_pool_nhwc_fp16 - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.08              0.16
+          1024          0.011           0.18              0.37
+          4096          0.012           0.71              1.42
+         16384          0.013           2.61              5.23
+         65536          0.012          10.63             21.25
+    === Summary ===
+  Round 2/5 (Test 57/150)
+    === global_avg_pool_nhwc_fp16 - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.41
+         16384          0.012           2.72              5.44
+         65536          0.013          10.39             20.78
+    === Summary ===
+  Round 3/5 (Test 58/150)
+    === global_avg_pool_nhwc_fp16 - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.015           0.07              0.13
+          1024          0.016           0.13              0.25
+          4096          0.016           0.52              1.03
+         16384          0.013           2.52              5.03
+         65536          0.018           7.21             14.41
+    === Summary ===
+  Round 4/5 (Test 59/150)
+    === global_avg_pool_nhwc_fp16 - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.41
+         16384          0.011           2.94              5.87
+         65536          0.013          10.35             20.70
+    === Summary ===
+  Round 5/5 (Test 60/150)
+    === global_avg_pool_nhwc_fp16 - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.08              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.78              5.55
+         65536          0.013          10.28             20.56
+    === Summary ===
+
+[13/30] Processing winograd_filter_transform...
+  Round 1/5 (Test 61/150)
+    === winograd_filter_transform - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.25
+          4096          0.016           0.52              1.05
+         16384          0.013           2.55              5.09
+         65536          0.017           7.86             15.73
+    === Summary ===
+  Round 2/5 (Test 62/150)
+    === winograd_filter_transform - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.016           0.51              1.02
+         16384          0.013           2.53              5.06
+         65536          0.018           7.43             14.87
+    === Summary ===
+  Round 3/5 (Test 63/150)
+    === winograd_filter_transform - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.34
+          4096          0.011           0.72              1.44
+         16384          0.012           2.73              5.46
+         65536          0.013          10.25             20.50
+    === Summary ===
+  Round 4/5 (Test 64/150)
+    === winograd_filter_transform - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.71              1.43
+         16384          0.012           2.81              5.62
+         65536          0.012          10.59             21.18
+    === Summary ===
+  Round 5/5 (Test 65/150)
+    === winograd_filter_transform - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.41
+         16384          0.012           2.75              5.50
+         65536          0.012          10.56             21.11
+    === Summary ===
+
+[14/30] Processing winograd_input_transform...
+  Round 1/5 (Test 66/150)
+    === winograd_input_transform - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.26
+          4096          0.016           0.52              1.04
+         16384          0.013           2.48              4.96
+         65536          0.018           7.20             14.41
+    === Summary ===
+  Round 2/5 (Test 67/150)
+    === winograd_input_transform - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.016           0.13              0.25
+          4096          0.016           0.50              0.99
+         16384          0.016           2.02              4.03
+         65536          0.016           8.12             16.25
+    === Summary ===
+  Round 3/5 (Test 68/150)
+    === winograd_input_transform - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.71              1.43
+         16384          0.012           2.77              5.55
+         65536          0.012          10.66             21.31
+    === Summary ===
+  Round 4/5 (Test 69/150)
+    === winograd_input_transform - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.35
+          4096          0.012           0.68              1.37
+         16384          0.012           2.82              5.65
+         65536          0.013           9.76             19.52
+    === Summary ===
+  Round 5/5 (Test 70/150)
+    === winograd_input_transform - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.12              0.25
+          4096          0.015           0.53              1.07
+         16384          0.016           2.00              4.00
+         65536          0.014           9.38             18.76
+    === Summary ===
+
+[15/30] Processing winograd_output_transform...
+  Round 1/5 (Test 71/150)
+    === winograd_output_transform - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.015           0.13              0.27
+          4096          0.016           0.53              1.05
+         16384          0.017           1.98              3.97
+         65536          0.019           7.07             14.14
+    === Summary ===
+  Round 2/5 (Test 72/150)
+    === winograd_output_transform - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.36
+          4096          0.012           0.70              1.40
+         16384          0.011           2.87              5.74
+         65536          0.012          10.55             21.10
+    === Summary ===
+  Round 3/5 (Test 73/150)
+    === winograd_output_transform - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.35
+          4096          0.011           0.72              1.44
+         16384          0.012           2.70              5.40
+         65536          0.013          10.06             20.12
+    === Summary ===
+  Round 4/5 (Test 74/150)
+    === winograd_output_transform - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.018           0.06              0.12
+          1024          0.016           0.13              0.25
+          4096          0.016           0.52              1.04
+         16384          0.013           2.58              5.15
+         65536          0.018           7.46             14.91
+    === Summary ===
+  Round 5/5 (Test 75/150)
+    === winograd_output_transform - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.018           0.11              0.23
+          4096          0.018           0.46              0.92
+         16384          0.016           2.01              4.02
+         65536          0.014           9.17             18.34
+    === Summary ===
+
+[16/30] Processing winograd_output_se_relu_input...
+  Round 1/5 (Test 76/150)
+    === winograd_output_se_relu_input - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.014           0.07              0.15
+          1024          0.011           0.19              0.37
+          4096          0.011           0.74              1.47
+         16384          0.012           2.77              5.54
+         65536          0.012          10.67             21.33
+    === Summary ===
+  Round 2/5 (Test 77/150)
+    === winograd_output_se_relu_input - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.37
+          4096          0.011           0.73              1.46
+         16384          0.012           2.81              5.62
+         65536          0.012          10.72             21.45
+    === Summary ===
+  Round 3/5 (Test 78/150)
+    === winograd_output_se_relu_input - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.013           0.08              0.15
+          1024          0.016           0.13              0.25
+          4096          0.015           0.55              1.10
+         16384          0.017           1.91              3.81
+         65536          0.014           9.26             18.51
+    === Summary ===
+  Round 4/5 (Test 79/150)
+    === winograd_output_se_relu_input - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.012           0.68              1.36
+         16384          0.012           2.76              5.52
+         65536          0.014           9.33             18.67
+    === Summary ===
+  Round 5/5 (Test 80/150)
+    === winograd_output_se_relu_input - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.67              1.34
+         16384          0.011           2.87              5.75
+         65536          0.013           9.73             19.46
+    === Summary ===
+
+[17/30] Processing winograd_output_relu_input...
+  Round 1/5 (Test 81/150)
+    === winograd_output_relu_input - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.37
+          4096          0.012           0.71              1.42
+         16384          0.012           2.76              5.53
+         65536          0.012          10.75             21.49
+    === Summary ===
+  Round 2/5 (Test 82/150)
+    === winograd_output_relu_input - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.012           0.69              1.38
+         16384          0.012           2.78              5.57
+         65536          0.014           9.48             18.97
+    === Summary ===
+  Round 3/5 (Test 83/150)
+    === winograd_output_relu_input - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.016           0.52              1.05
+         16384          0.013           2.54              5.07
+         65536          0.016           7.97             15.95
+    === Summary ===
+  Round 4/5 (Test 84/150)
+    === winograd_output_relu_input - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.45
+         16384          0.012           2.76              5.52
+         65536          0.012          10.64             21.29
+    === Summary ===
+  Round 5/5 (Test 85/150)
+    === winograd_output_relu_input - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.68              5.35
+         65536          0.013          10.44             20.88
+    === Summary ===
+
+[18/30] Processing output_input_transform_fp16_shmem...
+  Round 1/5 (Test 86/150)
+    === output_input_transform_fp16_shmem - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.018           0.01              0.01
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.25
+          4096          0.016           0.53              1.05
+         16384          0.013           2.57              5.13
+         65536          0.016           8.09             16.18
+    === Summary ===
+  Round 2/5 (Test 87/150)
+    === output_input_transform_fp16_shmem - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.25
+          4096          0.016           0.53              1.06
+         16384          0.013           2.48              4.97
+         65536          0.017           7.65             15.30
+    === Summary ===
+  Round 3/5 (Test 88/150)
+    === output_input_transform_fp16_shmem - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.012           0.70              1.39
+         16384          0.012           2.78              5.56
+         65536          0.013          10.43             20.87
+    === Summary ===
+  Round 4/5 (Test 89/150)
+    === output_input_transform_fp16_shmem - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.35
+          4096          0.011           0.72              1.44
+         16384          0.012           2.83              5.67
+         65536          0.012          10.54             21.07
+    === Summary ===
+  Round 5/5 (Test 90/150)
+    === output_input_transform_fp16_shmem - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.07              0.13
+          1024          0.015           0.14              0.27
+          4096          0.016           0.53              1.05
+         16384          0.013           2.55              5.09
+         65536          0.017           7.56             15.11
+    === Summary ===
+
+[19/30] Processing softmax...
+  Round 1/5 (Test 91/150)
+    === softmax - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.34
+          4096          0.012           0.70              1.41
+         16384          0.012           2.74              5.48
+         65536          0.015           8.84             17.68
+    === Summary ===
+  Round 2/5 (Test 92/150)
+    === softmax - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.011           2.85              5.71
+         65536          0.012          10.86             21.72
+    === Summary ===
+  Round 3/5 (Test 93/150)
+    === softmax - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.34
+          4096          0.011           0.72              1.43
+         16384          0.012           2.74              5.49
+         65536          0.012          10.50             21.00
+    === Summary ===
+  Round 4/5 (Test 94/150)
+    === softmax - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.75              5.50
+         65536          0.012          10.60             21.20
+    === Summary ===
+  Round 5/5 (Test 95/150)
+    === softmax - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.015           0.13              0.27
+          4096          0.015           0.54              1.08
+         16384          0.013           2.53              5.06
+         65536          0.017           7.50             15.00
+    === Summary ===
+
+[20/30] Processing softmax_opt_64...
+  Round 1/5 (Test 96/150)
+    === softmax_opt_64 - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.75              1.49
+         16384          0.012           2.76              5.52
+         65536          0.012          10.72             21.43
+    === Summary ===
+  Round 2/5 (Test 97/150)
+    === softmax_opt_64 - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.17              0.35
+          4096          0.012           0.71              1.41
+         16384          0.012           2.67              5.34
+         65536          0.013          10.42             20.83
+    === Summary ===
+  Round 3/5 (Test 98/150)
+    === softmax_opt_64 - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.07              0.13
+          1024          0.018           0.12              0.23
+          4096          0.016           0.50              1.00
+         16384          0.013           2.43              4.86
+         65536          0.018           7.39             14.78
+    === Summary ===
+  Round 4/5 (Test 99/150)
+    === softmax_opt_64 - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.015           0.54              1.07
+         16384          0.016           2.11              4.22
+         65536          0.014           9.16             18.33
+    === Summary ===
+  Round 5/5 (Test 100/150)
+    === softmax_opt_64 - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.012           2.80              5.59
+         65536          0.012          10.75             21.50
+    === Summary ===
+
+[21/30] Processing promotion_logits...
+  Round 1/5 (Test 101/150)
+    === promotion_logits - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.012           0.69              1.39
+         16384          0.012           2.79              5.58
+         65536          0.013          10.42             20.83
+    === Summary ===
+  Round 2/5 (Test 102/150)
+    === promotion_logits - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.26
+          4096          0.016           0.51              1.02
+         16384          0.016           2.07              4.15
+         65536          0.014           9.31             18.62
+    === Summary ===
+  Round 3/5 (Test 103/150)
+    === promotion_logits - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.016           0.50              1.00
+         16384          0.013           2.54              5.09
+         65536          0.018           7.38             14.76
+    === Summary ===
+  Round 4/5 (Test 104/150)
+    === promotion_logits - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.17              0.34
+          4096          0.011           0.72              1.44
+         16384          0.012           2.84              5.67
+         65536          0.012          10.77             21.53
+    === Summary ===
+  Round 5/5 (Test 105/150)
+    === promotion_logits - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.70              1.39
+         16384          0.012           2.76              5.52
+         65536          0.013          10.29             20.58
+    === Summary ===
+
+[22/30] Processing preprocess_attention_body...
+  Round 1/5 (Test 106/150)
+    === preprocess_attention_body - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.020           0.01              0.01
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.25
+          4096          0.016           0.51              1.01
+         16384          0.013           2.54              5.08
+         65536          0.017           7.49             14.98
+    === Summary ===
+  Round 2/5 (Test 107/150)
+    === preprocess_attention_body - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.016           0.52              1.03
+         16384          0.017           1.96              3.92
+         65536          0.014           9.21             18.42
+    === Summary ===
+  Round 3/5 (Test 108/150)
+    === preprocess_attention_body - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.012           2.81              5.63
+         65536          0.013          10.45             20.91
+    === Summary ===
+  Round 4/5 (Test 109/150)
+    === preprocess_attention_body - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.45
+         16384          0.012           2.76              5.51
+         65536          0.012          10.68             21.36
+    === Summary ===
+  Round 5/5 (Test 110/150)
+    === preprocess_attention_body - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.015           0.07              0.13
+          1024          0.016           0.13              0.26
+          4096          0.016           0.51              1.02
+         16384          0.018           1.84              3.69
+         65536          0.014           9.39             18.78
+    === Summary ===
+
+[23/30] Processing input_gating...
+  Round 1/5 (Test 111/150)
+    === input_gating - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.016           0.50              1.01
+         16384          0.013           2.53              5.05
+         65536          0.017           7.50             15.00
+    === Summary ===
+  Round 2/5 (Test 112/150)
+    === input_gating - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.012           2.82              5.65
+         65536          0.013          10.42             20.84
+    === Summary ===
+  Round 3/5 (Test 113/150)
+    === input_gating - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.011           0.73              1.46
+         16384          0.012           2.78              5.56
+         65536          0.012          10.75             21.51
+    === Summary ===
+  Round 4/5 (Test 114/150)
+    === input_gating - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.34
+          4096          0.012           0.69              1.39
+         16384          0.012           2.73              5.46
+         65536          0.013          10.38             20.76
+    === Summary ===
+  Round 5/5 (Test 115/150)
+    === input_gating - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.025           0.04              0.08
+          1024          0.015           0.13              0.27
+          4096          0.016           0.53              1.05
+         16384          0.012           2.75              5.50
+         65536          0.015           8.60             17.20
+    === Summary ===
+
+[24/30] Processing gen_offset_pointers...
+  Round 1/5 (Test 116/150)
+    === gen_offset_pointers - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.37
+          4096          0.012           0.71              1.42
+         16384          0.011           2.88              5.77
+         65536          0.012          10.75             21.49
+    === Summary ===
+  Round 2/5 (Test 117/150)
+    === gen_offset_pointers - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.011           0.71              1.43
+         16384          0.011           2.87              5.74
+         65536          0.013          10.35             20.71
+    === Summary ===
+  Round 3/5 (Test 118/150)
+    === gen_offset_pointers - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.011           0.72              1.44
+         16384          0.012           2.75              5.50
+         65536          0.012          10.58             21.15
+    === Summary ===
+  Round 4/5 (Test 119/150)
+    === gen_offset_pointers - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.73              1.45
+         16384          0.012           2.82              5.64
+         65536          0.012          10.71             21.43
+    === Summary ===
+  Round 5/5 (Test 120/150)
+    === gen_offset_pointers - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.016           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.016           0.52              1.04
+         16384          0.013           2.53              5.07
+         65536          0.018           7.14             14.28
+    === Summary ===
+
+[25/30] Processing se_layer_nhwc...
+  Round 1/5 (Test 121/150)
+    === se_layer_nhwc - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.19              0.37
+          4096          0.011           0.73              1.46
+         16384          0.012           2.81              5.62
+         65536          0.012          10.87             21.75
+    === Summary ===
+  Round 2/5 (Test 122/150)
+    === se_layer_nhwc - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.17              0.33
+          4096          0.011           0.72              1.45
+         16384          0.012           2.82              5.65
+         65536          0.012          10.52             21.03
+    === Summary ===
+  Round 3/5 (Test 123/150)
+    === se_layer_nhwc - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.016           0.13              0.25
+          4096          0.016           0.50              1.01
+         16384          0.013           2.54              5.08
+         65536          0.018           7.46             14.92
+    === Summary ===
+  Round 4/5 (Test 124/150)
+    === se_layer_nhwc - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.017           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.24
+          4096          0.017           0.50              0.99
+         16384          0.013           2.51              5.02
+         65536          0.018           7.44             14.87
+    === Summary ===
+  Round 5/5 (Test 125/150)
+    === se_layer_nhwc - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.012           2.80              5.59
+         65536          0.012          10.65             21.29
+    === Summary ===
+
+[26/30] Processing fused_mha_cutlass...
+  Round 1/5 (Test 126/150)
+    === fused_mha_cutlass - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.012           0.18              0.36
+          4096          0.011           0.72              1.43
+         16384          0.012           2.79              5.58
+         65536          0.013          10.21             20.43
+    === Summary ===
+  Round 2/5 (Test 127/150)
+    === fused_mha_cutlass - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.016           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.24
+          4096          0.016           0.51              1.02
+         16384          0.017           1.98              3.96
+         65536          0.014           9.24             18.49
+    === Summary ===
+  Round 3/5 (Test 128/150)
+    === fused_mha_cutlass - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.012           0.70              1.41
+         16384          0.012           2.76              5.52
+         65536          0.012          10.56             21.11
+    === Summary ===
+  Round 4/5 (Test 129/150)
+    === fused_mha_cutlass - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.014           0.07              0.15
+          1024          0.013           0.16              0.32
+          4096          0.013           0.64              1.29
+         16384          0.015           2.16              4.32
+         65536          0.014           9.57             19.14
+    === Summary ===
+  Round 5/5 (Test 130/150)
+    === fused_mha_cutlass - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.019           0.01              0.01
+           512          0.015           0.07              0.14
+          1024          0.014           0.14              0.29
+          4096          0.015           0.55              1.09
+         16384          0.014           2.28              4.55
+         65536          0.015           8.56             17.12
+    === Summary ===
+
+[27/30] Processing policy_map...
+  Round 1/5 (Test 131/150)
+    === policy_map - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.011           0.10              0.19
+          1024          0.011           0.20              0.39
+          4096          0.010           0.78              1.56
+         16384          0.011           3.10              6.20
+         65536          0.011          11.58             23.16
+    === Summary ===
+  Round 2/5 (Test 132/150)
+    === policy_map - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.07              0.13
+          1024          0.016           0.13              0.25
+          4096          0.016           0.52              1.04
+         16384          0.013           2.53              5.05
+         65536          0.018           7.47             14.93
+    === Summary ===
+  Round 3/5 (Test 133/150)
+    === policy_map - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.012           0.18              0.36
+          4096          0.011           0.72              1.45
+         16384          0.012           2.80              5.60
+         65536          0.012          10.56             21.12
+    === Summary ===
+  Round 4/5 (Test 134/150)
+    === policy_map - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.012           0.71              1.42
+         16384          0.012           2.78              5.56
+         65536          0.012          10.55             21.10
+    === Summary ===
+  Round 5/5 (Test 135/150)
+    === policy_map - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.07              0.13
+          1024          0.016           0.12              0.25
+          4096          0.017           0.48              0.97
+         16384          0.013           2.55              5.10
+         65536          0.016           8.20             16.40
+    === Summary ===
+
+[28/30] Processing expand_planes_nhwc...
+  Round 1/5 (Test 136/150)
+    === expand_planes_nhwc - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.016           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.016           0.13              0.26
+          4096          0.016           0.52              1.05
+         16384          0.013           2.53              5.05
+         65536          0.016           8.06             16.11
+    === Summary ===
+  Round 2/5 (Test 137/150)
+    === expand_planes_nhwc - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.36
+          4096          0.011           0.73              1.46
+         16384          0.012           2.82              5.65
+         65536          0.012          10.87             21.74
+    === Summary ===
+  Round 3/5 (Test 138/150)
+    === expand_planes_nhwc - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.012           0.01              0.02
+           512          0.010           0.10              0.20
+          1024          0.010           0.21              0.42
+          4096          0.010           0.84              1.68
+         16384          0.010           3.34              6.68
+         65536          0.010          12.64             25.28
+    === Summary ===
+  Round 4/5 (Test 139/150)
+    === expand_planes_nhwc - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.36
+          4096          0.012           0.69              1.39
+         16384          0.012           2.79              5.57
+         65536          0.013          10.40             20.81
+    === Summary ===
+  Round 5/5 (Test 140/150)
+    === expand_planes_nhwc - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.13
+          1024          0.017           0.12              0.24
+          4096          0.016           0.52              1.04
+         16384          0.013           2.49              4.98
+         65536          0.017           7.53             15.05
+    === Summary ===
+
+[29/30] Processing expand_planes_nchw...
+  Round 1/5 (Test 141/150)
+    === expand_planes_nchw - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.018           0.06              0.11
+          1024          0.017           0.12              0.24
+          4096          0.018           0.45              0.90
+         16384          0.013           2.53              5.05
+         65536          0.018           7.28             14.56
+    === Summary ===
+  Round 2/5 (Test 142/150)
+    === expand_planes_nchw - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.013           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.012           0.18              0.35
+          4096          0.012           0.71              1.42
+         16384          0.012           2.83              5.65
+         65536          0.013          10.36             20.72
+    === Summary ===
+  Round 3/5 (Test 143/150)
+    === expand_planes_nchw - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.08              0.17
+          1024          0.012           0.17              0.34
+          4096          0.012           0.71              1.41
+         16384          0.012           2.71              5.43
+         65536          0.013          10.18             20.36
+    === Summary ===
+  Round 4/5 (Test 144/150)
+    === expand_planes_nchw - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.016           0.50              1.00
+         16384          0.013           2.52              5.05
+         65536          0.017           7.66             15.33
+    === Summary ===
+  Round 5/5 (Test 145/150)
+    === expand_planes_nchw - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.016           0.06              0.12
+          1024          0.016           0.13              0.25
+          4096          0.016           0.50              0.99
+         16384          0.013           2.52              5.04
+         65536          0.017           7.73             15.47
+    === Summary ===
+
+[30/30] Processing expand_planes_fp32_nchw...
+  Round 1/5 (Test 146/150)
+    === expand_planes_fp32_nchw - Round 1 ===
+    Strategy: FP16 + Vectorized loads
+    WG Size: 128
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.011           0.09              0.18
+          1024          0.011           0.18              0.36
+          4096          0.011           0.73              1.46
+         16384          0.012           2.84              5.68
+         65536          0.012          10.88             21.75
+    === Summary ===
+  Round 2/5 (Test 147/150)
+    === expand_planes_fp32_nchw - Round 2 ===
+    Strategy: SLM tile caching / XMX
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.09              0.17
+          1024          0.011           0.18              0.37
+          4096          0.012           0.71              1.42
+         16384          0.012           2.79              5.58
+         65536          0.012          10.81             21.61
+    === Summary ===
+  Round 3/5 (Test 148/150)
+    === expand_planes_fp32_nchw - Round 3 ===
+    Strategy: Large GRF mode
+    WG Size: 512
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.018           0.06              0.12
+          1024          0.018           0.12              0.23
+          4096          0.016           0.52              1.04
+         16384          0.016           2.02              4.04
+         65536          0.014           9.23             18.46
+    === Summary ===
+  Round 4/5 (Test 149/150)
+    === expand_planes_fp32_nchw - Round 4 ===
+    Strategy: Mixed precision
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.015           0.01              0.02
+           512          0.017           0.06              0.12
+          1024          0.017           0.12              0.24
+          4096          0.019           0.42              0.84
+         16384          0.017           1.88              3.75
+         65536          0.014           9.24             18.48
+    === Summary ===
+  Round 5/5 (Test 150/150)
+    === expand_planes_fp32_nchw - Round 5 ===
+    Strategy: Best config
+    WG Size: 256
+    Device: Intel(R) Graphics [0xe211]
+          Size       Time(ms)         GFLOPS              GB/s
+    ----------------------------------------------------------
+            64          0.014           0.01              0.02
+           512          0.012           0.08              0.17
+          1024          0.012           0.17              0.35
+          4096          0.011           0.72              1.44
+         16384          0.012           2.76              5.52
+         65536          0.012          10.49             20.98
+    === Summary ===
+
+======================================================================
+Optimization complete!
+Results saved to: optimization_report/
+======================================================================

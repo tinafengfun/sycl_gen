@@ -1,0 +1,9 @@
+Kernel: gen_offset_pointers
+Round: 1
+Timestamp: 2026-03-27T11:19:11.600541
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_gen_offset_pointers_r1.cpp:12:10: fatal error: '../round1_base/gen_offset_pointers_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/gen_offset_pointers_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

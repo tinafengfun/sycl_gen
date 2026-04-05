@@ -1,232 +1,95 @@
-# GPU Kernel Performance Benchmark Suite
+# GPU Kernel Benchmark & TurboDiffusion SYCL Suite
 
-Intel Battlemage G21 GPU Kernel Optimization Benchmark Suite - Based on 100+ Real GPU Tests
+Intel GPU kernel optimization benchmarks (SYCL) and TurboDiffusion video generation acceleration — all validated on real Intel Battlemage hardware.
 
-## 📊 Overview
-
-This repository contains comprehensive performance benchmarks for SYCL kernels on Intel Graphics [0xe211] (Battlemage G21). All optimizations are validated through real GPU execution, not theoretical projections.
-
-**Test Coverage:**
-- **78** real GPU test runs
-- **5** core kernels tested with multiple optimization strategies
-- **29+** kernel versions evaluated
-- **100%** real hardware validation
-
-## 🎯 Key Findings
-
-### Optimization Speedup Ranking
-
-| Kernel | Best Speedup | Key Technique | Peak GFLOPS |
-|--------|-------------|---------------|-------------|
-| fused_winograd_se | **4.47x** | Loop Unrolling | 87.35 |
-| batch_norm | **1.12x** | Loop Unrolling | 145.19 |
-| global_avg_pool | **1.10x** | Vectorization | 62.54 |
-| winograd_output | **1.00x** | 3D Topology (baseline optimal) | 156.16 |
-| softmax | **1.00x** | Baseline WG=256 (optimal) | 10.98 |
-
-### Critical Insights
-
-1. **Loop Unrolling is the Silver Bullet**
-   - Average improvement: 50-446%
-   - Most effective for kernels with nested loops
-   - Simple to implement: just add `#pragma unroll`
-
-2. **No Universal Optimal Work-Group Size**
-   - Each kernel requires individual testing
-   - Optimal range: 64-512 (kernel-dependent)
-   - Test configurations: 64, 128, 256, 512
-
-3. **Multi-thread Collaboration is a Trap**
-   - Can cause 300x performance degradation
-   - Avoid frequent barrier synchronization
-   - Prefer single-thread per data unit
-
-4. **3D Work-Group Topology Matters**
-   - 80% improvement over 1D flattening for spatial kernels
-   - Match work-group topology to data dimensions
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```
-.
-├── benchmarks/
-│   ├── results/          # CSV test results
-│   │   ├── softmax_real_results.csv
-│   │   ├── global_avg_pool_real_results.csv
-│   │   ├── winograd_real_results.csv
-│   │   ├── hard_fused_kernel_results.csv
-│   │   └── hard_batch_norm_results.csv
-│   └── charts/           # Visualization charts
-│       ├── optimization_speedup.png
-│       ├── optimization_techniques.png
-│       └── comprehensive_performance.png
-├── docs/
-│   ├── GPU_OPTIMIZATION_GUIDE.md      # Complete optimization guide
-│   ├── HARD_KERNEL_ANALYSIS.md        # Difficult kernel analysis
-│   ├── FINAL_PERFORMANCE_REPORT.md    # Summary report
-│   └── comprehensive_test_report.md   # Detailed test results
-├── tests/                # Test source code
-│   ├── test_softmax_real.cpp
-│   ├── test_global_avg_pool_real.cpp
-│   ├── test_winograd_real.cpp
-│   ├── test_hard_fused_kernel.cpp
-│   ├── test_hard_batch_norm.cpp
-│   └── test_winograd_input.cpp
-├── code/                 # Utility scripts
-│   └── generate_comprehensive_report.py
-├── kernel_dataset/       # Original kernel dataset
-└── .opencode/skills/     # Updated optimization skills
-    ├── intel-gpu-e211-optimizer/
-    └── bmg-b60-optimizer/
+opencode_bench/
+├── kernel_bench/              # Project 1: CUDA-to-SYCL kernel benchmark
+│   ├── kernel_dataset/        # 30 CUDA/SYCL kernels from LCZero
+│   ├── tests/                 # Test harnesses (cpp + accuracy framework)
+│   ├── tools/                 # Python conversion/validation tools
+│   ├── prompts/               # Phase-based LLM agent prompts
+│   ├── benchmarks/            # Performance results & charts
+│   ├── cuda-sycl-converter/   # Automated accuracy test suite
+│   ├── performance_optimization/  # Systematic optimization framework
+│   ├── config/                # Agent pipeline configuration
+│   ├── docs/                  # Optimization guides & reports
+│   └── archive/               # Historical reports & one-off scripts
+│
+├── turbodiffusion/            # Project 2: TurboDiffusion SYCL port
+│   ├── original/              # Original CUDA implementation
+│   ├── sycl/                  # SYCL port with Intel GPU support
+│   └── docs/                  # Migration docs
+│
+├── skills/                    # Consolidated Claude Code skills
+│   ├── docker-executor/       # Unified Docker exec (local + remote)
+│   ├── sycl-builder/          # SYCL kernel build in B60 container
+│   ├── intel-gpu-optimizer/   # Intel GPU optimization guide (merged)
+│   └── winograd-sycl/         # Winograd convolution specialization
+│
+├── sycle-tla/                 # SYCL Templates for Linear Algebra (3rd-party)
+├── BMG_B60_SPE.md             # BMG B60 hardware specifications
+├── XMX.md                     # XMX optimization reference
+└── compile.config             # SYCL compiler flags
 ```
 
-## 🚀 Quick Start
+## Project 1: Kernel Benchmark
 
-### View Charts
+30 CUDA kernels from [LCZero](https://github.com/LeelaChessZero/lc0) chess engine, converted to SYCL and optimized for Intel Battlemage GPUs.
 
-Performance charts are available in `benchmarks/charts/`:
-- **optimization_speedup.png** - Speedup comparison for each kernel
-- **optimization_techniques.png** - Effectiveness of different optimization techniques  
-- **comprehensive_performance.png** - Performance heatmap across all kernels
+### Key Findings
 
-### Read Reports
+| Technique | Effect | Best Case |
+|-----------|--------|-----------|
+| Loop Unrolling (`#pragma unroll`) | +50-446% | fused_winograd_se (4.47x) |
+| 3D Work-Group Topology | +80% | winograd spatial kernels |
+| Work-Group Tuning (64-512) | +10-40% | kernel-dependent |
+| Vectorization | -4% to +10% | global_avg_pool |
+| Multi-thread barriers | **Avoid** | 300x degradation |
 
-Start with these documents in `docs/`:
-1. **GPU_OPTIMIZATION_GUIDE.md** - Complete optimization guide with examples
-2. **comprehensive_test_report.md** - Detailed test results and analysis
-3. **HARD_KERNEL_ANALYSIS.md** - Difficult kernel optimization strategies
-
-### Run Tests
-
-Tests are SYCL-based and designed for Intel GPUs:
+### Quick Start
 
 ```bash
-# Compile (requires Intel oneAPI)
-icpx -fsycl -O2 -std=c++17 tests/test_softmax_real.cpp -o test_softmax
+# Compile a SYCL kernel test
+icpx -fsycl -fsycl-targets=spir64_gen \
+  -Xsycl-target-backend "-device bmg -options -ze-opt-large-register-file" \
+  -O2 -std=c++17 kernel_bench/tests/test_softmax_r1.cpp -o test_softmax
 
-# Run on Intel GPU
+# Run
 ./test_softmax
 ```
 
-## 📈 Performance Highlights
+### Documentation
 
-### Best Performing Kernels
+- [GPU Optimization Guide](kernel_bench/docs/GPU_OPTIMIZATION_GUIDE.md)
+- [Kernel Dataset README](kernel_bench/kernel_dataset/README.md)
+- [Accuracy Test Suite](kernel_bench/cuda-sycl-converter/README.md)
 
-```
-winograd_output:     156.16 GFLOPS  (729 GB/s bandwidth)
-batch_norm:          145.19 GFLOPS  (145 GB/s bandwidth)
-fused_winograd_se:    87.35 GFLOPS  ( 90 GB/s bandwidth)
-global_avg_pool:      62.54 GFLOPS  (254 GB/s bandwidth)
-softmax:              10.98 GFLOPS  ( 13 GB/s bandwidth)
-```
+## Project 2: TurboDiffusion
 
-### Optimization Technique Effectiveness
+Video generation acceleration framework ported from CUDA to SYCL for Intel GPUs.
 
-| Technique | Average Effect | Best Case | Risk |
-|-----------|---------------|-----------|------|
-| Loop Unrolling | +50-446% | fused_winograd_se | None |
-| Work-Group Tuning | +10-40% | add_vectors | Low |
-| 3D Topology | +80% | winograd | Low |
-| Vectorization | -4% to +10% | global_avg_pool | Medium |
-| Multi-thread | -99% | N/A | **Avoid** |
+- [Original Implementation](turbodiffusion/original/)
+- [SYCL Port](turbodiffusion/sycl/)
+- [Conversion Guide](turbodiffusion/docs/conversion_prompt.md)
 
-## 🛠️ Optimization Guidelines
+## Hardware Targets
 
-### 1. Always Add Loop Unrolling
+| GPU | Device ID | Sub-group Size | SLM | Memory |
+|-----|-----------|----------------|-----|--------|
+| BMG B60 | Xe2 | 16 | 256 KB/XeCore | ~500 GB/s HBM2e |
+| Battlemage G21 | 0xe211 | 16 | 128 KB | GDDR |
 
-```cpp
-#pragma unroll
-for (int y = 0; y < 6; y++) {
-    #pragma unroll
-    for (int x = 0; x < 6; x++) {
-        // kernel code
-    }
-}
-```
+## Shared Configuration
 
-**Result:** Up to 4.5x speedup for complex kernels
+- **Compiler:** Intel oneAPI 2025.1 (`icpx`)
+- **SYCL Flags:** See `compile.config`
+- **LLM Endpoint:** See `model.conf`
 
-### 2. Test Multiple Work-Group Sizes
+## License
 
-```cpp
-// Test: 64, 128, 256, 512
-constexpr int WG_SIZE = 256;  // kernel-dependent
-sycl::nd_range<1>(global_size, WG_SIZE)
-```
-
-### 3. Use 3D Topology for Spatial Kernels
-
-```cpp
-// Good: Match data dimensions
-sycl::range<3> local(16, 4, 4);  // 256 total
-
-// Bad: 1D flattening loses locality
-sycl::range<1> local(256);
-```
-
-### 4. Avoid Multi-thread Synchronization
-
-```cpp
-// ❌ Avoid: Frequent barriers
-for (...) {
-    compute();
-    item.barrier();
-}
-
-// ✅ Prefer: Single thread per unit
-int idx = item.get_global_id(0);
-// Complete all work independently
-```
-
-## 📊 Test Configuration
-
-- **GPU:** Intel Graphics [0xe211] (Battlemage G21)
-- **Sub-group Size:** 16
-- **SLM:** 128 KB
-- **Compiler:** Intel oneAPI 2025.1
-- **Compiler Flags:** `-fsycl -O2 -std=c++17`
-- **Iterations per Test:** 50-100
-- **Data Sizes Tested:** 64, 128, 256, 512, 1024, 4096, 16384
-
-## 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [GPU_OPTIMIZATION_GUIDE.md](docs/GPU_OPTIMIZATION_GUIDE.md) | Complete optimization guide with code examples |
-| [HARD_KERNEL_ANALYSIS.md](docs/HARD_KERNEL_ANALYSIS.md) | Analysis of difficult-to-optimize kernels |
-| [FINAL_PERFORMANCE_REPORT.md](docs/FINAL_PERFORMANCE_REPORT.md) | Performance summary and recommendations |
-| [comprehensive_test_report.md](docs/comprehensive_test_report.md) | Detailed test results with all metrics |
-
-## 🔧 Skills Updated
-
-The optimization skills in `.opencode/skills/` have been updated with real test data:
-
-- **intel-gpu-e211-optimizer** (v2.0) - Battlemage G21 specific optimizations
-- **bmg-b60-optimizer** (v2.0) - BMG B60 architecture guidance
-
-Both include:
-- Proven optimization strategies
-- Performance benchmarks
-- Code templates
-- Anti-patterns to avoid
-
-## 📜 License
-
-MIT License - See [LICENSE](LICENSE) for details
-
-## 🤝 Contributing
-
-This is a benchmark dataset based on real GPU tests. All optimizations are validated on Intel Graphics [0xe211].
-
-## 🙏 Acknowledgments
-
-- Original kernels from [LCZero](https://github.com/LeelaChessZero/lc0)
-- Intel oneAPI for SYCL compilation
-- Tested on Intel Battlemage G21 hardware
-
----
-
-**Last Updated:** 2026-03-24  
-**Test Count:** 78 real GPU measurements  
-**Kernels Covered:** 5 core kernels with 29+ versions  
-**All optimizations verified on real hardware** ✅
+- Kernel dataset: GNU GPL v3 (from LCZero)
+- TurboDiffusion: See respective directories
+- Optimization tools: MIT

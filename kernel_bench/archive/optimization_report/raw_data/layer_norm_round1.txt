@@ -1,0 +1,21 @@
+Kernel: layer_norm
+Round: 1
+Timestamp: 2026-03-27T09:02:26.528339
+============================================================
+=== layer_norm - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.18
+      1024          0.012           0.17              0.35
+      4096          0.011           0.72              1.44
+     16384          0.012           2.71              5.42
+     65536          0.012          10.63             21.27
+
+=== Summary ===
+Average GFLOPS: 2.39
+Average GB/s: 4.78

@@ -1,0 +1,21 @@
+Kernel: expand_planes_nchw
+Round: 2
+Timestamp: 2026-03-27T09:10:11.955642
+============================================================
+=== expand_planes_nchw - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.013           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.012           0.18              0.35
+      4096          0.012           0.71              1.42
+     16384          0.012           2.83              5.65
+     65536          0.013          10.36             20.72
+
+=== Summary ===
+Average GFLOPS: 2.36
+Average GB/s: 4.72

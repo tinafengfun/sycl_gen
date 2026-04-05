@@ -1,0 +1,29 @@
+# Build artifacts
+*.so
+*.egg-info/
+build/
+dist/
+__pycache__/
+*.pyc
+
+# Results
+results/
+*.mp4
+*.png
+*.jpg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Model checkpoints (large files)
+*.pth
+*.ckpt
+*.safetensors
+
+# Logs
+*.log
+logs/

@@ -1,0 +1,9 @@
+Kernel: softmax_opt_64
+Round: 1
+Timestamp: 2026-03-27T11:19:03.322086
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_softmax_opt_64_r1.cpp:12:10: fatal error: '../round1_base/softmax_opt_64_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/softmax_opt_64_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

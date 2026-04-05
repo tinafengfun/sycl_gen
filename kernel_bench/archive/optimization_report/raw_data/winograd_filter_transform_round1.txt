@@ -1,0 +1,21 @@
+Kernel: winograd_filter_transform
+Round: 1
+Timestamp: 2026-03-27T09:04:16.084750
+============================================================
+=== winograd_filter_transform - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.016           0.06              0.13
+      1024          0.017           0.12              0.25
+      4096          0.016           0.52              1.05
+     16384          0.013           2.55              5.09
+     65536          0.017           7.86             15.73
+
+=== Summary ===
+Average GFLOPS: 1.85
+Average GB/s: 3.71

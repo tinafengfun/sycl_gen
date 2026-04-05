@@ -1,0 +1,21 @@
+Kernel: add_vectors_hnc_nhc
+Round: 1
+Timestamp: 2026-03-27T09:00:14.988853
+============================================================
+=== add_vectors_hnc_nhc - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.013           0.01              0.02
+       512          0.011           0.09              0.18
+      1024          0.011           0.18              0.36
+      4096          0.012           0.71              1.41
+     16384          0.011           2.92              5.85
+     65536          0.012          10.56             21.13
+
+=== Summary ===
+Average GFLOPS: 2.41
+Average GB/s: 4.82

@@ -1,0 +1,23 @@
+model:
+  name: "Wan2.1-1.3B"
+  dim: 1536
+  num_heads: 12
+  num_layers: 30
+  ffn_dim: 8960
+  
+attention:
+  type: "sparse"  # or "flash"
+  topk: 0.2
+  BLKQ: 64
+  BLKK: 64
+  
+optimization:
+  use_bf16: true
+  device: "xpu"
+  
+inference:
+  num_frames: 81
+  height: 480
+  width: 480
+  guidance_scale: 5.0
+  num_inference_steps: 50

@@ -1,0 +1,21 @@
+Kernel: fused_mha_cutlass
+Round: 3
+Timestamp: 2026-03-27T09:09:10.198865
+============================================================
+=== fused_mha_cutlass - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.18
+      1024          0.012           0.18              0.36
+      4096          0.012           0.70              1.41
+     16384          0.012           2.76              5.52
+     65536          0.012          10.56             21.11
+
+=== Summary ===
+Average GFLOPS: 2.38
+Average GB/s: 4.76

@@ -1,0 +1,1 @@
+icpx -fsycl -fsycl-targets=spir64_gen -fsycl-unnamed-lambda -sycl-std=2020 -std=c++17 -O2 -fno-fast-math -fma -no-ftz -Xs "-device bmg -options -cl-intel-enable-auto-large-GRF-mode -options -cl-fp32-correctly-rounded-divide-sqrt -options -cl-intel-greater-than-4GB-buffer-required -options -cl-poison-unsupported-fp64-kernels" --offload-compress

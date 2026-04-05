@@ -1,0 +1,9 @@
+Kernel: output_input_transform_fp16_shmem
+Round: 1
+Timestamp: 2026-03-27T11:19:26.013905
+============================================================
+COMPILATION_ERROR:
+/workspace/optimization_rounds/tests/test_output_input_transform_fp16_shmem_r1.cpp:12:10: fatal error: '../round1_base/output_input_transform_fp16_shmem_kernel.dp.cpp' file not found
+   12 | #include "../round1_base/output_input_transform_fp16_shmem_kernel.dp.cpp"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.

@@ -1,0 +1,21 @@
+Kernel: global_scale_fp16_nhwc
+Round: 4
+Timestamp: 2026-03-27T09:03:23.474643
+============================================================
+=== global_scale_fp16_nhwc - Round 4 ===
+Strategy: Mixed precision
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.016           0.06              0.12
+      1024          0.016           0.13              0.26
+      4096          0.018           0.46              0.93
+     16384          0.013           2.59              5.17
+     65536          0.019           7.00             13.99
+
+=== Summary ===
+Average GFLOPS: 1.71
+Average GB/s: 3.42

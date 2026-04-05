@@ -1,0 +1,21 @@
+Kernel: winograd_output_relu_input
+Round: 1
+Timestamp: 2026-03-27T09:05:43.946963
+============================================================
+=== winograd_output_relu_input - Round 1 ===
+Strategy: FP16 + Vectorized loads
+WG Size: 128
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.011           0.09              0.18
+      1024          0.011           0.18              0.37
+      4096          0.012           0.71              1.42
+     16384          0.012           2.76              5.53
+     65536          0.012          10.75             21.49
+
+=== Summary ===
+Average GFLOPS: 2.42
+Average GB/s: 4.84

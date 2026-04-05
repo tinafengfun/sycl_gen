@@ -1,0 +1,21 @@
+Kernel: global_scale_fp16_nhwc
+Round: 2
+Timestamp: 2026-03-27T09:03:14.719214
+============================================================
+=== global_scale_fp16_nhwc - Round 2 ===
+Strategy: SLM tile caching / XMX
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.011           0.09              0.18
+      1024          0.011           0.18              0.36
+      4096          0.012           0.68              1.37
+     16384          0.011           2.89              5.79
+     65536          0.012          10.65             21.30
+
+=== Summary ===
+Average GFLOPS: 2.42
+Average GB/s: 4.83

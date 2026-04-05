@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-04-01T08:53:17.321418",
+  "phase": "2.4",
+  "test": "RMSNorm",
+  "device": "xpu",
+  "sycl_device": "Intel(R) Graphics [0xe211]",
+  "tests": [
+    {
+      "test": "rmsnorm_standalone",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0,
+      "device": "xpu"
+    },
+    {
+      "test": "norm_q",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0,
+      "device": "xpu"
+    },
+    {
+      "test": "norm_k",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 0.9999999403953552,
+      "device": "xpu"
+    },
+    {
+      "test": "combined_QK",
+      "passed": true,
+      "max_error": 4.76837158203125e-07,
+      "cosine_similarity": 1.0,
+      "device": "xpu"
+    }
+  ],
+  "summary": {
+    "total_tests": 4,
+    "passed_tests": 4,
+    "overall_passed": true,
+    "max_error": 4.76837158203125e-07,
+    "mean_error": 4.76837158203125e-07
+  }
+}

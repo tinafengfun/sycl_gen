@@ -1,0 +1,21 @@
+Kernel: expand_planes_nchw
+Round: 4
+Timestamp: 2026-03-27T09:10:20.704799
+============================================================
+=== expand_planes_nchw - Round 4 ===
+Strategy: Mixed precision
+WG Size: 256
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.017           0.06              0.12
+      1024          0.017           0.12              0.24
+      4096          0.016           0.50              1.00
+     16384          0.013           2.52              5.05
+     65536          0.017           7.66             15.33
+
+=== Summary ===
+Average GFLOPS: 1.81
+Average GB/s: 3.63

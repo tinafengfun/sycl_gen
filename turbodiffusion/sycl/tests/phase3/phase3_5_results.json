@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-04-02T08:37:56.038127",
+  "phase": "3.5",
+  "device": "xpu",
+  "sycl_device": "Intel(R) Graphics [0xe211]",
+  "max_error": 0.09375,
+  "mean_error": 0.00029055107734166086,
+  "cosine_similarity": 0.9999995827674866,
+  "pytorch_time_ms": 391.38174057006836,
+  "sycl_time_ms": 76.47395133972168,
+  "speedup": 5.117843837196614,
+  "num_blocks": 5,
+  "num_hooks": 25,
+  "passed": true
+}

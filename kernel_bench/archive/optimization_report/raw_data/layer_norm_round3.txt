@@ -1,0 +1,21 @@
+Kernel: layer_norm
+Round: 3
+Timestamp: 2026-03-27T09:02:35.317673
+============================================================
+=== layer_norm - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.015           0.01              0.02
+       512          0.017           0.06              0.12
+      1024          0.017           0.12              0.24
+      4096          0.018           0.46              0.93
+     16384          0.013           2.51              5.02
+     65536          0.019           6.92             13.84
+
+=== Summary ===
+Average GFLOPS: 1.68
+Average GB/s: 3.36

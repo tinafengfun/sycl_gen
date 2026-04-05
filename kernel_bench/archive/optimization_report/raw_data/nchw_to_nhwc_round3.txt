@@ -1,0 +1,21 @@
+Kernel: nchw_to_nhwc
+Round: 3
+Timestamp: 2026-03-27T09:01:29.473646
+============================================================
+=== nchw_to_nhwc - Round 3 ===
+Strategy: Large GRF mode
+WG Size: 512
+Device: Intel(R) Graphics [0xe211]
+
+      Size       Time(ms)         GFLOPS              GB/s
+----------------------------------------------------------
+        64          0.014           0.01              0.02
+       512          0.012           0.09              0.17
+      1024          0.014           0.15              0.30
+      4096          0.012           0.71              1.42
+     16384          0.012           2.84              5.68
+     65536          0.013          10.46             20.92
+
+=== Summary ===
+Average GFLOPS: 2.38
+Average GB/s: 4.75
